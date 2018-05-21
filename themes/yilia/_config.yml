@@ -3,6 +3,7 @@
 menu:
   主页: /
   随笔: /tags/随笔/
+  前端: /tags/前端/
 
 # SubNav
 subnav:
@@ -121,9 +122,11 @@ smart_menu:
   # aboutme: '关于我'
 
 friends:
-python docs: https://docs.python.org/3/index.html
+  python docs: https://docs.python.org/3/index.html
+  5uwu: https://github.com/5uwu
+
+
 aboutme: 暂无信息
-weibo: false
 
 
 plugins:

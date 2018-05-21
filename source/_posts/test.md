@@ -9,6 +9,10 @@ tags:
 ## 测试hexo插件
 
 - hexo-filter-mermaid-diagrams
+- hexo-filter-flowchart
+- hexo-filter-mermaid-diagram
+ 
+### 测试flowchart
 
 ```flow
 st=>start: Start|past:>http://www.google.com[blank]
@@ -28,6 +32,8 @@ c2(yes)->io->e
 c2(no)->op2->e
 ```
 
+### 测试mermaid
+<!-- more -->
 ```mermaid 
 sequenceDiagram
     participant Alice
