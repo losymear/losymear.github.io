@@ -12,6 +12,7 @@ hexo是基于`nodejs`的博客搭建工具。用户使用markdown语法来书写
 - [hexo官网](https://hexo.io/)
 - [hexo文档](https://hexo.io/docs/)
 - [知乎：有哪些好看的 Hexo 主题？ ](https://www.zhihu.com/question/24422335)
+<!-- more -->
 
 ### 基本使用
 ```shell
