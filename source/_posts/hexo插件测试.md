@@ -5,6 +5,7 @@ tags:
     - test
     - hexo
 ---
+测试hexo插件效果，之后删除。
 
 ## 测试hexo插件
 
