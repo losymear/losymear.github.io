@@ -40,6 +40,7 @@ excerpt_link: more
 show_all_link: '展开全文'
 # 数学公式
 mathjax: true
+prettify: true
 # 是否在新窗口打开链接
 open_in_new: false
 
@@ -133,3 +134,4 @@ plugins:
   - hexo-footnotes
   - hexo-filter-mermaid-diagrams
   - hexo-filter-flowchart
+  # - color-themes-for-google-code-prettify

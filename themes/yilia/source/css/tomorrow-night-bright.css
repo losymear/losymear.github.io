@@ -1,0 +1,122 @@
+/*! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
+
+/* 个人修改 */
+
+p code,li code {
+  padding: 1px 3px;
+  margin: 0 3px;
+  /* border: 1px solid #ccc; */
+  font-family: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", monospace;
+  word-wrap: break-word;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+
+
+pre.prettyprint li code{
+  padding: inherit;
+  margin: inherit;
+  background: inherit;
+  border: inherit;
+  font-family: inherit;
+  word-wrap: inherit;
+  font-size: inherit;
+}
+
+pre {
+  overflow:scroll; 
+}
+.prettyprint {
+  background: #000000;
+  font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace!important;
+  border: 0 !important;
+  padding: 0!important;
+}
+
+.pln {
+  color: #eaeaea;
+}
+
+/* Specify class=linenums on a pre to get line numbering */
+
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #969896;
+}
+
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  padding-left: 1em;
+  background-color: #000000;
+  list-style-type: decimal;
+}
+
+@media screen {
+  /* string content */
+  .str {
+    color: #b9ca4a;
+  }
+  /* keyword */
+  .kwd {
+    color: #c397d8;
+  }
+  /* comment */
+  .com {
+    color: #969896;
+  }
+  /* type name */
+  .typ {
+    color: #7aa6da;
+  }
+  /* literal value */
+  .lit {
+    color: #e78c45;
+  }
+  /* punctuation */
+  .pun {
+    color: #eaeaea;
+  }
+  /* lisp open bracket */
+  .opn {
+    color: #eaeaea;
+  }
+  /* lisp close bracket */
+  .clo {
+    color: #eaeaea;
+  }
+  /* markup tag name */
+  .tag {
+    color: #d54e53;
+  }
+  /* markup attribute name */
+  .atn {
+    color: #e78c45;
+  }
+  /* markup attribute value */
+  .atv {
+    color: #70c0b1;
+  }
+  /* declaration */
+  .dec {
+    color: #e78c45;
+  }
+  /* variable name */
+  .var {
+    color: #d54e53;
+  }
+  /* function name */
+  .fun {
+    color: #7aa6da;
+  }
+}

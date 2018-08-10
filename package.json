@@ -6,9 +6,10 @@
     "version": "3.7.1"
   },
   "scripts": {
-    "re": "hexo clean && hexo deploy"    
+    "re": "hexo clean && hexo deploy"
   },
   "dependencies": {
+    "color-themes-for-google-code-prettify": "^2.0.4",
     "hexo": "^3.2.0",
     "hexo-deployer-git": "^0.3.1",
     "hexo-filter-flowchart": "^1.0.4",
