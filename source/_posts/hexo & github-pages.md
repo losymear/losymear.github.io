@@ -144,3 +144,10 @@ pre.prettyprint li code {
 - [hexo-footnotes](https://github.com/LouisBarranqueiro/hexo-footnotes)
 - [hexo-filter-mermaid-diagrams](https://github.com/webappdevelp/hexo-filter-mermaid-diagrams)
 - [hexo-filter-flowchart](https://github.com/bubkoo/hexo-filter-flowchart)
+
+
+## issue
+
+### 部署失败，报错没有权限 
+错误提示`hexo please make sure you have the correct access rights`。
+hexo部署插件[hexo-deployer-git】(https://github.com/hexojs/hexo-deployer-git#notice-fatal-httprequestexception-error-on-pushing-to-github)。

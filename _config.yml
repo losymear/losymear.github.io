@@ -81,6 +81,7 @@ theme: yilia
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
+  # repo: git@github.com:losymear/losymear.github.io.git
   repo: https://github.com/losymear/losymear.github.io.git
   branch: master
 
