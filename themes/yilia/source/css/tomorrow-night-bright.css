@@ -2,7 +2,7 @@
 
 /* 个人修改 */
 
-p code,li code {
+p code,li code, td code {
   padding: 1px 3px;
   margin: 0 3px;
   /* border: 1px solid #ccc; */
