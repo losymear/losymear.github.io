@@ -4,6 +4,9 @@ date: 2018-05-21 16:20:03
 tags:
     - test
     - hexo
+abstract: 请输入密码
+message: 提示：屈平辞赋悬日月，楚王台榭空山丘
+password: king
 ---
 测试hexo插件效果，之后删除。
 

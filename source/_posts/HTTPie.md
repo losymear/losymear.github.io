@@ -351,7 +351,7 @@ pbpaste | http PUT example.com
 ```
 通过`stdin`来传递数据不能与在命令行中指定数据的方式混用：
 ```sh
-echo 'data' | http POST example.org more=data   # 这不种使用方式无效
+echo 'data' | http POST example.org more=data   # 这种使用方式无效
 ```
 如果不想让`HTTPie`从`stdin`中读取数据可以使用`--ignore-stdin`选项。
 

@@ -115,3 +115,6 @@ mermaid: ## mermaid url https://github.com/knsv/mermaid
 
 friends:
   python docs: https://docs.python.org/3/index.html
+
+encrypt:
+  enable: true

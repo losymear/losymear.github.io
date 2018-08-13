@@ -11,6 +11,7 @@
   "dependencies": {
     "color-themes-for-google-code-prettify": "^2.0.4",
     "hexo": "^3.2.0",
+    "hexo-blog-encrypt": "^2.0.8",
     "hexo-deployer-git": "^0.3.1",
     "hexo-filter-flowchart": "^1.0.4",
     "hexo-filter-mermaid-diagrams": "^1.0.5",

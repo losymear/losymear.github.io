@@ -130,7 +130,274 @@ pre.prettyprint li code {
 也可以`prettify.css`换成[其他主题文件](https://jmblog.github.io/color-themes-for-google-code-prettify/)，我选择的是 tomorrow-night-bright.css。
 
 ## 添加目录
+(从网上找来的内容，做了修改，默认先显示按钮而不是列表。)
+在`themes/yilia/layout/_partial/article.ejs`的`</header>`下添加如下内容：
+```html
+<!-- 目录内容 -->
+<% if (!index && post.toc){ %>
+    <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+          <span class="btn-bg"></span>
+          <span class="btn-text">文章导航</span>
+          </p>
+	<div id="toc-article" class="toc-article">
+	    <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+		<strong class="toc-title">文章目录</strong>
+           <%- toc(post.content) %>
+         </div>
+   <script type="text/javascript">
+	function showToc(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:block");
+		show_toc_btn.setAttribute("style","display:none");
+		};
+	function showBtn(){
+		var toc_article = document.getElementById("toc-article");
+		var show_toc_btn = document.getElementById("show-toc-btn");
+		toc_article.setAttribute("style","display:none");
+		show_toc_btn.setAttribute("style","display:block");
+    };
+    showBtn();
+   </script>
+      <% } %>
+<!-- 目录内容结束 -->
+```
 
+同时添加css：
+```css
+/* 新添加的 */
+
+#container .show-toc-btn,
+#container .toc-article {
+  display: block
+}
+
+.toc-article {
+  z-index: 100;
+  background: #fff;
+  border: 1px solid #ccc;
+  max-width: 250px;
+  min-width: 150px;
+  max-height: 500px;
+  overflow-y: auto;
+  -webkit-box-shadow: 5px 5px 2px #ccc;
+  box-shadow: 5px 5px 2px #ccc;
+  font-size: 12px;
+  padding: 10px;
+  position: fixed;
+  right: 35px;
+  top: 129px
+}
+
+.toc-article .toc-close {
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  float: right;
+  color: #ccc
+}
+
+.toc-article .toc-close:hover {
+  color: #000
+}
+
+.toc-article .toc {
+  font-size: 12px;
+  padding-left: 10px;
+  line-height: 20px
+}
+
+.toc-article .toc .toc-number {
+  color: #333;
+  display: none !important;
+}
+
+.toc-article .toc .toc-text:hover {
+  text-decoration: underline;
+  color: #2a6496
+}
+
+.toc-article li {
+  list-style-type: decimal !important
+}
+
+.toc-article .toc-level-1 {
+  margin: 4px 0
+}
+
+.toc-article .toc-child {}
+
+@-moz-keyframes cd-bounce-1 {
+  0% {
+    opacity: 0;
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+  60% {
+    opacity: 1;
+    -o-transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+    -moz-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    transform: scale(1.01)
+  }
+  100% {
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+}
+
+@-webkit-keyframes cd-bounce-1 {
+  0% {
+    opacity: 0;
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+  60% {
+    opacity: 1;
+    -o-transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+    -moz-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    transform: scale(1.01)
+  }
+  100% {
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+}
+
+@-o-keyframes cd-bounce-1 {
+  0% {
+    opacity: 0;
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+  60% {
+    opacity: 1;
+    -o-transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+    -moz-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    transform: scale(1.01)
+  }
+  100% {
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+}
+
+@keyframes cd-bounce-1 {
+  0% {
+    opacity: 0;
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+  60% {
+    opacity: 1;
+    -o-transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+    -moz-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    transform: scale(1.01)
+  }
+  100% {
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+}
+
+.show-toc-btn {
+  display: none;
+  z-index: 10;
+  width: 30px;
+  min-height: 14px;
+  overflow: hidden;
+  padding: 4px 6px 8px 5px;
+  border: 1px solid #ddd;
+  border-right: none;
+  position: fixed;
+  right: 40px;
+  text-align: center;
+  background-color: #f9f9f9
+}
+
+.show-toc-btn .btn-bg {
+  margin-top: 2px;
+  display: block;
+  width: 16px;
+  height: 14px;
+  background: url(http://7xtawy.com1.z0.glb.clouddn.com/show.png) no-repeat;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  background-size: 100%
+}
+
+.show-toc-btn .btn-text {
+  color: #999;
+  font-size: 12px
+}
+
+.show-toc-btn:hover {
+  cursor: pointer
+}
+
+.show-toc-btn:hover .btn-bg {
+  background-position: 0 -16px
+}
+
+.show-toc-btn:hover .btn-text {
+  font-size: 12px;
+  color: #ea8010
+}
+
+.toc-article li ol,
+.toc-article li ul {
+  margin-left: 30px;
+}
+
+.toc-article ol,
+.toc-article ul {
+  margin: 10px 0;
+}
+
+ /* 突然出现的搜索icon  */
+.toc-container.tooltip-left{
+  display: none;
+}
+#container #toc-article {
+  display: none;
+}
+```
+
+## 加密指定文章
+[hexo-blog-encrypt](https://github.com/MikeCoder/hexo-blog-encrypt)
+bug: 会导致目录无法显示
+     可能会导致其他bug，所以我主要用来加密没有复杂内容的流水账。
 
 ## 其他
 
