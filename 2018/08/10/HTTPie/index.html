@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/08/10/5b6d611d07468.png">
 <meta property="og:image" content="https://i.loli.net/2018/08/10/5b6d674ad0839.png">
 <meta property="og:image" content="https://i.loli.net/2018/08/10/5b6d6ad0e1aa1.png">
-<meta property="og:updated_time" content="2018-08-10T13:47:39.000Z">
+<meta property="og:updated_time" content="2018-08-13T08:19:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTTPie使用指南">
 <meta name="twitter:description" content="HTTPie是一个命令行工具，作用是HTTP客户端，它的目标是让CLI与web服务间的交互尽可能的人性化。它提供了一个简单的http命令，允许你使用简单而自然的语法发送任意的HTTP请求，并打印彩色的输出。HTTPie可以用于test、debug，通常用于与HTTP服务交互。">
@@ -199,6 +199,7 @@
       toc_article.setAttribute("style","display:none");
       show_toc_btn.setAttribute("style","display:block");
       };
+    showBtn();
  </script>
            
 <!-- 目录内容结束 -->
@@ -474,7 +475,7 @@ export NO_PROXY=localhost,example.com
 <pre><code class="sh">pbpaste | http PUT example.com
 </code></pre>
 <p>通过<code>stdin</code>来传递数据不能与在命令行中指定数据的方式混用：</p>
-<pre><code class="sh">echo &#39;data&#39; | http POST example.org more=data   # 这不种使用方式无效
+<pre><code class="sh">echo &#39;data&#39; | http POST example.org more=data   # 这种使用方式无效
 </code></pre>
 <p>如果不想让<code>HTTPie</code>从<code>stdin</code>中读取数据可以使用<code>--ignore-stdin</code>选项。</p>
 <h3 id="从文件中读取数据"><a href="#从文件中读取数据" class="headerlink" title="从文件中读取数据"></a>从文件中读取数据</h3><p>一个使用<code>stdin</code>的替代方法是指定一个文件名（如<code>@/path/to/file</code>），文件内容会被使用，如同从<code>stdin</code>中获取的一样。<br>这种方式有一个好处，即<code>Content-Type</code>会根据文件扩展名来进行合适的设置。比如下列请求会从XML文件中获取内容发送，请求头会自动设置为<code>Content-Type: application/xml</code>：</p>
@@ -814,7 +815,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">命令行</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -826,11 +827,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">命令行</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
             
             <div class="clearfix"></div>

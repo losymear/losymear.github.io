@@ -50,7 +50,6 @@
   color: #2a6496
 }
 
-
 .toc-article li {
   list-style-type: decimal !important
 }
@@ -217,4 +216,11 @@
 .toc-article ol,
 .toc-article ul {
   margin: 10px 0;
+}
+ /* 突然出现的搜索icon  */
+.toc-container.tooltip-left{
+  display: none;
+}
+#container #toc-article {
+  display: none;
 }

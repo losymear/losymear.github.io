@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="losymear&#39;s blog">
 <meta property="og:description" content="关于 hexohexo 是基于nodejs的博客搭建工具。使用者可以用 markdown 语法来书写博客，hexo 能生成根据配置漂亮的静态文件。  hexo 官网 hexo 文档 知乎：有哪些好看的 Hexo 主题？">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-10T12:20:54.000Z">
+<meta property="og:updated_time" content="2018-08-13T08:41:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo&amp;github-pages">
 <meta name="twitter:description" content="关于 hexohexo 是基于nodejs的博客搭建工具。使用者可以用 markdown 语法来书写博客，hexo 能生成根据配置漂亮的静态文件。  hexo 官网 hexo 文档 知乎：有哪些好看的 Hexo 主题？">
@@ -247,7 +247,267 @@ hexo deploy
 </code></pre>
 <p>4.additional</p>
 <p>也可以<code>prettify.css</code>换成<a href="https://jmblog.github.io/color-themes-for-google-code-prettify/" target="_blank" rel="noopener">其他主题文件</a>，我选择的是 tomorrow-night-bright.css。</p>
-<h2 id="添加目录"><a href="#添加目录" class="headerlink" title="添加目录"></a>添加目录</h2><h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><del>目前图片使用七牛云,<a href="https://chrome.google.com/webstore/detail/qiniu-upload-files/emmfkgdgapbjphdolealbojmcmnphdcc?utm_source=chrome-ntp-icon" target="_blank" rel="noopener">chrome 插件 qiniu upload files</a>。可登陆<a href="https://portal.qiniu.com/bucket" target="_blank" rel="noopener">七牛云后台</a>查看内容。</del><br>图片目前使用<a href="http://photo.ishield.cn/" target="_blank" rel="noopener">聚合图床</a>。</p>
+<h2 id="添加目录"><a href="#添加目录" class="headerlink" title="添加目录"></a>添加目录</h2><p>(从网上找来的内容，做了修改，默认先显示按钮而不是列表。)<br>在<code>themes/yilia/layout/_partial/article.ejs</code>的<code>&lt;/header&gt;</code>下添加如下内容：</p>
+<pre><code class="html">&lt;!-- 目录内容 --&gt;
+&lt;% if (!index &amp;&amp; post.toc){ %&gt;
+    &lt;p class=&quot;show-toc-btn&quot; id=&quot;show-toc-btn&quot; onclick=&quot;showToc();&quot; style=&quot;display:none&quot;&gt;
+          &lt;span class=&quot;btn-bg&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;btn-text&quot;&gt;文章导航&lt;/span&gt;
+          &lt;/p&gt;
+    &lt;div id=&quot;toc-article&quot; class=&quot;toc-article&quot;&gt;
+        &lt;span id=&quot;toc-close&quot; class=&quot;toc-close&quot; title=&quot;隐藏导航&quot; onclick=&quot;showBtn();&quot;&gt;×&lt;/span&gt;
+        &lt;strong class=&quot;toc-title&quot;&gt;文章目录&lt;/strong&gt;
+           &lt;%- toc(post.content) %&gt;
+         &lt;/div&gt;
+   &lt;script type=&quot;text/javascript&quot;&gt;
+    function showToc(){
+        var toc_article = document.getElementById(&quot;toc-article&quot;);
+        var show_toc_btn = document.getElementById(&quot;show-toc-btn&quot;);
+        toc_article.setAttribute(&quot;style&quot;,&quot;display:block&quot;);
+        show_toc_btn.setAttribute(&quot;style&quot;,&quot;display:none&quot;);
+        };
+    function showBtn(){
+        var toc_article = document.getElementById(&quot;toc-article&quot;);
+        var show_toc_btn = document.getElementById(&quot;show-toc-btn&quot;);
+        toc_article.setAttribute(&quot;style&quot;,&quot;display:none&quot;);
+        show_toc_btn.setAttribute(&quot;style&quot;,&quot;display:block&quot;);
+    };
+    showBtn();
+   &lt;/script&gt;
+      &lt;% } %&gt;
+&lt;!-- 目录内容结束 --&gt;
+</code></pre>
+<p>同时添加css：</p>
+<pre><code class="css">/* 新添加的 */
+
+#container .show-toc-btn,
+#container .toc-article {
+  display: block
+}
+
+.toc-article {
+  z-index: 100;
+  background: #fff;
+  border: 1px solid #ccc;
+  max-width: 250px;
+  min-width: 150px;
+  max-height: 500px;
+  overflow-y: auto;
+  -webkit-box-shadow: 5px 5px 2px #ccc;
+  box-shadow: 5px 5px 2px #ccc;
+  font-size: 12px;
+  padding: 10px;
+  position: fixed;
+  right: 35px;
+  top: 129px
+}
+
+.toc-article .toc-close {
+  font-weight: 700;
+  font-size: 20px;
+  cursor: pointer;
+  float: right;
+  color: #ccc
+}
+
+.toc-article .toc-close:hover {
+  color: #000
+}
+
+.toc-article .toc {
+  font-size: 12px;
+  padding-left: 10px;
+  line-height: 20px
+}
+
+.toc-article .toc .toc-number {
+  color: #333;
+  display: none !important;
+}
+
+.toc-article .toc .toc-text:hover {
+  text-decoration: underline;
+  color: #2a6496
+}
+
+.toc-article li {
+  list-style-type: decimal !important
+}
+
+.toc-article .toc-level-1 {
+  margin: 4px 0
+}
+
+.toc-article .toc-child {}
+
+@-moz-keyframes cd-bounce-1 {
+  0% {
+    opacity: 0;
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+  60% {
+    opacity: 1;
+    -o-transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+    -moz-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    transform: scale(1.01)
+  }
+  100% {
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+}
+
+@-webkit-keyframes cd-bounce-1 {
+  0% {
+    opacity: 0;
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+  60% {
+    opacity: 1;
+    -o-transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+    -moz-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    transform: scale(1.01)
+  }
+  100% {
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+}
+
+@-o-keyframes cd-bounce-1 {
+  0% {
+    opacity: 0;
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+  60% {
+    opacity: 1;
+    -o-transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+    -moz-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    transform: scale(1.01)
+  }
+  100% {
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+}
+
+@keyframes cd-bounce-1 {
+  0% {
+    opacity: 0;
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+  60% {
+    opacity: 1;
+    -o-transform: scale(1.01);
+    -webkit-transform: scale(1.01);
+    -moz-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    transform: scale(1.01)
+  }
+  100% {
+    -o-transform: scale(1);
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1)
+  }
+}
+
+.show-toc-btn {
+  display: none;
+  z-index: 10;
+  width: 30px;
+  min-height: 14px;
+  overflow: hidden;
+  padding: 4px 6px 8px 5px;
+  border: 1px solid #ddd;
+  border-right: none;
+  position: fixed;
+  right: 40px;
+  text-align: center;
+  background-color: #f9f9f9
+}
+
+.show-toc-btn .btn-bg {
+  margin-top: 2px;
+  display: block;
+  width: 16px;
+  height: 14px;
+  background: url(http://7xtawy.com1.z0.glb.clouddn.com/show.png) no-repeat;
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  background-size: 100%
+}
+
+.show-toc-btn .btn-text {
+  color: #999;
+  font-size: 12px
+}
+
+.show-toc-btn:hover {
+  cursor: pointer
+}
+
+.show-toc-btn:hover .btn-bg {
+  background-position: 0 -16px
+}
+
+.show-toc-btn:hover .btn-text {
+  font-size: 12px;
+  color: #ea8010
+}
+
+.toc-article li ol,
+.toc-article li ul {
+  margin-left: 30px;
+}
+
+.toc-article ol,
+.toc-article ul {
+  margin: 10px 0;
+}
+
+ /* 突然出现的搜索icon  */
+.toc-container.tooltip-left{
+  display: none;
+}
+#container #toc-article {
+  display: none;
+}
+</code></pre>
+<h2 id="加密指定文章"><a href="#加密指定文章" class="headerlink" title="加密指定文章"></a>加密指定文章</h2><p><a href="https://github.com/MikeCoder/hexo-blog-encrypt" target="_blank" rel="noopener">hexo-blog-encrypt</a><br>bug: 会导致目录无法显示<br>     可能会导致其他bug，所以我主要用来加密没有复杂内容的流水账。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><del>目前图片使用七牛云,<a href="https://chrome.google.com/webstore/detail/qiniu-upload-files/emmfkgdgapbjphdolealbojmcmnphdcc?utm_source=chrome-ntp-icon" target="_blank" rel="noopener">chrome 插件 qiniu upload files</a>。可登陆<a href="https://portal.qiniu.com/bucket" target="_blank" rel="noopener">七牛云后台</a>查看内容。</del><br>图片目前使用<a href="http://photo.ishield.cn/" target="_blank" rel="noopener">聚合图床</a>。</p>
 <h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><h3 id="使用插件"><a href="#使用插件" class="headerlink" title="使用插件"></a>使用插件</h3><ul>
 <li><a href="https://github.com/LouisBarranqueiro/hexo-footnotes" target="_blank" rel="noopener">hexo-footnotes</a></li>
 <li><a href="https://github.com/webappdevelp/hexo-filter-mermaid-diagrams" target="_blank" rel="noopener">hexo-filter-mermaid-diagrams</a></li>
@@ -477,7 +737,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">命令行</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -489,11 +749,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">命令行</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
             
             <div class="clearfix"></div>

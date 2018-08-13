@@ -9,18 +9,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>hexo插件测试 | losymear&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="测试hexo插件效果，之后删除。 测试hexo插件 hexo-filter-mermaid-diagrams hexo-filter-flowchart hexo-filter-mermaid-diagram  测试flowchart  测试mermaid">
+  <meta name="description" content="请输入密码">
 <meta name="keywords" content="test,hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo插件测试">
 <meta property="og:url" content="http://yoursite.com/2018/05/21/hexo插件测试/index.html">
 <meta property="og:site_name" content="losymear&#39;s blog">
-<meta property="og:description" content="测试hexo插件效果，之后删除。 测试hexo插件 hexo-filter-mermaid-diagrams hexo-filter-flowchart hexo-filter-mermaid-diagram  测试flowchart  测试mermaid">
+<meta property="og:description" content="请输入密码">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-10T12:15:04.000Z">
+<meta property="og:updated_time" content="2018-08-13T08:43:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo插件测试">
-<meta name="twitter:description" content="测试hexo插件效果，之后删除。 测试hexo插件 hexo-filter-mermaid-diagrams hexo-filter-flowchart hexo-filter-mermaid-diagram  测试flowchart  测试mermaid">
+<meta name="twitter:description" content="请输入密码">
   
     <link rel="alternative" href="/atom.xml" title="losymear&#39;s blog" type="application/atom+xml">
   
@@ -176,73 +176,20 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>测试hexo插件效果，之后删除。</p>
-<h2 id="测试hexo插件"><a href="#测试hexo插件" class="headerlink" title="测试hexo插件"></a>测试hexo插件</h2><ul>
-<li>hexo-filter-mermaid-diagrams</li>
-<li>hexo-filter-flowchart</li>
-<li>hexo-filter-mermaid-diagram</li>
-</ul>
-<h3 id="测试flowchart"><a href="#测试flowchart" class="headerlink" title="测试flowchart"></a>测试flowchart</h3><div id="flowchart-0" class="flow-chart"></div>
-
-<h3 id="测试mermaid"><a href="#测试mermaid" class="headerlink" title="测试mermaid"></a>测试mermaid</h3><a id="more"></a>
-<pre class="mermaid">sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice->>John: Hello John, how are you?
-    loop Healthcheck
-        John->>John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts <br>prevail...
-    John-->>Alice: Great!
-    John->>Bob: How about you?
-    Bob-->>John: Jolly good!</pre>
-
-<pre class="mermaid">graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;</pre>
-
-
-<pre class="mermaid">sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice->>John: Hello John, how are you?
-    loop Healthcheck
-        John->>John: Fight against hypochondria
-    end
-    Note right of John: Rational thoughts <br>prevail...
-    John-->>Alice: Great!
-    John->>Bob: How about you?
-    Bob-->>John: Jolly good!</pre>
-
-
-<pre class="mermaid">gantt
-    title A Gantt Diagram
-    dateFormat  YYYY-MM-DD
-    section Section
-    A task           :a1, 2014-01-01, 30d
-    Another task     :after a1  , 20d
-    section Another
-    Task in sec      :2014-01-12  , 12d
-    another task      : 24d</pre>
-
-<p><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: Start|past:>http://www.google.com[blank]
-e=>end: End:>http://www.google.com
-op1=>operation: My Operation|past
-op2=>operation: Stuff|current
-sub1=>subroutine: My Subroutine|invalid
-cond=>condition: Yes
-or No?|approved:>http://www.google.com
-c2=>condition: Good idea|rejected
-io=>inputoutput: catch something...|request
-
-st->op1(right)->cond
-cond(yes, right)->c2
-cond(no)->sub1(left)->op1
-c2(yes)->io->e
-c2(no)->op2->e</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></p>
-
+        <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<div id="security">
+  <div class="input-container">
+  <input type="password" class="form-control" id="pass" placeholder="提示：屈平辞赋悬日月，楚王台榭空山丘" />
+    <label for="pass">提示：屈平辞赋悬日月，楚王台榭空山丘</label>
+    <div class="bottom-line"></div>
+  </div>
+</div>
+<div id="decryptionError" style="display: none;">Incorrect Password!</div>
+<div id="noContentError" style="display: none;">No content to display!</div>
+<div id="encrypt-blog" style="display:none">
+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
+</div>
+<script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
       
 
       
@@ -460,7 +407,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color4">命令行</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -472,11 +419,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">命令行</a>
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
             
             <div class="clearfix"></div>
