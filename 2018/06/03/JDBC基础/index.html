@@ -9,18 +9,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>JDBC基础 | losymear&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="JDBC的设计JDBC并不是“Java Database Connectivity”的缩写，它是对ODBC的致敬（ODBC是微软创建的标准数据库API，并被合并了SQL标准中）。JDBC提供“纯Java”的API，并提供一个驱动管理器以允许第三方驱动连接到指定的数据库。数据库供应商需要提供一个驱动插入到驱动管理器中。编写的程序通过API与驱动管理器通信，而驱动管理器测通过驱动来与实际的数据库通信。">
+  <meta name="description" content="JDBC的设计JDBC并不是“Java Database Connectivity”的缩写，它是对ODBC的致敬（ODBC是微软创建的标准数据库API，并被合并了SQL标准中）。JDBC提供“纯Java”的API，并提供一个驱动管理器以允许第三方驱动连接到指定的数据库。数据库供应商需要提供一个驱动插入到驱动管理器中。编写的程序通过API与驱动管理器通信，而驱动管理器测通过驱动来与实际的数据库通">
 <meta name="keywords" content="数据库,Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JDBC基础">
 <meta property="og:url" content="http://yoursite.com/2018/06/03/JDBC基础/index.html">
 <meta property="og:site_name" content="losymear&#39;s blog">
-<meta property="og:description" content="JDBC的设计JDBC并不是“Java Database Connectivity”的缩写，它是对ODBC的致敬（ODBC是微软创建的标准数据库API，并被合并了SQL标准中）。JDBC提供“纯Java”的API，并提供一个驱动管理器以允许第三方驱动连接到指定的数据库。数据库供应商需要提供一个驱动插入到驱动管理器中。编写的程序通过API与驱动管理器通信，而驱动管理器测通过驱动来与实际的数据库通信。">
+<meta property="og:description" content="JDBC的设计JDBC并不是“Java Database Connectivity”的缩写，它是对ODBC的致敬（ODBC是微软创建的标准数据库API，并被合并了SQL标准中）。JDBC提供“纯Java”的API，并提供一个驱动管理器以允许第三方驱动连接到指定的数据库。数据库供应商需要提供一个驱动插入到驱动管理器中。编写的程序通过API与驱动管理器通信，而驱动管理器测通过驱动来与实际的数据库通">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-13T07:57:55.000Z">
+<meta property="og:updated_time" content="2018-08-22T12:12:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JDBC基础">
-<meta name="twitter:description" content="JDBC的设计JDBC并不是“Java Database Connectivity”的缩写，它是对ODBC的致敬（ODBC是微软创建的标准数据库API，并被合并了SQL标准中）。JDBC提供“纯Java”的API，并提供一个驱动管理器以允许第三方驱动连接到指定的数据库。数据库供应商需要提供一个驱动插入到驱动管理器中。编写的程序通过API与驱动管理器通信，而驱动管理器测通过驱动来与实际的数据库通信。">
+<meta name="twitter:description" content="JDBC的设计JDBC并不是“Java Database Connectivity”的缩写，它是对ODBC的致敬（ODBC是微软创建的标准数据库API，并被合并了SQL标准中）。JDBC提供“纯Java”的API，并提供一个驱动管理器以允许第三方驱动连接到指定的数据库。数据库供应商需要提供一个驱动插入到驱动管理器中。编写的程序通过API与驱动管理器通信，而驱动管理器测通过驱动来与实际的数据库通">
   
     <link rel="alternative" href="/atom.xml" title="losymear&#39;s blog" type="application/atom+xml">
   
@@ -39,6 +39,9 @@
   
 
   <script src="/js/jQuery.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.11.3/flowchart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
   <!-- <link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css"> -->
   <link rel="stylesheet" href="/css/tomorrow-night-bright.css" media="screen" type="text/css">
 </head>
@@ -201,7 +204,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="JDBC的设计"><a href="#JDBC的设计" class="headerlink" title="JDBC的设计"></a>JDBC的设计</h3><p>JDBC并不是“Java Database Connectivity”的缩写，它是对ODBC的致敬（ODBC是微软创建的标准数据库API，并被合并了SQL标准中）。<br>JDBC提供“纯Java”的API，并提供一个<strong>驱动管理器</strong>以允许第三方驱动连接到指定的数据库。数据库供应商需要提供一个<strong>驱动</strong>插入到驱动管理器中。<br>编写的程序通过API与驱动管理器通信，而驱动管理器测通过驱动来与实际的数据库通信。 这样开发者只需要考虑JDBC的API。<br><a id="more"></a></p>
+        <div id="flowchart-0" class="flow-chart"></div>
+
+<h3 id="JDBC的设计"><a href="#JDBC的设计" class="headerlink" title="JDBC的设计"></a>JDBC的设计</h3><p>JDBC并不是“Java Database Connectivity”的缩写，它是对ODBC的致敬（ODBC是微软创建的标准数据库API，并被合并了SQL标准中）。<br>JDBC提供“纯Java”的API，并提供一个<strong>驱动管理器</strong>以允许第三方驱动连接到指定的数据库。数据库供应商需要提供一个<strong>驱动</strong>插入到驱动管理器中。<br>编写的程序通过API与驱动管理器通信，而驱动管理器测通过驱动来与实际的数据库通信。 这样开发者只需要考虑JDBC的API。<br><a id="more"></a></p>
 <p>JDBC标准把驱动器分类与4种类型：</p>
 <ul>
 <li>第一类驱动把JDBC翻译成ODBC，并依赖ODBC驱动来与数据库通信。早期的Java包含一个这类驱动：J<strong>DBC/ODBC桥</strong>。不过Java8已经不再支持JDBC/ODBC桥，因为有更好的接口。</li>
@@ -260,7 +265,21 @@ PreparedStatement stat = conn.prepareStatement(str);
 <li><code>XXX getXXX(int columnNumber)</code>、<code>XXX getXXX(String columnLabel)</code>  <code>XXX</code>是个类型，如Int,double,String,Date等</li>
 <li><code>&lt;T&gt;  T getObject(int columnIndex, Class&lt;T&gt; type)</code>、<code>&lt;T&gt;  T getObject(String columnLabel, Class&lt;T&gt; type)</code>、<code>void updateObject(int columnIndex,Object x, SQLType targetSqlType)</code>、<code>void updateObject(String columnLabel,Object x, SQLType targetSqlType)</code>   返回会更新某一列的值，并转换成指定类型。</li>
 <li><code>int findColumn(String columnName)</code> 获取指定列数的列名</li>
-<li><code>void close()</code>、<code>boolean isClosed()</code></li>
+<li><code>void close()</code>、<code>boolean isClosed()</code><br><script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script><textarea id="flowchart-0-code" style="display: none">st=>start: Start|past:>http://www.google.com[blank]
+e=>end: End:>http://www.google.com
+op1=>operation: My Operation|past
+op2=>operation: Stuff|current
+sub1=>subroutine: My Subroutine|invalid
+cond=>condition: Yes
+or No?|approved:>http://www.google.com
+c2=>condition: Good idea|rejected
+io=>inputoutput: catch something...|request
+
+st->op1(right)->cond
+cond(yes, right)->c2
+cond(no)->sub1(left)->op1
+c2(yes)->io->e
+c2(no)->op2->e</textarea><textarea id="flowchart-0-options" style="display: none">{"scale":1,"line-width":2,"line-length":50,"text-margin":10,"font-size":12}</textarea><script>  console.log("flowchart",window.flowchart);setTimeout(()=>{console.log(window.flowchart);},6000);var code = document.getElementById("flowchart-0-code").value;  var options = JSON.parse(decodeURIComponent(document.getElementById("flowchart-0-options").value));  var diagram = window.flowchart.parse(code);  diagram.drawSVG("flowchart-0", options);</script></li>
 </ul>
 </li>
 </ul>
@@ -388,13 +407,19 @@ PreparedStatement stat = conn.prepareStatement(str);
     </div>
   </div>
   <script src="/js/prettify.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function () {
-      $('pre').addClass('prettyprint linenums');
-      prettyPrint();
-    })
 
+  
+  <script src='https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({});
+      console.log("mermaid初始化");
+      $('pre:not(.mermaid)').addClass('prettyprint linenums');
+       prettyPrint();
+      console.log("prettyprint class added");
+    }
   </script>
+
 
 </footer>
 
@@ -440,13 +465,6 @@ MathJax.Hub.Queue(function() {
 
 
 
-
-  <script src='https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
-    }
-  </script>
 
     
 <div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
@@ -500,7 +518,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">命令行</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,15 +530,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color4">命令行</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
             
             <div class="clearfix"></div>

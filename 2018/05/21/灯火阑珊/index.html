@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="losymear&#39;s blog">
 <meta property="og:description" content="请输入密码">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-13T08:43:49.000Z">
+<meta property="og:updated_time" content="2018-08-22T10:24:54.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记·念">
 <meta name="twitter:description" content="请输入密码">
@@ -39,6 +39,9 @@
   
 
   <script src="/js/jQuery.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.6.5/flowchart.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowchart/1.11.3/flowchart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.min.js"></script>
   <!-- <link rel="stylesheet" href="/css/prettify.css" media="screen" type="text/css"> -->
   <link rel="stylesheet" href="/css/tomorrow-night-bright.css" media="screen" type="text/css">
 </head>
@@ -187,7 +190,7 @@
 <div id="decryptionError" style="display: none;">Incorrect Password!</div>
 <div id="noContentError" style="display: none;">No content to display!</div>
 <div id="encrypt-blog" style="display:none">
-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
+U2FsdGVkX19GqePGkeTgBtvvbPGm19KUjVGmDM+0M5ja36D5/wziL30s2ObNslcydGvOA2rhSqtd9qBUFwYPhbxVW13MM9DIjUXUnzO4sy2RVQ2VKWGjk40OaaYQIR3YK+5Gw2G4EQFNlPKrqWeRxNAdEAYeoMlNTW7lRVR5+j1VaRKyGFPrD/wp8+Dl2njp+YxEIFHWH3PmPOe0WqsRvcBOwel9M9FWvoUN+TdoOhgz1Dk8Z44nHztPgqw2ztNaW9Pj1T3udm474howMwFsBaGIow1ZG4S+ZA/u3306ybtOBpghWx72SJeQ6I4bXwAYUNcrUoh0iOOz+jZUhgbhljNaWkWv2atWrW+Q7FumBFCJX75KTjtFA7N2Ig8nmZRGAhI7JBsNB4fyJSONpvrqLTbYnXr5OVdPzWhP8J8ZR+jeD9bXG1lOJasACsI5E1/gS0ZM8hRDCbLADjwIvRX87lAmAgeEACXEzW7YVbOKv+EjHFgYA0jFYo5eHEb99ko8eNG8wV6bE2R0C6gyYjHCjNTypcixuiVRmy7fBRuEHo4uFYly27Isk7PmRWcC0tkI3LiGvVuoCDF3lJxDs2FmIOkXk95w8ZVE7jXmVw1gJRQGTUtAvJyZ4eykpp+r8ueRZspis1EfG+5ig3YcVQyBp6F9msrtmlYgFAhtbzb5rMxjq1/7zldP1APQJsFGHLBdpXZLRia/iUHWtyV9gg5DdZdhPREnbNXotQZFhAFsqZJ2RNj7XqpRxP8firMhyMqCMcgc8HRtWWW7CK/C36t6FQOPCQIqZXobpTKiG2RyfrARTNLnYXGaO+RSHbsXLKdgn3KfApoa351OXeCUIYFgn78h5178L7r4s1gfwh5HVEW6VKp5Y9dWZRnAVS+u8S9wylMeRzctpfgnR8THHneQMKcUnnZjsL9AzbBAIuuHjXTwX4VKd8B5EDBdDH/k7lcbOJYdHcdHmt9FVnG+OO2oesVXhVw/ZQ6gD4HunFFlvs5ko60+XNavBwZkKLuvS1qT53XKdOwIl2yqe4v/eha7uBf/NFHUzj/xbl4Cg32NFDWDKumrMDF4fDRT+cpBpaEmx59WpgElEL+7jt5zn67PKpv4vcjdfGhYjKjw20Lbg8dyfVS0OBGrhMNtOmI7dReHRwTBgChj5jU06/MGzK5bq+zK1ICME9AB8JmY5pyvBVE/qGvJEEf9Fp3F3pzUgHQsp2UprwscLca2lWf83hHM99vYhSTA0OI+UP9jLwkjw9640wGj8wR4r3WTJijyjboEEe9cUHV2eLUyBnv74yTgFKhqt/T2UXf3eXE1zCqhKE0eYkUCJUzLlJ/GzjvRWCzXSo2kLtvg2Npxura5Vc3IbiEEAvg+LNuA5YakWozpBkzFGZl3sfTYPFrHAd38rqQgfw1l7yG8JHLYu31RXSeFZRFrOY2Lun7Y87Lstl/kbWN4zc4sLnBVtFHbH7LmuDgb1DDycBiXyTcUTSoMjIFimpB1MMXUXYcZ8B1pZOzXqku2np01x71d9jHtcLH3QDk4mgIKM6kYAmaRNGZhvDhiPGf2K2wsMi7MuRKGDreAkoE=
 </div>
 <script src="/lib/crypto-js.js"></script><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
       
@@ -296,13 +299,19 @@ U2FsdGVkX1+/2O4xyfVrZeMTCpfbAIQShUbSv+tzOONILtaSbpuB0RhamtzIAg1rEcA4CtowfS88W77m
     </div>
   </div>
   <script src="/js/prettify.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function () {
-      $('pre').addClass('prettyprint linenums');
-      prettyPrint();
-    })
 
+  
+  <script src='https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({});
+      console.log("mermaid初始化");
+      $('pre:not(.mermaid)').addClass('prettyprint linenums');
+       prettyPrint();
+      console.log("prettyprint class added");
+    }
   </script>
+
 
 </footer>
 
@@ -348,13 +357,6 @@ MathJax.Hub.Queue(function() {
 
 
 
-
-  <script src='https://unpkg.com/mermaid@8.0.0-rc.8/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({theme: 'forest'});
-    }
-  </script>
 
     
 <div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
@@ -408,7 +410,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">命令行</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -416,15 +422,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color4">命令行</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
             
             <div class="clearfix"></div>
