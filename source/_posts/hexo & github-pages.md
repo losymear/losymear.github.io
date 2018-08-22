@@ -10,6 +10,7 @@ tags:
 <!--  为Hexo博客加入prettify插件
 http://jumpbyte.cn/2016/07/02/use-and-install-prettify/ -->
 
+
 ## 关于 hexo
 
 hexo 是基于`nodejs`的博客搭建工具。使用者可以用 markdown 语法来书写博客，hexo 能生成根据配置漂亮的静态文件。
@@ -123,7 +124,31 @@ pre.prettyprint li code {
       prettyPrint();
     })
 </script>
+
 ```
+**注意**：
+`mermaid`需要读取相关标签内的内容，因此需要在初始化后才能使用`pretty`。改成：
+```ejs
+<footer>
+<!-- more content -->
+ <script src="<%- config.root %>js/prettify.js"></script>
+
+  <% if (theme.mermaid.enable) { %>
+  <script src='https://unpkg.com/mermaid@<%= theme.mermaid.version %>/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({});
+      console.log("mermaid初始化");
+      $('pre:not(.mermaid)').addClass('prettyprint linenums');
+       prettyPrint();
+      console.log("prettyprint class added");
+    }
+  </script>
+<% } %>
+
+</footer>
+```
+
 
 4.additional
 

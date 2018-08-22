@@ -13,12 +13,18 @@
     </div>
   </div>
   <script src="<%- config.root %>js/prettify.js"></script>
-  <script type="text/javascript">
-    $(document).ready(function () {
-      $('pre').addClass('prettyprint linenums');
-      prettyPrint();
-    })
 
+  <% if (theme.mermaid.enable) { %>
+  <script src='https://unpkg.com/mermaid@<%= theme.mermaid.version %>/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({});
+      console.log("mermaid初始化");
+      $('pre:not(.mermaid)').addClass('prettyprint linenums');
+       prettyPrint();
+      console.log("prettyprint class added");
+    }
   </script>
+<% } %>
 
 </footer>
