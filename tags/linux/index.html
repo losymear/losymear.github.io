@@ -7,25 +7,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="stylesheet" href="/css/nav.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>HTTPie使用指南 | losymear&#39;s blog</title>
+  <title>Tag: linux | losymear&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="HTTPie是一个命令行工具，作用是HTTP客户端，它的目标是让CLI与web服务间的交互尽可能的人性化。它提供了一个简单的http命令，允许你使用简单而自然的语法发送任意的HTTP请求，并打印彩色的输出。HTTPie可以用于test、debug，通常用于与HTTP服务交互。">
-<meta name="keywords" content="命令行">
-<meta property="og:type" content="article">
-<meta property="og:title" content="HTTPie使用指南">
-<meta property="og:url" content="http://yoursite.com/2018/08/10/HTTPie/index.html">
+  <meta name="description" content="losymear的笔记">
+<meta name="keywords" content="losymear blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="losymear&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/tags/linux/index.html">
 <meta property="og:site_name" content="losymear&#39;s blog">
-<meta property="og:description" content="HTTPie是一个命令行工具，作用是HTTP客户端，它的目标是让CLI与web服务间的交互尽可能的人性化。它提供了一个简单的http命令，允许你使用简单而自然的语法发送任意的HTTP请求，并打印彩色的输出。HTTPie可以用于test、debug，通常用于与HTTP服务交互。">
+<meta property="og:description" content="losymear的笔记">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://i.loli.net/2018/08/10/5b6d5b37503c0.png">
-<meta property="og:image" content="https://i.loli.net/2018/08/10/5b6d611d07468.png">
-<meta property="og:image" content="https://i.loli.net/2018/08/10/5b6d674ad0839.png">
-<meta property="og:image" content="https://i.loli.net/2018/08/10/5b6d6ad0e1aa1.png">
-<meta property="og:updated_time" content="2018-08-22T10:24:54.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTTPie使用指南">
-<meta name="twitter:description" content="HTTPie是一个命令行工具，作用是HTTP客户端，它的目标是让CLI与web服务间的交互尽可能的人性化。它提供了一个简单的http命令，允许你使用简单而自然的语法发送任意的HTTP请求，并打印彩色的输出。HTTPie可以用于test、debug，通常用于与HTTP服务交互。">
-<meta name="twitter:image" content="https://i.loli.net/2018/08/10/5b6d5b37503c0.png">
+<meta name="twitter:title" content="losymear&#39;s blog">
+<meta name="twitter:description" content="losymear的笔记">
   
     <link rel="alternative" href="/atom.xml" title="losymear&#39;s blog" type="application/atom+xml">
   
@@ -158,540 +152,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-HTTPie" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      HTTPie使用指南
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/08/23/trap命令/" class="archive-article-date">
+  	<time datetime="2018-08-23T06:25:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/08/23/trap命令/">bash命令：trap</a>
     </h1>
   
 
-        
-        <a href="/2018/08/10/HTTPie/" class="archive-article-date">
-  	<time datetime="2018-08-10T06:25:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-10</time>
-</a>
-        
-      </header>
-      <!-- 目录内容 -->
-
-  <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
-        <span class="btn-bg"></span>
-        <span class="btn-text">文章导航</span>
-        </p>
-  <div id="toc-article" class="toc-article">
-      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
-      <strong class="toc-title">文章目录</strong>
-         <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Features"><span class="toc-number">1.</span> <span class="toc-text">Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Installation"><span class="toc-number">2.</span> <span class="toc-text">Installation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用示例"><span class="toc-number">3.</span> <span class="toc-text">使用示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP方法"><span class="toc-number">4.</span> <span class="toc-text">HTTP方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#请求URL"><span class="toc-number">5.</span> <span class="toc-text">请求URL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Query参数"><span class="toc-number">5.1.</span> <span class="toc-text">Query参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#localhost的便捷写法"><span class="toc-number">5.2.</span> <span class="toc-text">localhost的便捷写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设定默认的scheme"><span class="toc-number">5.3.</span> <span class="toc-text">设定默认的scheme</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#请求项"><span class="toc-number">6.</span> <span class="toc-text">请求项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#转义规则"><span class="toc-number">6.1.</span> <span class="toc-text">转义规则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSON"><span class="toc-number">7.</span> <span class="toc-text">JSON</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#明确指定JSON"><span class="toc-number">7.1.</span> <span class="toc-text">明确指定JSON</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非字符串的JSON字段值"><span class="toc-number">7.2.</span> <span class="toc-text">非字符串的JSON字段值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表单"><span class="toc-number">8.</span> <span class="toc-text">表单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单表单数据"><span class="toc-number">8.1.</span> <span class="toc-text">简单表单数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件上传表单"><span class="toc-number">8.2.</span> <span class="toc-text">文件上传表单</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-header"><span class="toc-number">9.</span> <span class="toc-text">HTTP header</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#默认值"><span class="toc-number">9.1.</span> <span class="toc-text">默认值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空的header以及取消默认值"><span class="toc-number">9.2.</span> <span class="toc-text">空的header以及取消默认值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#认证"><span class="toc-number">10.</span> <span class="toc-text">认证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic认证"><span class="toc-number">10.1.</span> <span class="toc-text">Basic认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Digest认证"><span class="toc-number">10.2.</span> <span class="toc-text">Digest认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#密码输入提示"><span class="toc-number">10.3.</span> <span class="toc-text">密码输入提示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#netrc"><span class="toc-number">10.4.</span> <span class="toc-text">.netrc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#auth插件"><span class="toc-number">10.5.</span> <span class="toc-text">auth插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP重定向"><span class="toc-number">11.</span> <span class="toc-text">HTTP重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#跟踪Location"><span class="toc-number">11.1.</span> <span class="toc-text">跟踪Location</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示重定向中间过程的响应头"><span class="toc-number">11.2.</span> <span class="toc-text">显示重定向中间过程的响应头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限制最大重定向次数"><span class="toc-number">11.3.</span> <span class="toc-text">限制最大重定向次数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代理"><span class="toc-number">12.</span> <span class="toc-text">代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#环境变量"><span class="toc-number">12.1.</span> <span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SOCKS"><span class="toc-number">12.2.</span> <span class="toc-text">SOCKS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTPS"><span class="toc-number">13.</span> <span class="toc-text">HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器SSL证书认证"><span class="toc-number">13.1.</span> <span class="toc-text">服务器SSL证书认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义CA-bundle"><span class="toc-number">13.2.</span> <span class="toc-text">自定义CA bundle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端SSL证书"><span class="toc-number">13.3.</span> <span class="toc-text">客户端SSL证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL版本"><span class="toc-number">13.4.</span> <span class="toc-text">SSL版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SNI"><span class="toc-number">13.5.</span> <span class="toc-text">SNI</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出选项"><span class="toc-number">14.</span> <span class="toc-text">输出选项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#选择要打印的HTTP交换信息"><span class="toc-number">14.1.</span> <span class="toc-text">选择要打印的HTTP交换信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看中间过程的请求-响应信息"><span class="toc-number">14.2.</span> <span class="toc-text">查看中间过程的请求/响应信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#有选择的响应体获取"><span class="toc-number">14.3.</span> <span class="toc-text">有选择的响应体获取</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输入重定向"><span class="toc-number">15.</span> <span class="toc-text">输入重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#从文件中读取数据"><span class="toc-number">15.1.</span> <span class="toc-text">从文件中读取数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#终端输出"><span class="toc-number">16.</span> <span class="toc-text">终端输出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#高亮与格式化"><span class="toc-number">16.1.</span> <span class="toc-text">高亮与格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二进制数据"><span class="toc-number">16.2.</span> <span class="toc-text">二进制数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向输出"><span class="toc-number">16.3.</span> <span class="toc-text">重定向输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载模式"><span class="toc-number">17.</span> <span class="toc-text">下载模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载文件名"><span class="toc-number">17.1.</span> <span class="toc-text">下载文件名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载同时pipe"><span class="toc-number">17.2.</span> <span class="toc-text">下载同时pipe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#恢复下载"><span class="toc-number">17.3.</span> <span class="toc-text">恢复下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他说明"><span class="toc-number">17.4.</span> <span class="toc-text">其他说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流式响应"><span class="toc-number">18.</span> <span class="toc-text">流式响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#禁用缓存"><span class="toc-number">18.1.</span> <span class="toc-text">禁用缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-number">18.2.</span> <span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session（会话）"><span class="toc-number">19.</span> <span class="toc-text">Session（会话）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#命名session"><span class="toc-number">19.1.</span> <span class="toc-text">命名session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名session"><span class="toc-number">19.2.</span> <span class="toc-text">匿名session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#只读session"><span class="toc-number">19.3.</span> <span class="toc-text">只读session</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">20.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件路径"><span class="toc-number">20.1.</span> <span class="toc-text">配置文件路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置项"><span class="toc-number">20.2.</span> <span class="toc-text">配置项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不使用默认配置"><span class="toc-number">20.3.</span> <span class="toc-text">不使用默认配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脚本"><span class="toc-number">21.</span> <span class="toc-text">脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#最佳实践"><span class="toc-number">21.1.</span> <span class="toc-text">最佳实践</span></a></li></ol></li></ol>
-       </div>
- <script type="text/javascript">
-  function showToc(){
-      var toc_article = document.getElementById("toc-article");
-      var show_toc_btn = document.getElementById("show-toc-btn");
-      toc_article.setAttribute("style","display:block");
-      show_toc_btn.setAttribute("style","display:none");
-      };
-  function showBtn(){
-      var toc_article = document.getElementById("toc-article");
-      var show_toc_btn = document.getElementById("show-toc-btn");
-      toc_article.setAttribute("style","display:none");
-      show_toc_btn.setAttribute("style","display:block");
-      };
-    showBtn();
- </script>
-           
-<!-- 目录内容结束 -->
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><code>HTTPie</code>是一个命令行工具，作用是HTTP客户端，它的目标是让CLI与web服务间的交互尽可能的人性化。它提供了一个简单的<code>http</code>命令，允许你使用简单而自然的语法发送任意的HTTP请求，并打印彩色的输出。<code>HTTPie</code>可以用于test、debug，通常用于与HTTP服务交互。<br><a id="more"></a></p>
-<ul>
-<li><a href="https://httpie.org/doc" target="_blank" rel="noopener">doc</a></li>
-<li><a href="https://github.com/jakubroztocil/httpie" target="_blank" rel="noopener">github项目地址</a></li>
-<li><a href="https://daniel.haxx.se/docs/curl-vs-httpie.html" target="_blank" rel="noopener">curl vs HTTPie</a></li>
-</ul>
-<h2 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h2><ul>
-<li>富有表现力和直观的语法</li>
-<li>格式化的、彩色的终端输出</li>
-<li>内置JSON支持</li>
-<li>表单与文件上传</li>
-<li>HTTPS、代理、验证</li>
-<li>任意请求数据</li>
-<li>自定义header</li>
-<li>持久化session</li>
-<li>类<code>wget</code>的下载</li>
-<li>支持Python2.6、2.7、3.x</li>
-<li>支持Linux、Mac OSX、Windows</li>
-<li>插件</li>
-<li>文档</li>
-<li>测试覆盖率</li>
-</ul>
-<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><ul>
-<li>Mac环境使用<code>brew install httpie</code>。</li>
-<li>Linux环境使用对应的包管理器。 基于Debian的发行版本使用<code>apt-get install httpie</code>，基于RPM的发行版本使用<code>yum install httpie</code>，arch linux使用<code>pacman -S httpie</code>。</li>
-<li>所有环境可以通过<code>pip install --upgrade httpie</code>安装。</li>
-<li>安装开发版本可以直接从GItHub下载，<code>pip install --upgrade https://github.com/jkbrzt/httpie/archive/master.tar.gz</code>。Mac OS可以用<code>brew install httpie --HEAD</code>安装。<br>虽然支持通过Python2.6、2.7安装<code>HTTPie</code>，不过推荐使用最新的Python3.x，以确保能较新的HTTP特性能够开箱即用，如<a href="#SNI"><code>SNI</code></a>（Server Name Indication）。从<code>0.9.4</code>开始Homebrew默认使用Python3安装。要想查看使用的Python版本运行<code>http --debug</code>。</li>
-</ul>
-<h2 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h2><p>基本使用方法为<code>http [flags] [METHOD] URL [ITEM [ITEM]]</code>。<br>可以运行<code>http --help</code>查看更多：<br><img src="https://i.loli.net/2018/08/10/5b6d5b37503c0.png" alt="http--help"><br>一些例子：</p>
-<ul>
-<li>设置HTTP方法、请求头和JSON格式请求数据：<code>http PUT example.org X-API-Token:123 name=John</code></li>
-<li>表单提交：<code>http -f POST example.org hello=world</code></li>
-<li>设置输出的格式：<code>http -v example.org</code></li>
-<li>使用用户认证在这个<a href="https://github.com/jakubroztocil/httpie/issues/83" target="_blank" rel="noopener">issue</a>上发评论：<code>http -a USERNAME POST https://api.github.com/repos/jkbrzt/httpie/issues/83/comments body=&#39;HTTPie is awesome! :heart:&#39;</code></li>
-<li>使用重定向来读取输入内容： <code>http example.org &lt; file.json</code></li>
-<li>使用重定向来下载文件：<code>http example.org/file &gt;file</code></li>
-<li>用类似<code>wget</code>的方式下载文件：<code>http --download example.org/file</code></li>
-<li>使用命名<code>session</code>来保持session：<code>http --session=logged-in -a username:password httpbin.org/get API-Key:123</code>、<code>http --session=logged-in httpbin.org/headers</code></li>
-<li>设置自定义的Host头部，来解决没有DNS记录的问题：<code>http localhost:8000 Host:example.com</code></li>
-</ul>
-<h2 id="HTTP方法"><a href="#HTTP方法" class="headerlink" title="HTTP方法"></a>HTTP方法</h2><p>可以在请求URL前指定HTTP方法，如<code>http DELETE example.org/todos/7</code>，这发送了请求<code>DELETE /todos/7 HTTP/1.1</code>。<br>如果忽略了HTTP方法，那么默认会使用GET（没有请求数据时）或者POST（有请求数据时）。</p>
-<h2 id="请求URL"><a href="#请求URL" class="headerlink" title="请求URL"></a>请求URL</h2><p><code>HTTPie</code>发起请求需要一个URL。默认的scheme是<code>http://</code>，并且可以在参数中省略，比如<code>http example.org</code>就可以工作。</p>
-<h3 id="Query参数"><a href="#Query参数" class="headerlink" title="Query参数"></a>Query参数</h3><p>使用<code>param==value</code>的语法，可以让你不需要考虑<code>&amp;</code>在终端的转义工作。此外，参数中的特殊字符也会自动转义（<code>HTTPie</code>希望URL已经被转义）。如果想在Google图片上搜索<code>HTTPie logo</code>，可以执行<code>http www.google.com search==&#39;HTTPie logo&#39; tbm==isch</code>，这实际发送了请求<code>GET /?search=HTTPie+logo&amp;tbm=isch HTTP/1.1</code>。</p>
-<h3 id="localhost的便捷写法"><a href="#localhost的便捷写法" class="headerlink" title="localhost的便捷写法"></a><code>localhost</code>的便捷写法</h3><p>支持类似<code>curl</code>的对<code>localhost</code>的便捷写法。也就是说，<code>:3000</code>会扩展成<code>http://localhost:3000</code>。如果忽略端口，那么就会使用<code>80</code>端口。比如<code>http :</code>会扩展成<code>http localhost:80</code>。</p>
-<h3 id="设定默认的scheme"><a href="#设定默认的scheme" class="headerlink" title="设定默认的scheme"></a>设定默认的scheme</h3><p>使用<code>--default-scheme &lt;URL_SCHEME&gt;</code>来设置默认的scheme。比如可以使用如下别名：<br><code>alias https=&#39;http --default-scheme=https&#39;</code>。</p>
-<h2 id="请求项"><a href="#请求项" class="headerlink" title="请求项"></a>请求项</h2><p><code>HTTPie</code>为各类请求项提供了方便的设置方式，比如指定header、简单的JSON与表单数据、文件、url参数。这些都是使用<code>key/value</code>的方式在URL之后指定，通过简单的分隔符：<code>:</code>、<code>=</code>、<code>:=</code>、<code>==</code>、<code>@</code>、<code>=@</code>、<code>:=@</code>。带<code>@</code>的分隔符表示值是一个文件路径。</p>
-<table>
-<thead>
-<tr>
-<th>Item Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>HTTP Header <code>Name:Value</code></td>
-<td>任意的HTTP 头部，如<code>X-API-Tken:123</code></td>
-</tr>
-<tr>
-<td>URL参数 <code>name==value</code></td>
-<td>把<code>key/value</code>对作为查询参数添加到URL末尾。</td>
-</tr>
-<tr>
-<td>数据字段 <code>field=@配置文件.conf</code>，<code>field=value</code></td>
-<td>请求的数据字段，默认会序列化为JSON对象，如果带有<code>--form</code>或<code>-f</code>则会转成表单字段</td>
-</tr>
-<tr>
-<td>原始JSON字段，<code>filed:=json</code>, <code>field:=@file.json</code></td>
-<td>当JSON的字段需要是<code>Boolean</code>、<code>Number</code>、<code>Object</code>、<code>Array</code>时会很有用，比如<code>meals:=&#39;[&quot;ham&quot;,&quot;spam&quot;]&#39;</code>，或者<code>pies:=[1,2,3]</code></td>
-</tr>
-<tr>
-<td>表单的文件字段 <code>filed@/dir/file</code></td>
-<td>当带有<code>-f</code>或<code>--form</code>时有效。比如<code>screenshot@~/Pictures/img.png</code>。这会使请求是一个<code>multipart/form-data</code>请求</td>
-</tr>
-</tbody>
-</table>
-<p>注意数据字段不是唯一的指定请求参数的方法。输入重定向也可以传递任意请求参数。</p>
-<h3 id="转义规则"><a href="#转义规则" class="headerlink" title="转义规则"></a>转义规则</h3><p>可以使用<code>\</code>来转义不希望作为分隔符的字符。比如<code>foo\==bar</code>表示<code>key/value</code>的数据字段（<code>foo=</code>和<code>bar</code>）而不是URL参数。<br>如果包含空格，有必要使用引号， 如<code>foo=&#39;bar baz&#39;</code>。<br>如果有数据字段名或者header以<code>-</code>开头，需要前置一个<code>--</code>，以免与<code>--arguments</code>混淆。比如<code>http httpbin.org/post  --  -name-starting-with-dash=foo -Unusual-Header:bar</code>表示的是：</p>
-<pre><code class="shell">POST /post HTTP/1.1
--Unusual-Header: bar
-Content-Type: application/json
-
-{
-    &quot;-name-starting-with-dash&quot;: &quot;value&quot;
-}
-</code></pre>
-<h2 id="JSON"><a href="#JSON" class="headerlink" title="JSON"></a>JSON</h2><p>JSON是现代Web服务的常用格式，同时也是<code>HTTPie</code>默认的content type。<br>如果你的命令包含一些请求项，默认情况下它们会被序列化为JSON。<code>HTTPie</code>也会自动设置两个请求头——<code>Content-Type</code>为<code>application/json</code>，<code>Accept</code>为<code>application/json, */*</code>，不过都能被覆盖。</p>
-<h3 id="明确指定JSON"><a href="#明确指定JSON" class="headerlink" title="明确指定JSON"></a>明确指定JSON</h3><p>可以带上<code>--json</code>或<code>-j</code>来显示指定<code>Accept</code>为<code>application/json</code>（这是<code>http url Accept:&#39;application/json, */*&#39;</code>的简写）。同样，HTTPie会自动探测到响应的JSON数据，即使响应头的<code>Content-Type</code>是<code>text/plain</code>或者其他类型。</p>
-<h3 id="非字符串的JSON字段值"><a href="#非字符串的JSON字段值" class="headerlink" title="非字符串的JSON字段值"></a>非字符串的JSON字段值</h3><p>可以使用<code>:=</code>分隔符，这能让你直接使用JSON支持的类型数据（如数组、布尔值）来设置发送的JSON数据。同样文本或JSON文件也能使用<code>=@</code>与<code>:=@</code>来加入到发送的JSON数据。比如发起如下请求：</p>
-<pre><code class="shell">http PUT api.example.com/person/1 \
-        name=John \
-        age:=29 married:=false hobbies:=&#39;[&quot;http&quot;, &quot;pies&quot;]&#39;  \          # Raw JSON
-        description=@about-json.txt\        #会读取about-json.txt中的文本内容
-        bookmarks:=@bookmarks.json
-</code></pre>
-<p>发送的请求数据如下：</p>
-<pre><code class="js">{
-    &quot;age&quot;: 29,
-    &quot;hobbies&quot;: [
-        &quot;http&quot;,
-        &quot;pies&quot;
-    ],
-    &quot;description&quot;: &quot;John is a nice guy who likes pies.&quot;,
-    &quot;married&quot;: false,
-    &quot;name&quot;: &quot;John&quot;,
-    &quot;bookmarks&quot;: {
-        &quot;HTTPie&quot;: &quot;http://httpie.org&quot;,
-    }
-}
-</code></pre>
-<p>注意如果使用这一语法，在数据比较多时会显得笨拙，这时可以使用输入重定向：<code>http POST api.example.com/person/1 &lt; person.json</code></p>
-<h2 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h2><p>提交表单与发送JSON十分类似，通常区别只在于添加<code>--form, -f</code>选项，这能确保数据字段被序列化为<code>application/x-www-form-urlencoded; charset=utf-8</code>，亦即请求的<code>Content-Type</code>。可以通过修改配置文件来将数据类型的默认格式设置为表单而不是JSON。</p>
-<h3 id="简单表单数据"><a href="#简单表单数据" class="headerlink" title="简单表单数据"></a>简单表单数据</h3><p><img src="https://i.loli.net/2018/08/10/5b6d611d07468.png" alt="HTTPie form"></p>
-<h3 id="文件上传表单"><a href="#文件上传表单" class="headerlink" title="文件上传表单"></a>文件上传表单</h3><p>如果表单中有文件字段，那么序列化的类型为<code>multipart/form-data</code>。比如<code>http -f POST example.com/jobs name=&#39;John Smith&#39; cv@~/Documents/cv.pdf</code>与如下HTML表单提交时传输的数据一样：</p>
-<pre><code class="html">&lt;form enctype=&quot;multipart/form-data&quot; method=&quot;post&quot; action=&quot;http://example.com/jobs&quot;&gt;
-    &lt;input type=&quot;text&quot; name=&quot;name&quot; /&gt;
-    &lt;input type=&quot;file&quot; name=&quot;cv&quot; /&gt;
-&lt;/form&gt;
-</code></pre>
-<p>注意<code>@</code>用于表示表单的文件字段，而<code>=@</code>则是将文件内的文本作为表单字段的值。</p>
-<h2 id="HTTP-header"><a href="#HTTP-header" class="headerlink" title="HTTP header"></a>HTTP header</h2><p>要设置请求头，使用<code>Header:Value</code>表示法。比如<code>http example.org  User-Agent:Bacon/1.0  &#39;Cookie:valued-visitor=yes;foo=bar&#39;  X-Foo:Bar  Referer:http://httpie.org/</code>设置了<code>Cookie</code>、<code>X-Foo</code>、<code>Referer</code>三个请求头。</p>
-<h3 id="默认值"><a href="#默认值" class="headerlink" title="默认值"></a>默认值</h3><p>有几个请求头的默认值：</p>
-<pre><code class="sh">GET / HTTP/1.1
-Accept: */*
-Accept-Encoding: gzip, deflate
-User-Agent: HTTPie/&lt;version&gt;
-Host: &lt;从URL中获取&gt;
-</code></pre>
-<p>除了<code>Host</code>外都可以被覆盖。</p>
-<h3 id="空的header以及取消默认值"><a href="#空的header以及取消默认值" class="headerlink" title="空的header以及取消默认值"></a>空的header以及取消默认值</h3><p>如果要取消指定的默认值可以使用<code>Header:</code>的方式，比如<code>http httpbin.org/headers Accept: User-Agent:</code>。<br>如果要发送空的请求头可以使用<code>Header;</code>的方式，比如<code>http httpbin.org/headers &#39;Header;&#39;</code>。</p>
-<h2 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h2><p>目前支持的认证方式有<code>Basic</code>和<code>Digest</code>，同时也能使用认证插件来支持更多方式。有两个命令行选项用于控制认证方式：</p>
-<table>
-<thead>
-<tr>
-<th>选项</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>--auth,-a</code></td>
-<td>传递一个<code>用户名:密码</code>对作为参数。如果只指定了用户名（<code>-a 用户名</code>），那么在请求发送前会提示你输入密码。要发送空的密码值使用<code>用户名:</code>。<code>用户名:密码@主机名</code>的方式也受支持（不过通过<code>-a</code>传参的方式优先级更高）</td>
-</tr>
-<tr>
-<td><code>--auth-type, --A</code></td>
-<td>指定认证机制。可选的值有<code>basic</code>和<code>digest</code>。默认值是<code>basic</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="Basic认证"><a href="#Basic认证" class="headerlink" title="Basic认证"></a>Basic认证</h3><p><code>http -a username:password example.org</code></p>
-<h3 id="Digest认证"><a href="#Digest认证" class="headerlink" title="Digest认证"></a>Digest认证</h3><p><code>http -A digest -a username:password example.org</code></p>
-<h3 id="密码输入提示"><a href="#密码输入提示" class="headerlink" title="密码输入提示"></a>密码输入提示</h3><p><code>http -a username example.org</code></p>
-<h3 id="netrc"><a href="#netrc" class="headerlink" title=".netrc"></a><code>.netrc</code></h3><p>支持从<code>~/.netrc</code>文件中获取认证信息。<br><img src="https://i.loli.net/2018/08/10/5b6d674ad0839.png" alt=".netrc"></p>
-<h3 id="auth插件"><a href="#auth插件" class="headerlink" title="auth插件"></a>auth插件</h3><p>可以通过安装插件来支持额外的认证机制。它们可以在<a href="https://pypi.python.org/pypi?%3Aaction=search&amp;term=httpie&amp;submit=search" target="_blank" rel="noopener">Python Package Index</a>中找到。以下是其中一部分：</p>
-<ul>
-<li><a href="https://github.com/pd/httpie-api-auth" target="_blank" rel="noopener">httpie-api-auth</a> ApiAuth</li>
-<li><a href="https://github.com/jkbrzt/httpie-aws-auth" target="_blank" rel="noopener">httpie-aws-auth</a> ApiAuth</li>
-<li><a href="https://github.com/akamai-open/httpie-edgegrid" target="_blank" rel="noopener">httpie-edgegrid</a> EdgeGrid</li>
-<li><a href="https://github.com/jkbrzt/httpie-oauth" target="_blank" rel="noopener">httpie-oauth</a> OAuth</li>
-<li><a href="https://github.com/mozilla-services/requests-hawk" target="_blank" rel="noopener">requests-hawk</a> Hawk</li>
-</ul>
-<h2 id="HTTP重定向"><a href="#HTTP重定向" class="headerlink" title="HTTP重定向"></a>HTTP重定向</h2><p>默认情况下，HTTP重定向不会进行跟踪，只会显示第一个响应：</p>
-<pre><code class="sh">http httpbin.org/redirect/3
-</code></pre>
-<h3 id="跟踪Location"><a href="#跟踪Location" class="headerlink" title="跟踪Location"></a>跟踪<code>Location</code></h3><p>为了让<code>HTTPie</code>跟踪状态码为<code>30x</code>的HTTP响应的<code>Location</code>响应头，并返回最终的结果，使用<code>--follow,-F</code>选项：</p>
-<pre><code class="sh">http --follow httpbin.org/redirect/3
-</code></pre>
-<h3 id="显示重定向中间过程的响应头"><a href="#显示重定向中间过程的响应头" class="headerlink" title="显示重定向中间过程的响应头"></a>显示重定向中间过程的响应头</h3><p>如果要显示中间过程的请求头/响应头，同时使用<code>--follow</code>和<code>--all</code>选项：</p>
-<pre><code class="sh">http --follow --all httpbin.org/redirect/3
-</code></pre>
-<h3 id="限制最大重定向次数"><a href="#限制最大重定向次数" class="headerlink" title="限制最大重定向次数"></a>限制最大重定向次数</h3><p>默认重定向最多30次，可以使用<code>--max-redirects=&lt;limit&gt;</code>进行修改：</p>
-<pre><code class="sh">http --follow --all --max-redirects=5 httpbin.org/redirect/3
-</code></pre>
-<h2 id="代理"><a href="#代理" class="headerlink" title="代理"></a>代理</h2><p>可以通过<code>--proxy</code>来指定为每个协议使用的代理（参数中包含协议，考虑到跨协议的重定向）：</p>
-<pre><code class="sh">http --proxy=http:http://10.10.1.10:3128 --proxy=https:https://10.10.1.10:1080 example.org
-</code></pre>
-<p>使用Basic认证：</p>
-<pre><code class="sh">http --proxy=http:http://user:pass@10.10.1.10:3128 example.org
-</code></pre>
-<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h3><p>可以使用环境变量<code>HTTP_PROXY</code>和<code>HTTPS_PROXY</code>来配置代理，底层的<code>Requests</code>库会使用它们。如果想对特定的host禁用代理，可以使用<code>NO_PROXY</code>环境变量。<br>在<code>~/.bash_profile</code>中进行如下配置：</p>
-<pre><code class="sh">export HTTP_PROXY=http://10.10.1.10:3128
-export HTTPS_PROXY=https://10.10.1.10:1080
-export NO_PROXY=localhost,example.com
-</code></pre>
-<h3 id="SOCKS"><a href="#SOCKS" class="headerlink" title="SOCKS"></a>SOCKS</h3><p>要想使用SOCKS代理需要安装<code>requests[socks]</code>，通过执行<code>pip install -U requests[socks]</code>。<br>使用方式也相似：</p>
-<pre><code class="sh">http --proxy=http:socks5://user:pass@host:port --proxy=https:socks5://user:pass@host:port example.org
-</code></pre>
-<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><h3 id="服务器SSL证书认证"><a href="#服务器SSL证书认证" class="headerlink" title="服务器SSL证书认证"></a>服务器SSL证书认证</h3><p>如果要跳过主机的SSL证书认证，可以使用<code>--verify=no</code>（默认为<code>yes</code>）：</p>
-<pre><code class="sh">http --verify=no https://example.org
-</code></pre>
-<h3 id="自定义CA-bundle"><a href="#自定义CA-bundle" class="headerlink" title="自定义CA bundle"></a>自定义CA bundle</h3><p>可以通过<code>--verify=&lt;CA_BUNDLE_PATH&gt;</code>来设置一个自定义的CA bundle路径：</p>
-<pre><code class="sh">http --verify=/ssl/custom_ca_bundle https://example.org
-</code></pre>
-<h3 id="客户端SSL证书"><a href="#客户端SSL证书" class="headerlink" title="客户端SSL证书"></a>客户端SSL证书</h3><p>如果要使用客户端证书来进行SSL通信，可以通过使用<code>--cert</code>来设置：</p>
-<pre><code class="sh">http --cert=client.pem https://example.org
-</code></pre>
-<p>如果证书文件中不包含私钥可以使用<code>--cert-key</code>来设置：</p>
-<pre><code class="sh">http --cert=client.crt --cert-key=client.key https://example.org
-</code></pre>
-<h3 id="SSL版本"><a href="#SSL版本" class="headerlink" title="SSL版本"></a>SSL版本</h3><p>使用<code>--ssl=&lt;PROTOCOL&gt;</code>来指定要使用版本。默认为<code>SSL v2.3</code>，它会协商服务器和你本地安装的OpenSSL所支持的最高版本。可用的协议有<code>ssl2.3</code>、<code>ssl3</code>、<code>tls1</code>、<code>tls1.1</code>、<code>tls1.2</code>（实际可用的版本可能出入，取决于你安装的OpenSSL）。<br>使用脆弱的SSL v3来与过时的服务器通信：</p>
-<pre><code class="sh">http --ssl=ssl3 https://vulnerable.example.org
-</code></pre>
-<h3 id="SNI"><a href="#SNI" class="headerlink" title="SNI"></a><code>SNI</code></h3><p><code>SNI</code>，即Server Name Indication。<br>如果你的<code>HTTPie</code>使用的Python版本低于2.7.9，并且想要和使用<code>SNI</code>的服务器通信，那么就需要安装额外的依赖：<br><code>pip install --upgrade requests[security]</code><br>你可以使用如下命令来查看是否支持<code>SNI</code>：</p>
-<pre><code class="sh">http https://sni.velox.ch
-</code></pre>
-<h2 id="输出选项"><a href="#输出选项" class="headerlink" title="输出选项"></a>输出选项</h2><p><code>HTTPie</code>默认只打印最终的响应结果，并打印出整个响应信息（包括响应头和响应体）。你可以使用下列选项来控制打印哪些信息：</p>
-<ul>
-<li><code>--headers, -h</code>    只打印响应头</li>
-<li><code>--body, -b</code>    只打印响应体</li>
-<li><code>--verbose, -v</code>    打印全部的HTTP交换信息（请求和响应）。这个选项同时会激活<code>--all</code></li>
-<li><code>--print, -p</code>    选择要打印的HTTP交换信息的哪些部分</li>
-</ul>
-<p><code>--verbose</code>选项在调试或者生成文档时很有用。</p>
-<h3 id="选择要打印的HTTP交换信息"><a href="#选择要打印的HTTP交换信息" class="headerlink" title="选择要打印的HTTP交换信息"></a>选择要打印的HTTP交换信息</h3><p>其他的输出选项其实都是使用的<code>--print</code>。它接受一个字符串，每个字符表示HTTP交换信息的一部分：</p>
-<table>
-<thead>
-<tr>
-<th>字符</th>
-<th>对应的HTTP交换信息部分</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>H</code></td>
-<td>请求头</td>
-</tr>
-<tr>
-<td><code>B</code></td>
-<td>请求体</td>
-</tr>
-<tr>
-<td><code>h</code></td>
-<td>响应头</td>
-</tr>
-<tr>
-<td><code>b</code></td>
-<td>响应体</td>
-</tr>
-</tbody>
-</table>
-<p>比如要打印请求和响应头可以执行<code>http --print=Hh PUT httpbin.org/put hello=world</code>。</p>
-<h3 id="查看中间过程的请求-响应信息"><a href="#查看中间过程的请求-响应信息" class="headerlink" title="查看中间过程的请求/响应信息"></a>查看中间过程的请求/响应信息</h3><p>如果要查看所有的HTTP通信，即最终结果与可能的中间过程中的信息，可以使用<code>--all</code>选项。“中间过程信息”包括重定向跟踪（要开启<code>--follow</code>选项），及使用<code>digest</code>认证方式时的第一次未认证请求，等等。<br>例如，查看重定向：<code>http --all --follow httpbin.org/redirect/3</code>。<br>中间过程的请求响应信息默认使用<code>--print, -p</code>以及上述使用它的其他选项（<code>-h</code>、<code>-b</code>、<code>-v</code>、<code>-p</code>）。如果不想这样，可以使用<code>--history-print, -P</code>选项，它使用与<code>--print, -p</code>相同的选项，不过只对中间过程生效。</p>
-<pre><code class="sh">http -A digest -a foo:bar --all -p Hh -P H httpbin.org/digest-auth/auth/foo/bar
-</code></pre>
-<h3 id="有选择的响应体获取"><a href="#有选择的响应体获取" class="headerlink" title="有选择的响应体获取"></a>有选择的响应体获取</h3><p>为了进行优化，响应体只有当它只输出的一部分时才会从服务端下载下来。这类似于发起一个<code>HEAD</code>请求，不过它对你使用的所有HTTP请求有效。<br>假如有一个API，它会在资源更新时返回整个资源，不过你只对响应头有兴趣，因为你只需要知道响应头就可以查看资源更新后返回的状态码。</p>
-<pre><code class="sh">http --headers PATCH example.org/Really-Huge-Resource name=&#39;New Name&#39;`
-</code></pre>
-<p>只为上述命令只打印HTTP头部信息，那么当收到全部的响应头信息后与服务端间的连接就会关闭。这样，你就不会因为不感兴趣的响应体而浪费时间与带宽。<br>注意：响应头总会获取，即使你不打印它。</p>
-<h2 id="输入重定向"><a href="#输入重定向" class="headerlink" title="输入重定向"></a>输入重定向</h2><p>一种通用的传递数据的方法是使用管道（<code>pipe</code>）来将数据重定向到<code>stdin</code>。这些数据会作为请求体发送。有多种有效的使用<code>pipe</code>的方式：<br>从一个文件中重定向：</p>
-<pre><code class="sh">http PUT example.com/person/1 X-API-Token:123 &lt; person.json
-</code></pre>
-<p>或者从另外一个文件的输出中：</p>
-<pre><code class="sh">grep &#39;401 Unauthorized&#39; /var/log/httpd/error_log | http POST example.org/intruders
-</code></pre>
-<p>对于一些简单的数据可以使用<code>echo</code>：</p>
-<pre><code class="sh">echo  &#39;{&quot;name&quot;: &quot;John&quot;}&#39;&#39;{&quot;name&quot;: &quot;John&quot;}  | http PATCH example.com/person/1 X-API-Token:123
-</code></pre>
-<p>甚至可以把多个web请求连接起来：</p>
-<pre><code class="sh">http GET https://api.github.com/repos/jkbrzt/httpie | http POST httpbin.org/post
-</code></pre>
-<p>你可以使用<code>cat</code>来在终端输入多行数据：</p>
-<pre><code class="sh">cat | http POST example.com
-&lt;paste&gt;
-^D
-</code></pre>
-<p>在OS X系统中你可以使用<code>pbpaste</code>来使用剪贴板中的数据：</p>
-<pre><code class="sh">pbpaste | http PUT example.com
-</code></pre>
-<p>通过<code>stdin</code>来传递数据不能与在命令行中指定数据的方式混用：</p>
-<pre><code class="sh">echo &#39;data&#39; | http POST example.org more=data   # 这种使用方式无效
-</code></pre>
-<p>如果不想让<code>HTTPie</code>从<code>stdin</code>中读取数据可以使用<code>--ignore-stdin</code>选项。</p>
-<h3 id="从文件中读取数据"><a href="#从文件中读取数据" class="headerlink" title="从文件中读取数据"></a>从文件中读取数据</h3><p>一个使用<code>stdin</code>的替代方法是指定一个文件名（如<code>@/path/to/file</code>），文件内容会被使用，如同从<code>stdin</code>中获取的一样。<br>这种方式有一个好处，即<code>Content-Type</code>会根据文件扩展名来进行合适的设置。比如下列请求会从XML文件中获取内容发送，请求头会自动设置为<code>Content-Type: application/xml</code>：</p>
-<pre><code class="sh">http PUT httpbin.org/put @/data/file.xml
-</code></pre>
-<h2 id="终端输出"><a href="#终端输出" class="headerlink" title="终端输出"></a>终端输出</h2><p><code>HTTPie</code>默认做了几件事件，来使输出的内容容易阅读：</p>
-<h3 id="高亮与格式化"><a href="#高亮与格式化" class="headerlink" title="高亮与格式化"></a>高亮与格式化</h3><p>HTTP头部信息与body信息都会被语法高亮（如果body的数据能够被高亮的话）。如果你不希望使用默认的高亮风格，你可以使用<code>--style</code>选项来选择合适的值（执行<code>http --help</code>来查看可选的值）。</p>
-<p>同时会进行如下格式化：</p>
-<ul>
-<li>HTTP头部信息会进行排序</li>
-<li>JSON数据会被缩进、会按key排序、unicode转义的字符会被转换为它代表的字符</li>
-</ul>
-<p>可以使用<code>--pretty</code>来进行控制。<code>--pretty=colors</code>表示只应用高亮；使用<code>--pretty=format</code>表示只应用格式化。使用<code>--pretty=all</code>表示应用两者（默认值），使用<code>--pretty=none</code>关闭输出（使用输出重定向时的默认值）。</p>
-<h3 id="二进制数据"><a href="#二进制数据" class="headerlink" title="二进制数据"></a>二进制数据</h3><p>安全考虑，二进制的返回数据在终端会被抑制输出。在<code>--pretty</code>的输出重定向中二进制数据也会被抑制。<code>HTTPie</code>在发现返回数据是二进制数据时会立即关闭连接。<br>响应为二进制数据时会提示：<code>NOTE: binary data not shown in terminal</code>。<br><img src="https://i.loli.net/2018/08/10/5b6d6ad0e1aa1.png" alt="http binary"></p>
-<h3 id="重定向输出"><a href="#重定向输出" class="headerlink" title="重定向输出"></a>重定向输出</h3><p><code>HTTPie</code>对重定向输出有和终端输出不一样的默认设定：</p>
-<ul>
-<li>不会应用高亮及格式化，除非指定了<code>--pretty</code></li>
-<li>只打印响应体，除非用<code>-h</code>，<code>-v</code>，<code>-p</code>，<code>-b</code>进行设置</li>
-<li>二进制数据不被抑制</li>
-</ul>
-<p>进行了这些设定，将<code>HTTPie</code>的输出pipe到别的程序或者下载到文件中时就不需要进行额外的设定。大多数情况下，当重定向输出时，只有原始的响应信息才有意义。<br>下载文件：</p>
-<pre><code class="sh">http example.org/Movie.mov &gt; Movie.mov
-</code></pre>
-<p>下载一个Octocat的图片，使用<code>ImageMagick</code>修改尺寸，上传到某个地方：</p>
-<pre><code class="sh">http octodex.github.com/images/original.jpg | convert - -resize 25% -  | http example.org/Octocats
-</code></pre>
-<p>强制使用高亮和格式化，并在<code>less</code>中显示请求和响应：</p>
-<pre><code class="sh">http octodex.github.com/images/original.jpg | convert - -resize 25% -  | http example.org/Octocats
-</code></pre>
-<p>其中的<code>-R</code>选项表示让<code>less</code>解释转义字符，来显示高亮。<br>你可以在终端配置中添加如下函数，来方便的显示高亮的响应头和响应体（添加到<code>~/.bash_profile</code>）：</p>
-<pre><code class="sh">function httpless {
-    # `httpless example.org&#39;
-    http --pretty=all --print=hb &quot;$@&quot; | less -R;
-}
-</code></pre>
-<h2 id="下载模式"><a href="#下载模式" class="headerlink" title="下载模式"></a>下载模式</h2><p><code>HTTPie</code>提供了一个下载模式，在行为上类似<code>wget</code>。<br>当使用<code>--download, -d</code>选项时，响应头会在终端打印，响应体会保存到文件中，并会有一个进度条指示当前进度。</p>
-<h3 id="下载文件名"><a href="#下载文件名" class="headerlink" title="下载文件名"></a>下载文件名</h3><p>如果没有提供<code>--output, -o</code>选项，输出的文件名会根据<code>Content-Disposition</code>（如果有的话），或者根据URL和<code>Content-Type</code>。如果已经有同名文件存在，<code>HTTPie</code>会添加一个后缀。比如如果文件如为<code>pie1.txt</code>且文件夹已经有同名文件，会将响应体保存到<code>pie1.txt-1</code>中。</p>
-<h3 id="下载同时pipe"><a href="#下载同时pipe" class="headerlink" title="下载同时pipe"></a>下载同时pipe</h3><p>你可以将响应体重定向到其他程序的同时，显示响应头和进度条。</p>
-<pre><code class="sh">http -d https://github.com/jkbrzt/httpie/archive/master.tar.gz |  tar zxf -
-</code></pre>
-<h3 id="恢复下载"><a href="#恢复下载" class="headerlink" title="恢复下载"></a>恢复下载</h3><p>如果指定了<code>--output, -o</code>，你可以通过一个<code>--continue, -c</code>选项来恢复一个部分下载。这只有在服务器支持<code>Range</code>请求和<code>206 Partial Contet</code>响应时才有效。如果不支持，那么就会下载整个文件：</p>
-<pre><code class="sh">http -dco file.zip example.org/file
-</code></pre>
-<h3 id="其他说明"><a href="#其他说明" class="headerlink" title="其他说明"></a>其他说明</h3><ul>
-<li><code>--download</code>只是改变了响应体会被如何处理。</li>
-<li>仍然可以自定义请求头、使用<code>session</code>、<code>--verbose</code>等。</li>
-<li><code>--download</code>会跟踪重定向（<code>--follow</code>）。</li>
-<li>如果文件没有被完全下载下来，<code>HTTPie</code>会以状态码1退出。</li>
-<li><code>Accept-Encoding</code>不能与<code>--download</code>同时使用。</li>
-</ul>
-<h2 id="流式响应"><a href="#流式响应" class="headerlink" title="流式响应"></a>流式响应</h2><p>响应能够下载并以chunks打印到终端（允许在不占用过多的内存前提下进行流式传输并下载大文件）。但如果使用了高亮和格式化，那么整个响应会先被缓存，然后一次性处理。</p>
-<h3 id="禁用缓存"><a href="#禁用缓存" class="headerlink" title="禁用缓存"></a>禁用缓存</h3><p>你可以使用<code>--stream, -S</code>选项来做两件事：</p>
-<ul>
-<li>输出会以较小和chunk来flush，而不使用buffer。这会让<code>HTTPie</code>的行为看起来像<code>tail -f</code></li>
-<li>流式被启用，即使响应被高亮和格式化：它会被用于响应的每一行，然后立即flush。这可以让一个长连接有较好看的输出，比如用于Twitter的流式API时。</li>
-</ul>
-<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>美化过的流式响应：</p>
-<pre><code class="sh">http --stream -f -a YOUR-TWITTER-NAME https://stream.twitter.com/1/statuses/filter.json track=&#39;Justin Bieber&#39;
-</code></pre>
-<p>类似<code>tail -f</code>的美化过的流式输出：</p>
-<pre><code class="sh"># Send each new tweet (JSON object) mentioning &quot;Apple&quot; to another#
-# server as soon as it arrives from the Twitter streaming API:
-http --stream -f -a YOUR-TWITTER-NAME https://stream.twitter.com/1/statuses/filter.json track=Apple \
-| while read tweet; do echo &quot;$tweet&quot; | http POST example.org/tweets ; done
-</code></pre>
-<h2 id="Session（会话）"><a href="#Session（会话）" class="headerlink" title="Session（会话）"></a>Session（会话）</h2><p>默认情况下，<code>HTTPie</code>的每一个请求都和之前的请求完全独立。<br>不过<code>HTTPie</code>支持持久化的session，通过使用<code>--session=SESSION_NAME_OR_PATH</code>选项。在一个会话中，自定义的header（除了以<code>Content-</code>和<code>If-</code>开头的）、认证和cookie（手动设定的或由服务器发送的）会在对同一个host发请求时保持一致。</p>
-<pre><code class="sh"># Create a new session
-http --session=/tmp/session.json example.org API-Token:123
-
-# Re-use an existing session — API-Token will be set:
-http --session=/tmp/session.json example.org
-</code></pre>
-<p>所有的会话信息，包括认证、cookie、自定义头都会以纯文本保存。这意味着会话文件能手动地创建和修改——它们就是普通的JSON文件。</p>
-<h3 id="命名session"><a href="#命名session" class="headerlink" title="命名session"></a>命名session</h3><p>你可以为一个host创建一个或多个命令session。比如，你可以使用如下命令来为<code>example.org</code>创建一个名为<code>user1</code>的session：</p>
-<pre><code class="sh">http --session=user1 -a user1:password example.org X-Foo:Bar
-</code></pre>
-<p>之后，你可以直接用<code>user</code>来使用这个session。指定后，先前使用的认证与HTTP头都会自动设定：</p>
-<pre><code class="sh">http --session=user1 example.org
-</code></pre>
-<p>如果想使用新的session，可以指定另外一个名字：</p>
-<pre><code class="sh">http --session=user2 -a user2:password example.org X-Bar:Foo
-</code></pre>
-<p>命名session保存在<code>~/.httpie/sessions/&lt;host&gt;/&lt;name&gt;.json</code>文件夹中（Windows上是在<code>%APPDATA%\httpie\sessions\&lt;host&gt;\&lt;name&gt;.json</code>）。</p>
-<h3 id="匿名session"><a href="#匿名session" class="headerlink" title="匿名session"></a>匿名session</h3><p>你可以不命名，而直接指定session文件路径。这能让你的session在不同的host间复用：</p>
-<pre><code class="sh">http --session=/tmp/session.json example.org
-http --session=/tmp/session.json admin.example.org
-http --session=~/.httpie/sessions/another.example.org/test.json example.org
-http --session-read-only=/tmp/session.json example.org
-</code></pre>
-<h3 id="只读session"><a href="#只读session" class="headerlink" title="只读session"></a>只读session</h3><p>如果想一个session在被创建后不被更改，可以使用<code>--session-read-only=SESSION_NAME_OR_PATH</code>。</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p><code>HTTPie</code>使用一个简单的JSON配置文件。</p>
-<h3 id="配置文件路径"><a href="#配置文件路径" class="headerlink" title="配置文件路径"></a>配置文件路径</h3><p>默认的配置文件路径为<code>~/.httpiie/config.json</code>（Windows是在<code>%APPDATA/httpie/config.json</code>）。可以通过<code>HTTPIE_CONFIG_DIR</code>环境变量来修改配置文件所在的文件夹。</p>
-<h3 id="配置项"><a href="#配置项" class="headerlink" title="配置项"></a>配置项</h3><ul>
-<li><code>default_options</code>    一个默认选项的数组，应用于每一个<code>HTTPie</code>请求。比如如果你想要修改默认的高亮风格和输出选项，可以<code>&quot;default_options&quot;: [&quot;--style=fruity&quot;, &quot;--body&quot;]</code>。另外一个有用的选项是<code>&quot;--session=default&quot;</code>，这会让所有的<code>HTTPie</code>请求都使用session。或者你也可以将默认的content type从JSON改为表单，通过<code>--form</code>选项。</li>
-<li><code>__meta__</code>    <code>HTTPie</code>自动将它的元信息保存到<code>__meta__</code>中。不要修改它。</li>
-</ul>
-<h3 id="不使用默认配置"><a href="#不使用默认配置" class="headerlink" title="不使用默认配置"></a>不使用默认配置</h3><p>如果想对特定的请求不使用默认配置，可以使用<code>-no-OPTION</code>，比如<code>--no-stype</code>、<code>--no-session</code>。</p>
-<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><p>对于在shell脚本中使用<code>HTTPie</code>，有一个非常有用的选项<code>--check-status</code>。它会在状态码是<code>3xx</code>、<code>4xx</code>、<code>5xx</code>时让<code>HTTPie</code>退出，并带有错误码。错误码可以是<code>3</code>（除非设置<code>--follow</code>）、<code>4</code>或<code>5</code>。</p>
-<pre><code class="sh">#!/bin/bash
-
-if http --check-status --ignore-stdin --timeout=2.5 HEAD example.org/health &amp;&gt; /dev/null; then
-    echo &#39;OK!&#39;
-else
-    case $? in
-        1) echo &#39;Request timed out!&#39; ;;
-        2) echo &#39;Unexpected HTTP 3xx Redirection!&#39; ;;
-        3) echo &#39;HTTP 4xx Client Error!&#39; ;;
-        4) echo &#39;HTTP 5xx Server Error!&#39; ;;
-        5) echo &#39;Exceeded --max-redirects=&lt;n&gt; redirects!&#39; ;;
-        *) echo &#39;Other Error!&#39; ;;
-    esac
-fi
-</code></pre>
-<h3 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h3><p>除非是交互式的调用，最后不要从<code>stdin</code>中读取。因此你可能需要设置<code>--ignore-stdin</code>的默认选项。<br>如果没有这个选项，<code>HTTPie</code>很可能会挂起。可能发生的原因是如果<code>HTTPie</code>是从一个定时任务中调用，<code>stdin</code>并没有关联一个终端。此时适用“重定向输入”规则，即<code>HTTPie</code>会期望请求体被输入，但是因为不存在数据或<code>EOF</code>，因此就会停止。因此除非你想将一些数据pipe到<code>HTTPie</code>，否则最好要设置<code>--ignore-stdin</code>。<br>当然，你也可以不使用默认的30s的超时时间，而是通过<code>--timeout</code>来设置对你来说合适的值。</p>
-<hr>
-<p>版权声明：自由转载-非商用-非衍生-保持署名（<a href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh" target="_blank" rel="noopener">创意共享3.0许可证</a>）</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">命令行</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">bash</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/08/23/trap命令/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          bash命令：trap
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/06/03/JDBC基础/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JDBC基础</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Features"><span class="toc-number">1.</span> <span class="toc-text">Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Installation"><span class="toc-number">2.</span> <span class="toc-text">Installation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用示例"><span class="toc-number">3.</span> <span class="toc-text">使用示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP方法"><span class="toc-number">4.</span> <span class="toc-text">HTTP方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#请求URL"><span class="toc-number">5.</span> <span class="toc-text">请求URL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Query参数"><span class="toc-number">5.1.</span> <span class="toc-text">Query参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#localhost的便捷写法"><span class="toc-number">5.2.</span> <span class="toc-text">localhost的便捷写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设定默认的scheme"><span class="toc-number">5.3.</span> <span class="toc-text">设定默认的scheme</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#请求项"><span class="toc-number">6.</span> <span class="toc-text">请求项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#转义规则"><span class="toc-number">6.1.</span> <span class="toc-text">转义规则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JSON"><span class="toc-number">7.</span> <span class="toc-text">JSON</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#明确指定JSON"><span class="toc-number">7.1.</span> <span class="toc-text">明确指定JSON</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非字符串的JSON字段值"><span class="toc-number">7.2.</span> <span class="toc-text">非字符串的JSON字段值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#表单"><span class="toc-number">8.</span> <span class="toc-text">表单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单表单数据"><span class="toc-number">8.1.</span> <span class="toc-text">简单表单数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件上传表单"><span class="toc-number">8.2.</span> <span class="toc-text">文件上传表单</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-header"><span class="toc-number">9.</span> <span class="toc-text">HTTP header</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#默认值"><span class="toc-number">9.1.</span> <span class="toc-text">默认值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#空的header以及取消默认值"><span class="toc-number">9.2.</span> <span class="toc-text">空的header以及取消默认值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#认证"><span class="toc-number">10.</span> <span class="toc-text">认证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic认证"><span class="toc-number">10.1.</span> <span class="toc-text">Basic认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Digest认证"><span class="toc-number">10.2.</span> <span class="toc-text">Digest认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#密码输入提示"><span class="toc-number">10.3.</span> <span class="toc-text">密码输入提示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#netrc"><span class="toc-number">10.4.</span> <span class="toc-text">.netrc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#auth插件"><span class="toc-number">10.5.</span> <span class="toc-text">auth插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP重定向"><span class="toc-number">11.</span> <span class="toc-text">HTTP重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#跟踪Location"><span class="toc-number">11.1.</span> <span class="toc-text">跟踪Location</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示重定向中间过程的响应头"><span class="toc-number">11.2.</span> <span class="toc-text">显示重定向中间过程的响应头</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#限制最大重定向次数"><span class="toc-number">11.3.</span> <span class="toc-text">限制最大重定向次数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代理"><span class="toc-number">12.</span> <span class="toc-text">代理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#环境变量"><span class="toc-number">12.1.</span> <span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SOCKS"><span class="toc-number">12.2.</span> <span class="toc-text">SOCKS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTPS"><span class="toc-number">13.</span> <span class="toc-text">HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#服务器SSL证书认证"><span class="toc-number">13.1.</span> <span class="toc-text">服务器SSL证书认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义CA-bundle"><span class="toc-number">13.2.</span> <span class="toc-text">自定义CA bundle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#客户端SSL证书"><span class="toc-number">13.3.</span> <span class="toc-text">客户端SSL证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SSL版本"><span class="toc-number">13.4.</span> <span class="toc-text">SSL版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SNI"><span class="toc-number">13.5.</span> <span class="toc-text">SNI</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出选项"><span class="toc-number">14.</span> <span class="toc-text">输出选项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#选择要打印的HTTP交换信息"><span class="toc-number">14.1.</span> <span class="toc-text">选择要打印的HTTP交换信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看中间过程的请求-响应信息"><span class="toc-number">14.2.</span> <span class="toc-text">查看中间过程的请求/响应信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#有选择的响应体获取"><span class="toc-number">14.3.</span> <span class="toc-text">有选择的响应体获取</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输入重定向"><span class="toc-number">15.</span> <span class="toc-text">输入重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#从文件中读取数据"><span class="toc-number">15.1.</span> <span class="toc-text">从文件中读取数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#终端输出"><span class="toc-number">16.</span> <span class="toc-text">终端输出</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#高亮与格式化"><span class="toc-number">16.1.</span> <span class="toc-text">高亮与格式化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二进制数据"><span class="toc-number">16.2.</span> <span class="toc-text">二进制数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向输出"><span class="toc-number">16.3.</span> <span class="toc-text">重定向输出</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#下载模式"><span class="toc-number">17.</span> <span class="toc-text">下载模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#下载文件名"><span class="toc-number">17.1.</span> <span class="toc-text">下载文件名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载同时pipe"><span class="toc-number">17.2.</span> <span class="toc-text">下载同时pipe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#恢复下载"><span class="toc-number">17.3.</span> <span class="toc-text">恢复下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他说明"><span class="toc-number">17.4.</span> <span class="toc-text">其他说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流式响应"><span class="toc-number">18.</span> <span class="toc-text">流式响应</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#禁用缓存"><span class="toc-number">18.1.</span> <span class="toc-text">禁用缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Example"><span class="toc-number">18.2.</span> <span class="toc-text">Example</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session（会话）"><span class="toc-number">19.</span> <span class="toc-text">Session（会话）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#命名session"><span class="toc-number">19.1.</span> <span class="toc-text">命名session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#匿名session"><span class="toc-number">19.2.</span> <span class="toc-text">匿名session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#只读session"><span class="toc-number">19.3.</span> <span class="toc-text">只读session</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-number">20.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件路径"><span class="toc-number">20.1.</span> <span class="toc-text">配置文件路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置项"><span class="toc-number">20.2.</span> <span class="toc-text">配置项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不使用默认配置"><span class="toc-number">20.3.</span> <span class="toc-text">不使用默认配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#脚本"><span class="toc-number">21.</span> <span class="toc-text">脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#最佳实践"><span class="toc-number">21.1.</span> <span class="toc-text">最佳实践</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-  <div id="SOHUCS" sid="HTTPie" ></div> 
-<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
-<script type="text/javascript">
-    window.changyan.api.config({
-        appid: "cytL8LPfl",
-        conf: "prod_1a2d009597d28e6aa60181b07d1fca04"
-    });
-</script>
-</script>
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -733,9 +251,9 @@ fi
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
