@@ -1,7 +1,10 @@
 /*! Color themes for Google Code Prettify | MIT License | github.com/jmblog/color-themes-for-google-code-prettify */
 
 /* 个人修改 */
-
+#feedAv{
+  position: absolute;
+  left: -10000px;
+}
 p code,li code, td code {
   padding: 1px 3px;
   margin: 0 3px;

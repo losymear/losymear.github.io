@@ -7,11 +7,11 @@ tags:
 ----
 ## 语法
 `trap [COMMANDS] [SIGNALS]`
+<!-- more -->
 
 ## 示例
 
 ### 防止脚本执行中断导致文件未清除
-<!-- more -->
 ```sh
 #!/bin/sh
 
