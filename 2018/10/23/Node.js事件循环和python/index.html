@@ -7,19 +7,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="stylesheet" href="/css/nav.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: linux | losymear&#39;s blog</title>
+  <title>Node.js和python的event loop | losymear&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="losymear的笔记">
-<meta name="keywords" content="losymear blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="losymear&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/linux/index.html">
+  <meta name="description" content="when A happens, do B.">
+<meta name="keywords" content="blog,python,Node.js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js和python的event loop">
+<meta property="og:url" content="http://yoursite.com/2018/10/23/Node.js事件循环和python/index.html">
 <meta property="og:site_name" content="losymear&#39;s blog">
-<meta property="og:description" content="losymear的笔记">
+<meta property="og:description" content="when A happens, do B.">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://files.catbox.moe/nng5e7.jpg">
+<meta property="og:image" content="https://files.catbox.moe/o5w68x.jpg">
+<meta property="og:updated_time" content="2018-10-26T06:28:03.836Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="losymear&#39;s blog">
-<meta name="twitter:description" content="losymear的笔记">
+<meta name="twitter:title" content="Node.js和python的event loop">
+<meta name="twitter:description" content="when A happens, do B.">
+<meta name="twitter:image" content="https://files.catbox.moe/nng5e7.jpg">
   
     <link rel="alternative" href="/atom.xml" title="losymear&#39;s blog" type="application/atom+xml">
   
@@ -152,64 +156,438 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Node.js事件循环和python" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/23/trap命令/" class="archive-article-date">
-  	<time datetime="2018-08-23T06:25:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/23/trap命令/">bash命令：trap</a>
+    <h1 class="article-title" itemprop="name">
+      Node.js和python的event loop
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/10/23/Node.js事件循环和python/" class="archive-article-date">
+  	<time datetime="2018-10-23T08:30:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-23</time>
+</a>
+        
+      </header>
+      <!-- 目录内容 -->
+
+  <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+        <span class="btn-bg"></span>
+        <span class="btn-text">文章导航</span>
+        </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+      <strong class="toc-title">文章目录</strong>
+         <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js事件循环"><span class="toc-number">1.</span> <span class="toc-text">Node.js事件循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-number">1.1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IO"><span class="toc-number">1.1.1.</span> <span class="toc-text">IO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#阻塞与非阻塞"><span class="toc-number">1.1.2.</span> <span class="toc-text">阻塞与非阻塞</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#并发与吞吐量"><span class="toc-number">1.1.3.</span> <span class="toc-text">并发与吞吐量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-js-Event-Loop"><span class="toc-number">1.2.</span> <span class="toc-text">Node.js Event Loop</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#事件循环阶段"><span class="toc-number">1.2.1.</span> <span class="toc-text">事件循环阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#timers阶段"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">timers阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#pending-callbacks阶段"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">pending callbacks阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#idle-prepare阶段"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">idle,prepare阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#poll阶段"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">poll阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#check阶段"><span class="toc-number">1.2.1.5.</span> <span class="toc-text">check阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#close-callbacks阶段"><span class="toc-number">1.2.1.6.</span> <span class="toc-text">close callbacks阶段</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Node-js事件循环的优点"><span class="toc-number">1.2.2.</span> <span class="toc-text">Node.js事件循环的优点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setImmediate-、setImmediate-、process-nextTick-、Promise"><span class="toc-number">1.3.</span> <span class="toc-text">setImmediate()、setImmediate()、process.nextTick()、Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#setTimeout-vs-setImmediate"><span class="toc-number">1.3.1.</span> <span class="toc-text">setTimeout() vs setImmediate()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#process-nextTick"><span class="toc-number">1.3.2.</span> <span class="toc-text">process.nextTick()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise"><span class="toc-number">1.3.3.</span> <span class="toc-text">Promise</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-js异步示例代码"><span class="toc-number">1.4.</span> <span class="toc-text">Node.js异步示例代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#回调"><span class="toc-number">1.4.1.</span> <span class="toc-text">回调</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise、async-await"><span class="toc-number">1.4.2.</span> <span class="toc-text">Promise、async/await</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对event-loop的常见误解"><span class="toc-number">1.5.</span> <span class="toc-text">对event loop的常见误解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#误解1：event-loop执行在一个单独的线程，用户JS代码在一个单独的线程"><span class="toc-number">1.5.1.</span> <span class="toc-text">误解1：event loop执行在一个单独的线程，用户JS代码在一个单独的线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#误解2：-所有的异步事件是由Worker-Pool线程池执行"><span class="toc-number">1.5.2.</span> <span class="toc-text">误解2： 所有的异步事件是由Worker Pool线程池执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#误解3：-event-loop类似一个栈或队列"><span class="toc-number">1.5.3.</span> <span class="toc-text">误解3： event loop类似一个栈或队列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入Node-js工作原理"><span class="toc-number">1.6.</span> <span class="toc-text">深入Node.js工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Worker-Pool"><span class="toc-number">1.6.1.</span> <span class="toc-text">Worker Pool</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Node-js如何决定接下来该执行什么代码？"><span class="toc-number">1.6.2.</span> <span class="toc-text">Node.js如何决定接下来该执行什么代码？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#这种设计意味着…"><span class="toc-number">1.6.3.</span> <span class="toc-text">这种设计意味着…</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器JS的事件循环"><span class="toc-number">2.</span> <span class="toc-text">浏览器JS的事件循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python的事件循环"><span class="toc-number">3.</span> <span class="toc-text">Python的事件循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Read-More"><span class="toc-number">4.</span> <span class="toc-text">Read More</span></a></li></ol>
+       </div>
+ <script type="text/javascript">
+  function showToc(){
+      var toc_article = document.getElementById("toc-article");
+      var show_toc_btn = document.getElementById("show-toc-btn");
+      toc_article.setAttribute("style","display:block");
+      show_toc_btn.setAttribute("style","display:none");
+      };
+  function showBtn(){
+      var toc_article = document.getElementById("toc-article");
+      var show_toc_btn = document.getElementById("show-toc-btn");
+      toc_article.setAttribute("style","display:none");
+      show_toc_btn.setAttribute("style","display:block");
+      };
+    showBtn();
+ </script>
+           
+<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><em>when A happens, do B</em>.</p>
+</blockquote>
+  <a id="more"></a>
+<h2 id="Node-js事件循环"><a href="#Node-js事件循环" class="headerlink" title="Node.js事件循环"></a>Node.js事件循环</h2><!-- 一张更好理解的图 https://files.catbox.moe/5b4k5c.jpg -->
+<blockquote>
+<p>Node uses the Event-Driven Architecture: it has an Event Loop for orchestration and a Worker Pool for expensive tasks.</p>
+</blockquote>
+<p>建议阅读<a href="https://jsblog.insiderattack.net/event-loop-and-the-big-picture-nodejs-event-loop-part-1-1cb67a182810" target="_blank" rel="noopener">Event Loop and the Big Picture — NodeJS Event Loop Part 1</a>系列，绝对是对node.js事件循环解释的最清楚的文章。</p>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="IO"><a href="#IO" class="headerlink" title="IO"></a>IO</h4><p>Node.js中的<strong>IO</strong>主要是指<a href="https://libuv.org/" target="_blank" rel="noopener">libuv</a>所支持的和系统磁盘或网络的交互。</p>
+<h4 id="阻塞与非阻塞"><a href="#阻塞与非阻塞" class="headerlink" title="阻塞与非阻塞"></a>阻塞与非阻塞</h4><p>Node中的调用有两种，阻塞（<em>bocking</em>）和非阻塞（<em>non-blocking</em>）：</p>
+<ul>
+<li>阻塞：Node.js执行一段JS代码前必须等待一段非JS操作完成。发生这种情况的原因是，当一个阻塞操作发生时，event loop无法继续执行JS。在Node.js中，如果较差的性能是由于CPU计算密集而不是等待一段非JS操作如IO所导致，那么通常不称之为阻塞。 Node.js标准库中使用libuv的同步方法（如<code>fs.readSync</code>）是最常见的阻塞操作。native模块也可能具有阻塞方法。</li>
+<li>Node.js标准库中的IO操作也提供了异步版本，即非堵塞，并接受回调函数，方法名不以<code>Sync</code>结尾。比如<code>fs.readFile(path[, options], callback)</code>为非阻塞函数，<code>fs.readFileSync(path[, options])</code>为阻塞函数。</li>
+</ul>
+<p>阻塞代码同步执行，非阻塞代码异步执行。以<code>fs</code>模块为例：<br>同步代码：</p>
+<pre><code class="js">const fs = require(&#39;fs&#39;);
+const data = fs.readFileSync(&#39;/file.md&#39;); // blocks here until file is read
+console.log(&quot;文件读取完成&quot;);
+// morework();
+</code></pre>
+<p>非阻塞代码：</p>
+<pre><code class="js">const fs = require(&#39;fs&#39;);
+fs.readFile(&#39;/file.md&#39;, (err, data) =&gt; {
+  if (err) throw err;
+});
+console.log(&quot;文件读取未完成&quot;);
+// morework();
+</code></pre>
+<p>第一段代码看起来比较简单，由于<code>fs.readFileSync</code>是堵塞的，在读取文件时无法执行任何JS代码直到文件读取完成。另外一个缺点是如果文件读取错误会抛出异常，如果不捕获程序会crash；<code>fs.readFile</code>则由使用者决定是否处理异常：如果读取文件出错回调函数中的参数<code>err</code>会传入错误对象，否则为<code>null</code>。<br>第一段代码的<code>morework()</code>需要等待文件读取完成才会执行，而非阻塞的第二段代码的<code>morework()</code>不需要等待文件读取完成就能继续执行（只不过无法使用读取到的文件内容）。这种<strong>无需等待IO操作即可继续执行JS代码</strong>的核心特性是Node.js能有较高的吞吐量的原因，适合做IO服务器。</p>
+<!--
+node.js的异步机制是基于事件的，所有的I/O、网络通信、数据库查询都以非阻塞的方式执行，返回结果由事件循环来处理。node.js在同一时刻只会处理一个事件，完成后立即进入事件循环检查后面事件。这样CPU和内存在同一时间集中处理一件事，同时尽量让耗时的I/O等操作并行执行。 -->
+<h4 id="并发与吞吐量"><a href="#并发与吞吐量" class="headerlink" title="并发与吞吐量"></a>并发与吞吐量</h4><p>Node.js中执行JS是单线程环境，并发是指event loop完成一些工作后执行callback的能力。所以任何想要以并发的方式运行的代码，都必须要在非JS操作（如IO）运行时能让event loop持续工作（即不能堵塞事件循环）。</p>
+<p>举个例子，假设一个web服务器需要50ms来完成一个请求，其中的45ms是数据库IO，能被异步执行。使用非堵塞的、异步执行的操作能让剩余的45ms用来接收其它请求，这和使用堵塞代码相比大大提高了吞吐量。<br>event loop和诸多其它语言的模型不同，比如Java需要创建额外的线程来接收并发请求。</p>
+<h3 id="Node-js-Event-Loop"><a href="#Node-js-Event-Loop" class="headerlink" title="Node.js Event Loop"></a>Node.js Event Loop</h3><p>本节来自<a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/" target="_blank" rel="noopener">官方guide</a>。<br>event loop允许Node.js执行非堵塞IO操作——尽管JS是单线程——通过尽可能地将操作交给系统内核来执行。<br>Node.js的设计受启发于Ruby的<a href="https://github.com/eventmachine/eventmachine" target="_blank" rel="noopener">Event Machine</a>或者Python的<a href="http://twistedmatrix.com/" target="_blank" rel="noopener">Twisted</a>，不过更进一步。它的event loop是Node.js程序运行时构建而不是作为库（库需要导入）。在上述两者中都有一段堵塞调用来启动event loop，典型行为是在脚本开头定义一个callback然后通过阻塞调用如<code>EventMachine::run()</code>来启动服务。Node.js没有这类<em>start-the-event-loop</em>调用，<strong>脚本开始执行脚本后就直接进入event loop</strong>；当没有需要执行的callback，Node.js会退出事件循环。这一行为类似浏览器中的JS——event loop对用户隐藏了（不过还是要了解event loop，不然可能写出低效代码）。<br><strong>记住，event loop</strong>就是JS代码的执行线程。通过<code>node index.js</code>执行代码时，会进入poll阶段（见下一节），然后注册callback。因为现代内核（kernel）是多线程的，能在后台执行多个操作。当其中一个操作执行完成时，内核会告知Node.js，所以对应的callback会添加到<code>poll</code>队列中并最终被执行。<br>Node.js启动时会初始化event loop，然后处理输入的js脚本。js脚本可能会调用异步API、设置定时器，或者调用<code>process.nextTick()</code>，然后开始处理event loop。下图简要的表示了event loop的操作顺序：<br><img src="https://files.catbox.moe/nng5e7.jpg" alt="Node.js event loop操作顺序"></p>
+<h4 id="事件循环阶段"><a href="#事件循环阶段" class="headerlink" title="事件循环阶段"></a>事件循环阶段</h4><p>上图每个过程表示event loop的一个阶段。每个队列有一个callback的FIFO队列要执行。当event loop进入某个阶段，它会执行该阶段特定的一些操作，然后执行该阶段队列中的callback，直到队列元素被耗尽或者执行了最大允许数的callback。当元素被耗尽或达到callback限额，event loop会进入下一阶段。<br>在每轮event loop间，Node.js会检查它是否在等待异步IO或者timer，如果不是则会立即关闭。<br><!--Since any of these operations may schedule more operations and new events processed in the poll phase are queued by the kernel, poll events can be queued while polling events are being processed. 因此，-->运行时间长的callback能允许poll阶段运行比timer阈值更长的时间。</p>
+<h5 id="timers阶段"><a href="#timers阶段" class="headerlink" title="timers阶段"></a><strong>timers</strong>阶段</h5><p>该阶段会执行由<code>setTimeout()</code>和<code>setInterval()</code>设置的callback。<br>一个timer会指定<code>threshold</code>，当过了<code>threshold</code>毫秒时间后指定的callback会被执行。比如<code>setTimeout(printCurrentTime, threshold)</code>。当过了指定的时间，timer回调会尽可能的早地执行，只要它能被调度；不过，操作系统的调度或者其它回调可能会推迟定时器回调的执行。<br><strong>注意：</strong> 从技术角度来讲，poll阶段控制timer的执行。</p>
+<pre><code class="js">const fs = require(&#39;fs&#39;);
+
+function someAsyncOperation(callback) {
+  // Assume this takes 95ms to complete
+  fs.readFile(&#39;/path/to/file&#39;, callback);
+}
+
+const timeoutScheduled = Date.now();
+
+setTimeout(() =&gt; {
+  const delay = Date.now() - timeoutScheduled;
+  console.log(`${delay}ms have passed since I was scheduled`);
+}, 100);
+
+
+// do someAsyncOperation which takes 95 ms to complete
+someAsyncOperation(() =&gt; {
+  const startCallback = Date.now();
+  // do something that will take 10ms...
+  while (Date.now() - startCallback &lt; 10) {
+    // do nothing
+  }
+});
+</code></pre>
+<p>示例中有一个定时器设置threshod为100ms，读取<code>&#39;/path/to/file&#39;</code>文件需要95ms，读取好后的回调会阻塞10ms。<br>当event loop进入poll阶段时，它的队列为空（因为<code>fs.readFile()</code>）未完成，所以它会等待剩余的时间直到达到timer的阈值。当等待到过了95ms，<code>fs.readFile()</code>读取完毕并且它的回调会被加入到<code>poll</code>队列并被执行，执行回调需要10ms。回调执行好后，队列没有更多的callback并且已经达到timer的阈值，于是回到timer阶段并执行timer的回调。所以timer从设置到执行共用了105ms。<br>注意，为了避免poll阶段一直占据event loop，libuv会有一个最大时间（依赖系统），超过该时间停止轮询更多事件。</p>
+<h5 id="pending-callbacks阶段"><a href="#pending-callbacks阶段" class="headerlink" title="pending callbacks阶段"></a><strong>pending callbacks</strong>阶段</h5><p>执行推迟到下一轮事件循环的IO回调。<br>这一阶段用于执行一些系统操作的回调如TCP错误的回调。比如一个TCP socket尝试连接时收到<code>ECONNREFUSED</code>异常，一些<code>*nix</code>系统会等待异常报告。这些会被加入到pending callbacks阶段的队列中。</p>
+<h5 id="idle-prepare阶段"><a href="#idle-prepare阶段" class="headerlink" title="idle,prepare阶段"></a><strong>idle,prepare</strong>阶段</h5><p>只在内部使用。</p>
+<h5 id="poll阶段"><a href="#poll阶段" class="headerlink" title="poll阶段"></a><strong>poll</strong>阶段</h5><p>获取新的IO事件；执行IO相关的callback（几乎所有的callback，除了close callback、定时器设置的callback、<code>setImmediate()</code>）。<br>主要有两个功能：</p>
+<ol>
+<li>计算它需要阻塞多久来轮询IO，然后</li>
+<li>执行<code>poll</code>队列中的事件<br>如果event loop进入poll阶段且没有设置好的timer，那么会发生下述事情之一：</li>
+<li>如果<code>poll</code>队列不为空，那么event loop会遍历callback队列，并同步执行，直到队列中的callback被耗尽，或者达到系统相关的限制</li>
+<li>如果<code>poll</code>队列为空，那么会发生下面两件事：<ol>
+<li>如果脚本已被<code>setImmediate()</code>调度，那么event loop会结束poll阶段并进入check阶段来执行这些调度好的callback</li>
+<li>如果未被<code>setImmediate()</code>调度，那么event loop会等待callback被添加到队列中（如上述例子），并立即执行<br>当<code>poll</code>队列为空时，event loop会检查是否有timer已经到阈值了。如果有一到多个timer到达阈值，就会回到timers阶段并执行这些timer的回调</li>
+</ol>
+</li>
+</ol>
+<h5 id="check阶段"><a href="#check阶段" class="headerlink" title="check阶段"></a><strong>check</strong>阶段</h5><p>执行<code>setImmediate()</code>设置的callback。<br>如果poll阶段处于闲置状态并且有callback被<code>setImmediate()</code>添加到队列中，那么event loop会进入<code>check</code>阶段而不是傻等。</p>
+<h5 id="close-callbacks阶段"><a href="#close-callbacks阶段" class="headerlink" title="close callbacks阶段"></a><strong>close callbacks</strong>阶段</h5><p>一些关闭事件的callback，如<code>socket.on(&quot;close&quot;, ...)</code><br>如果一个socket或者handle被突然关闭（如<code>socket.destroy()</code>），那么<code>&quot;close&quot;</code>事件就被发送到这个阶段，否则会由<code>process.nextTick()</code>发起。</p>
+<h4 id="Node-js事件循环的优点"><a href="#Node-js事件循环的优点" class="headerlink" title="Node.js事件循环的优点"></a>Node.js事件循环的优点</h4><ol>
+<li>与其他常见的并发模式形成对比。基于OS线程的模式性能相对低效且不易使用。</li>
+<li>不需要当心死锁等问题…因为没有锁。</li>
+<li>Node.js中的函数几乎没有直接操作IO的，因此进程不会由于Node.js的API而堵塞。由于不会堵塞，非常适合在Node上开发可扩展系统。</li>
+</ol>
+<h3 id="setImmediate-、setImmediate-、process-nextTick-、Promise"><a href="#setImmediate-、setImmediate-、process-nextTick-、Promise" class="headerlink" title="setImmediate()、setImmediate()、process.nextTick()、Promise"></a><code>setImmediate()</code>、<code>setImmediate()</code>、<code>process.nextTick()</code>、<code>Promise</code></h3><h4 id="setTimeout-vs-setImmediate"><a href="#setTimeout-vs-setImmediate" class="headerlink" title="setTimeout() vs setImmediate()"></a><code>setTimeout()</code> vs <code>setImmediate()</code></h4><p><code>setImmediate()</code> 是在当前poll阶段完成时执行，<code>setTimeout()</code>是在经过threshold后执行。</p>
+<blockquote>
+<p><code>setImmediate()</code> will execute code at the end of the current event loop cycle. This code will execute after any I/O operations in the current event loop and before any timers scheduled for the next event loop.</p>
+</blockquote>
+<p>如果不在IO循环中执行如下代码，两个timer的顺序无法确定，取决于处理器性能：</p>
+<pre><code class="js">// timeout_vs_immediate.js
+setTimeout(() =&gt; {
+  console.log(&#39;timeout&#39;);
+}, 0);
+
+setImmediate(() =&gt; {
+  console.log(&#39;immediate&#39;);
+});
+</code></pre>
+<p>但是如果移到IO循环中执行，则<code>setImmediate()</code>会在<code>setTimeout()</code>前执行：</p>
+<pre><code class="js">// timeout_vs_immediate.js
+const fs = require(&#39;fs&#39;);
+
+fs.readFile(__filename, () =&gt; {
+  setTimeout(() =&gt; {
+    console.log(&#39;timeout&#39;);
+  }, 0);
+  setImmediate(() =&gt; {
+    console.log(&#39;immediate&#39;);
+  });
+});
+</code></pre>
+<p>使用<code>setImmediate()</code>优于<code>setTimeout()</code>的地方在于如果在一个IO循环中，<code>setImmediate()</code>始终在其它timer前执行。</p>
+<h4 id="process-nextTick"><a href="#process-nextTick" class="headerlink" title="process.nextTick()"></a><code>process.nextTick()</code></h4><p>尽管<code>process.nextTick()</code>是一个异步操作，它并不在上面的event loop示图中。因为它不属于event loop中的一部分。相反，<code>nextTickQueue</code>会在当前操作后立即执行，不管当前是什么阶段。<br>如果递归调用<code>process.nextTick()</code>会导致event loop无法进入poll阶段。允许这一API的一个原因是“所有的API都可以是异步的，即使它不需要这么做”的设计哲学。<br><code>process.nextTick(cb)</code>会让<code>cb</code>在当前其余的用户代码执行完毕、但在event loop允许继续前执行<code>cb</code>。<br>如下示例代码中，虽然<code>someAsyncApiCall</code>有异步的签名形式，但是<code>callback()</code>是同步调用的，此时<code>bar</code>的值还来不及设置，而如果将<code>callback()</code>改造成<code>process.nextTick(callback);</code>则能生效。</p>
+<pre><code class="js">let bar;
+
+// this has an asynchronous signature, but calls callback synchronously
+function someAsyncApiCall(callback) {
+    callback();
+    //process.nextTick(callback);
+}
+
+// the callback is called before `someAsyncApiCall` completes.
+someAsyncApiCall(() =&gt; {
+  // since someAsyncApiCall has completed, bar hasn&#39;t been assigned any value
+  console.log(&#39;bar&#39;, bar); // undefined
+});
+
+bar = 1;
+</code></pre>
+<p>一个具体案例：</p>
+<pre><code class="js">const server = net.createServer();
+server.on(&#39;connection&#39;, (conn) =&gt; { });
+
+server.listen(8080);
+server.on(&#39;listening&#39;, () =&gt; { });
+</code></pre>
+<p><code>listen</code>在event loop开始时调用，</p>
+<p>文档建议在任何场合都应该使用<code>setImmediate()</code>替代<code>process.nextTick()</code>，因为它更容易理解，而且与浏览器兼容。</p>
+<h4 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a><code>Promise</code></h4><p>官方文档未提到<code>Promise</code>，建议阅读<a href="https://jsblog.insiderattack.net/promises-next-ticks-and-immediates-nodejs-event-loop-part-3-9226cbe7a6aa" target="_blank" rel="noopener">Promises, Next-Ticks and Immediates</a>。</p>
+<p>Node.js原生<code>Promise</code>的回调可以认为是一个微服务（microtask），并会放到微服务队列中，该队列在nexttick队列之后。<br><img src="https://files.catbox.moe/o5w68x.jpg" alt="Native Promises"></p>
+<p><code>Q</code>、<code>Bluebird</code>等库出现于Node.Js提供内置的<code>Promise</code>之前，都是使用内置接口如<code>Process.nextTick()</code>、<code>setImmediate()</code>等。<br>事实上知道Node.Js的event loop原理以及<code>Process.nextTick()</code>、<code>setImmediate()</code>这两个API后，也能轻松的实现一个<code>Promise</code>。</p>
+<h3 id="Node-js异步示例代码"><a href="#Node-js异步示例代码" class="headerlink" title="Node.js异步示例代码"></a>Node.js异步示例代码</h3><h4 id="回调"><a href="#回调" class="headerlink" title="回调"></a>回调</h4><p>使用<code>fs</code>模块提供的异步API来读取文件，打印，然后删除：</p>
+<pre><code class="js">const fs = require(&#39;fs&#39;);
+fs.readFile(&#39;/file.md&#39;, (readFileErr, data) =&gt; {
+  if (readFileErr) throw readFileErr;
+  console.log(data);
+  fs.unlink(&#39;/file.md&#39;, (unlinkErr) =&gt; {
+    if (unlinkErr) throw unlinkErr;
+  });
+});
+</code></pre>
+<p>要等到<code>fs.readFile()</code>读取到文件内容后再删除它，所以<code>fs.unlink()</code>操作在<code>fs.readFile()</code>的回调中。如果在删除文件后再创建同名文件夹<code>file.md</code>，那么<code>fs.mkdir()</code>还需要放置到<code>fs.unlink()</code>的回调中… 这就是著名的callback hell，回调链过长会导致代码不易阅读难于维护，如<a href="https://files.catbox.moe/7mhvok.jpg" target="_blank" rel="noopener">这个例子</a>。</p>
+<h4 id="Promise、async-await"><a href="#Promise、async-await" class="headerlink" title="Promise、async/await"></a><code>Promise</code>、<code>async/await</code></h4><p><em><code>fs</code>模块未提供<code>Promise</code>形式的API，可以使用bluebird包调用<code>var fs = Promise.promisifyAll(require(&quot;fs&quot;));</code>来转换，这样可以使用<code>fs.xxxAsync()</code>返回<code>Promise</code>。</em></p>
+<p>为了避免callback hell，ES6加入了<code>Promise</code> API，使用链式调用的方式如</p>
+<pre><code class="js">`fs.readFileAsync(&quot;./file.md&quot;)
+   .then(()=&gt;fs.unlinkAsync(&quot;./file.md&quot;))
+   .then(()=&gt;fs.mkdirAsync(&quot;./file.md&quot;))
+   .catch(e=&gt;{});
+</code></pre>
+<p>不过链式过长还是不易阅读。最优雅的方式是ES8的<code>async/await</code>，它是<code>Promise</code>的语法糖。<br>使用<code>async/await</code>的示例：</p>
+<pre><code class="js">(async function(){
+    await fs.readFileAsync(&quot;./file.md&quot;).catch(e=&gt;{});
+    await fs.unlinkAsync(&quot;./file.md&quot;).catch(e=&gt;{});
+    await fs.mkdirAsync(&quot;./file.md&quot;).catch(e=&gt;{});
+})();
+</code></pre>
+<p><code>async/await</code>语法的写法很容易被当作是同步堵塞代码，一个技巧是看到<code>await</code>表达式就想象代码增加一个回调函数。</p>
+<h3 id="对event-loop的常见误解"><a href="#对event-loop的常见误解" class="headerlink" title="对event loop的常见误解"></a>对event loop的常见误解</h3><h4 id="误解1：event-loop执行在一个单独的线程，用户JS代码在一个单独的线程"><a href="#误解1：event-loop执行在一个单独的线程，用户JS代码在一个单独的线程" class="headerlink" title="误解1：event loop执行在一个单独的线程，用户JS代码在一个单独的线程"></a>误解1：event loop执行在一个单独的线程，用户JS代码在一个单独的线程</h4><p>Node.js只有一个主线程，用来执行JS代码的线程就是运行event loop的线程。</p>
+<h4 id="误解2：-所有的异步事件是由Worker-Pool线程池执行"><a href="#误解2：-所有的异步事件是由Worker-Pool线程池执行" class="headerlink" title="误解2： 所有的异步事件是由Worker Pool线程池执行"></a>误解2： 所有的异步事件是由Worker Pool线程池执行</h4><p>libuv虽然创建了一个线程池，但是当今的操作系统也提供了为IO任务一些异步接口（如Linux的<a href="http://man7.org/linux/man-pages/man7/aio.7.html" target="_blank" rel="noopener">AIO</a>）。只要有可能，libuv就会使用这些异步接口，而不是使用线程池。这同样适用于第三方子系统如数据库，驱动的作者会尽可能的使用异步接口而不是线程池。<br>只有在没有别的方式时，才会使用线程池来处理异步IO。</p>
+<h4 id="误解3：-event-loop类似一个栈或队列"><a href="#误解3：-event-loop类似一个栈或队列" class="headerlink" title="误解3： event loop类似一个栈或队列"></a>误解3： event loop类似一个栈或队列</h4><p>有些人认为event loop会继续的遍历一个FIFO任务队列，并当有一个任务完成时执行相应的回调。<br>事实上event loop是由几个阶段构成的，如上文所述。</p>
+<h3 id="深入Node-js工作原理"><a href="#深入Node-js工作原理" class="headerlink" title="深入Node.js工作原理"></a><a href="https://nodejs.org/en/docs/guides/dont-block-the-event-loop" target="_blank" rel="noopener">深入Node.js工作原理</a></h3><p>Node.js的event loop已经讲述清楚了，这一节可以跳过。<br>在Node中主要有两种线程：一个event loop（或者叫主线程、事件线程），以及Worker Pool中的多个<code>Worker</code>（即线程池）。</p>
+<h4 id="Worker-Pool"><a href="#Worker-Pool" class="headerlink" title="Worker Pool"></a>Worker Pool</h4><p>Node.js提供了一个<a href="https://nodejs.org/en/docs/guides/dont-block-the-event-loop" target="_blank" rel="noopener">Worker Pool</a>，在libuv中实现，它暴露了一个通用的任务（task）提交API。Node.js使用Worker Pool来处理“昂贵”的操作，这些操作包括操作系统没有提供非堵塞API的IO操作，以及一些CPU密集型任务。Node.js模块用到Worker Pool的API有：</p>
+<ol>
+<li>IO密集型<ol>
+<li><a href="https://nodejs.org/api/dns.html" target="_blank" rel="noopener">DNS</a>： <code>dns.lookup()</code>、<code>dns.lookupService()</code></li>
+<li><code>fs</code>模块：除了<code>fs.FSWatcher()</code>以及同步API的所有API会使用到libuv的线程池</li>
+</ol>
+</li>
+<li>CPU密集型<ol>
+<li><a href="https://nodejs.org/api/crypto.html" target="_blank" rel="noopener">Crypto</a>： <code>crypto.pbkdf2()</code>、<code>crypto.randomBytes()</code>、<code>crypto.randomFill()</code></li>
+<li><a href="https://nodejs.org/api/zlib.html#zlib_threadpool_usage" target="_blank" rel="noopener">Zlib</a> 同步API外的所有API会使用到libuv的线程池</li>
+</ol>
+</li>
+</ol>
+<p>对于大多数Node应用上述API是Worker Pool处理的任务的唯一来源。不过使用到<a href="https://nodejs.org/api/addons.html" target="_blank" rel="noopener">C++ add-on</a>的应用或模块也能提交其他任务到Worker Pool。<br>当在event loop的callback中调用上述API时，event loop会为API进行Node C++绑定，并提交任务到Worker Pool。这需要一定代价，不过和整个任务的消耗比起来是微不足道的。提交任务时，Node会提供一个指针指向对应的C++函数。</p>
+<h4 id="Node-js如何决定接下来该执行什么代码？"><a href="#Node-js如何决定接下来该执行什么代码？" class="headerlink" title="Node.js如何决定接下来该执行什么代码？"></a>Node.js如何决定接下来该执行什么代码？</h4><p>抽象地讲，event loop和Worker Pool分别维护待处理event和待处理task的队列。<br>但是实际上event loop并没有真正的维护一个event队列，相反，它会有一组文件描述符（file descriptor），要求操作系统通过<a href="http://man7.org/linux/man-pages/man7/epoll.7.html" target="_blank" rel="noopener">epoll</a>(Linux)、<a href="https://developer.apple.com/library/content/documentation/Darwin/Conceptual/FSEvents_ProgGuide/KernelQueues/KernelQueues.html" target="_blank" rel="noopener">kqueue</a>(OSX)、event ports(Solaris)或<a href="https://msdn.microsoft.com/en-us/library/windows/desktop/aa365198.aspx" target="_blank" rel="noopener">IOCP</a>(Windows)等机制来监视。当操作系统告知有一个file descriptor已经准备就绪，event loop会把它翻译成适当的event并调用和该event相关联的callback。如果想要了解更多关于这一过程，可以看<a href="https://www.youtube.com/watch?v=P9csgxBgaZ8" target="_blank" rel="noopener">Youtube|Node’s Event Loop From the Inside Out by Sam Roberts</a>。<br>Worker Pool使用了真正的队列，队列中的元素是要被处理的任务。一个Worker会从队列中弹出一个任务并对它进行处理，当完成时Worker会为event loop发起一个”At least one task is finished”事件。</p>
+<h4 id="这种设计意味着…"><a href="#这种设计意味着…" class="headerlink" title="这种设计意味着…"></a>这种设计意味着…</h4><p>在“on-thread-per-client”的架构如Apache中，每个执行中的client请求都会有它独自的线程。如果处理某个client的线程堵塞了，那么操作系统就会中断堵塞的线程，然后把线程另外一个client使用。操作系统确保要求少量计算工作的client不会为要求大量计算工作的client（甚至是堵塞）付出代价。<br>而Node.js给大量的client使用少量的线程，如果一个线程在处理某个client的请求时堵塞了，那么其它未处理好的client请求可能就不会有机会执行，直到线程完成它的工作。因此client的公平对待需要由你的代码来保证。这意味着你不能在一个callback或者task中做过多的工作。</p>
+<h2 id="浏览器JS的事件循环"><a href="#浏览器JS的事件循环" class="headerlink" title="浏览器JS的事件循环"></a>浏览器JS的事件循环</h2><p>和Node.js不同的模型。Node.js的事件循环是由libuv驱动，而浏览器的事件循环是由浏览器驱动，具体见<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop" target="_blank" rel="noopener">mdn|event loop</a>。不过两者的表现是差不多的。</p>
+<h2 id="Python的事件循环"><a href="#Python的事件循环" class="headerlink" title="Python的事件循环"></a>Python的事件循环</h2><p>python3的<code>asyncio</code>提供了异步编程能力。关键字：<em>task</em>、<em>event loop</em>、<em>coroutines</em>。</p>
+<p><em>event loop</em>： 一个loop，它使得python3也能异步执行程序。它每一时刻只有一个task在工作，其它的在等待。所以event loop的时间很宝贵，因为有很多task在等待工作中的task。因此如果一个task执行了一个堵塞操作，比如发送请求，那么它就会放出event loop的控制权。event loop的作用简单描述是<em>when A happens, do B</em>（A是event， loop是一直执行循环来发现event），比如浏览器中是当你点击按钮时（<em>when A happens</em>），它绑定的回调执行（<em>do B</em>）。<code>asyncio</code>标准库提供了event loop的功能，它的一个作用是当一个socket的I/O可以读写时（<em>when A happens</em>）能执行后续操作。除了IO外，event loop也可以用于在另一个线程或子进程执行代码，使用event loop作为调度器。<br><em>task</em>： 用于在event loop中运行coroutine，具体可见<a href="https://docs.python.org/3/library/asyncio-task.html#task-object" target="_blank" rel="noopener">文档</a><br><em>coroutine</em>： 依靠coroutine（协程）来放出event loop的控制权。coroutine是subroutine概念的有状态推广。subroutine即方法或者函数，它可以运行subroutine来执行计算，也可以多次调用，不过两次subroutine间无法保持状态，每次调用都是全新的调用。而coroutine则是有状态的，它类似subroutine，不过能在两次调用间保持状态。也就是说，在两次调用间你可以当做是pause状态，而再次调用可以当做是resume。在python3.5+中，一个coroutine通过<code>await</code>来暂停。在一个coroutine中运行<code>wait anotherCoroutine</code>时，会暂停该coroutine并将event loop交给<code>anotherCoroutine</code>。<br>示例：</p>
+<pre><code class="python">import asyncio
+
+# definition of a coroutine
+async def coroutine_1():
+    print(&#39;coroutine_1 is active on the event loop&#39;)
+
+    print(&#39;coroutine_1 yielding control. Going to be blocked for 2 seconds&#39;)
+    await asyncio.sleep(2)
+
+    print(&#39;coroutine_1 resumed. coroutine_1 exiting&#39;)
+
+# definition of a coroutine
+async def coroutine_2():
+    print(&#39;coroutine_2 is active on the event loop&#39;)
+
+    print(&#39;coroutine_2 yielding control. Going to be blocked for 5 seconds&#39;)
+    await asyncio.sleep(5)
+
+    print(&#39;coroutine_2 resumed. coroutine_2 exiting&#39;)
+
+# 并发执行两个coroutine
+async def main1():
+   await asyncio.gather(coroutine_1(),coroutine_2())
+
+# 按顺序执行两个coroutine
+async def main2():
+    await coroutine_1()
+    await coroutine_2()
+
+print(&quot;并发执行两个coroutine&quot;)
+asyncio.run(main1())
+print(&quot;\n\n&quot;)
+print(&quot;按顺序执行两个coroutine&quot;)
+asyncio.run(main2())
+</code></pre>
+<p>注意点：</p>
+<ul>
+<li><code>asyncio.sleep(delay)</code>是asyncio包预定义的coroutine，它不会堵塞event loop，而是延迟当前task的执行，并允许其它task工作。当执行到<code>await asyncio.sleep</code>时，它会释放对event loop的控制权，并让loop在指定时间后唤醒它。当过了指定时间后，它会重新获取event loop的控制权，返回该语句的调用结果，并继续执行它的调用者（比如这里的<code>coroutine_1</code>和<code>coroutine_2</code>）。</li>
+<li>调用一个<code>async def</code>定义的方法不会执行它，而是创建一个coroutine对象。<code>await</code>后面跟的是一个coroutine而不是coroutine方法定义</li>
+<li>event loop运行的是task，而不是coroutine。执行到<code>await coroutine_object</code>时，coroutine会被包装成task并在当前event loop立即执行。</li>
+<li>可以使用<code>asyncio.create_task(coro)</code>或者<code>asyncio.create_task(coro)</code>来把coroutine包装成task。</li>
+</ul>
+<p>一个更实际的例子：</p>
+<pre><code class="python">import asyncio
+
+# this is a coroutine definition
+async def fake_network_request(request):
+    print(&#39;making network call for request:  &#39; + request)
+    # simulate network delay
+    await asyncio.sleep(1)
+
+    return &#39;got network response for request: &#39; + request
+
+# this is a coroutine definition
+async def web_server_handler():
+    # schedule both the network calls in a non-blocking way.
+
+    # ensure_future creates a task from the coroutine object, and schedules it on the event loop
+    task1 = asyncio.ensure_future(fake_network_request(&#39;one&#39;))
+
+    # another way to do the scheduling
+    task2 = asyncio.get_event_loop().create_task(fake_network_request(&#39;two&#39;))
+
+    # simulate a no-op blocking task. This gives a chance to the network requests scheduled above to be executed.
+    await asyncio.sleep(0.5)
+
+    print(&#39;doing useful work while network calls are in progress...&#39;)
+
+    # wait for the network calls to complete. Time to step off the event loop using await!
+    await asyncio.wait([task1, task2])
+
+    print(task1.result())
+    print(task2.result())
+
+asyncio.run(web_server_handler())
+</code></pre>
+<p> 想要简单了解python的event loop如何工作可以阅读<a href="https://snarky.ca/how-the-heck-does-async-await-work-in-python-3-5/" target="_blank" rel="noopener">How the heck does async/await work in Python 3.5?</a>。</p>
+<h2 id="Read-More"><a href="#Read-More" class="headerlink" title="Read More"></a>Read More</h2><ul>
+<li>Node.js<ul>
+<li><a href="https://jsblog.insiderattack.net/event-loop-and-the-big-picture-nodejs-event-loop-part-1-1cb67a182810" target="_blank" rel="noopener">Event Loop and the Big Picture — NodeJS Event Loop Part 1</a></li>
+<li><a href="https://jsblog.insiderattack.net/promises-next-ticks-and-immediates-nodejs-event-loop-part-3-9226cbe7a6aa" target="_blank" rel="noopener">Promises, Next-Ticks and Immediates— NodeJS Event Loop Part 3</a></li>
+<li><a href="https://nodejs.org/en/docs/guides/#node-js-core-concepts" target="_blank" rel="noopener">官方guide</a></li>
+<li><a href="https://www.youtube.com/watch?v=PNa9OMajw9w" target="_blank" rel="noopener">Morning Keynote- Everything You Need to Know About Node.js Event Loop</a></li>
+<li><a href="https://medium.com/the-node-js-collection/what-you-should-know-to-really-understand-the-node-js-event-loop-and-its-metrics-c4907b19da4c" target="_blank" rel="noopener">What you should know to really understand the Node.js Event Loop</a></li>
+<li><a href="https://github.com/Microsoft/napajs" target="_blank" rel="noopener">napajs</a> 开源模块，提供了对Node.js多线程支持</li>
+<li><a href="http://libuv.org/" target="_blank" rel="noopener">libuv: Asynchronous I/O made simple</a></li>
+</ul>
+</li>
+<li>Python3<ul>
+<li><a href="https://eng.paxos.com/python-3s-killer-feature-asyncio" target="_blank" rel="noopener">Python 3’s Killer Feature: asyncio</a></li>
+<li><a href="https://snarky.ca/how-the-heck-does-async-await-work-in-python-3-5/" target="_blank" rel="noopener">How the heck does async/await work in Python 3.5?</a></li>
+<li><a href="https://github.com/AndreLouisCaron/a-tale-of-event-loops" target="_blank" rel="noopener">a tale of event loops</a></li>
+<li><a href="https://hackernoon.com/a-simple-introduction-to-pythons-asyncio-595d9c9ecf8c" target="_blank" rel="noopener">A simple introduction to Python’s asyncio</a>  基本描述清楚python的事件循环</li>
+<li><a href="https://stackoverflow.com/questions/49005651/how-does-asyncio-actually-work" target="_blank" rel="noopener">How does asyncio actually work?</a></li>
+</ul>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">bash</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Node.js</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/09/20/retrofit使用笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">retrofit使用笔记</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-js事件循环"><span class="toc-number">1.</span> <span class="toc-text">Node.js事件循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-number">1.1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#IO"><span class="toc-number">1.1.1.</span> <span class="toc-text">IO</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#阻塞与非阻塞"><span class="toc-number">1.1.2.</span> <span class="toc-text">阻塞与非阻塞</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#并发与吞吐量"><span class="toc-number">1.1.3.</span> <span class="toc-text">并发与吞吐量</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-js-Event-Loop"><span class="toc-number">1.2.</span> <span class="toc-text">Node.js Event Loop</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#事件循环阶段"><span class="toc-number">1.2.1.</span> <span class="toc-text">事件循环阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#timers阶段"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">timers阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#pending-callbacks阶段"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">pending callbacks阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#idle-prepare阶段"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">idle,prepare阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#poll阶段"><span class="toc-number">1.2.1.4.</span> <span class="toc-text">poll阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#check阶段"><span class="toc-number">1.2.1.5.</span> <span class="toc-text">check阶段</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#close-callbacks阶段"><span class="toc-number">1.2.1.6.</span> <span class="toc-text">close callbacks阶段</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Node-js事件循环的优点"><span class="toc-number">1.2.2.</span> <span class="toc-text">Node.js事件循环的优点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setImmediate-、setImmediate-、process-nextTick-、Promise"><span class="toc-number">1.3.</span> <span class="toc-text">setImmediate()、setImmediate()、process.nextTick()、Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#setTimeout-vs-setImmediate"><span class="toc-number">1.3.1.</span> <span class="toc-text">setTimeout() vs setImmediate()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#process-nextTick"><span class="toc-number">1.3.2.</span> <span class="toc-text">process.nextTick()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise"><span class="toc-number">1.3.3.</span> <span class="toc-text">Promise</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Node-js异步示例代码"><span class="toc-number">1.4.</span> <span class="toc-text">Node.js异步示例代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#回调"><span class="toc-number">1.4.1.</span> <span class="toc-text">回调</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise、async-await"><span class="toc-number">1.4.2.</span> <span class="toc-text">Promise、async/await</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对event-loop的常见误解"><span class="toc-number">1.5.</span> <span class="toc-text">对event loop的常见误解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#误解1：event-loop执行在一个单独的线程，用户JS代码在一个单独的线程"><span class="toc-number">1.5.1.</span> <span class="toc-text">误解1：event loop执行在一个单独的线程，用户JS代码在一个单独的线程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#误解2：-所有的异步事件是由Worker-Pool线程池执行"><span class="toc-number">1.5.2.</span> <span class="toc-text">误解2： 所有的异步事件是由Worker Pool线程池执行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#误解3：-event-loop类似一个栈或队列"><span class="toc-number">1.5.3.</span> <span class="toc-text">误解3： event loop类似一个栈或队列</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深入Node-js工作原理"><span class="toc-number">1.6.</span> <span class="toc-text">深入Node.js工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Worker-Pool"><span class="toc-number">1.6.1.</span> <span class="toc-text">Worker Pool</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Node-js如何决定接下来该执行什么代码？"><span class="toc-number">1.6.2.</span> <span class="toc-text">Node.js如何决定接下来该执行什么代码？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#这种设计意味着…"><span class="toc-number">1.6.3.</span> <span class="toc-text">这种设计意味着…</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器JS的事件循环"><span class="toc-number">2.</span> <span class="toc-text">浏览器JS的事件循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python的事件循环"><span class="toc-number">3.</span> <span class="toc-text">Python的事件循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Read-More"><span class="toc-number">4.</span> <span class="toc-text">Read More</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+  <div id="SOHUCS" sid="Node.js事件循环和python" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytL8LPfl",
+        conf: "prod_1a2d009597d28e6aa60181b07d1fca04"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -251,9 +629,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
