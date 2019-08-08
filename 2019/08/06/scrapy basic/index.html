@@ -7,19 +7,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="stylesheet" href="/css/nav.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: hexo | losymear&#39;s blog</title>
+  <title>scrapy basic | losymear&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="losymear的笔记">
-<meta name="keywords" content="losymear blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="losymear&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/hexo/index.html">
+  <meta name="description" content="scrapy是一个通用的爬虫框架，基于python，建议阅读官方tutorial。">
+<meta name="keywords" content="python,爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="scrapy basic">
+<meta property="og:url" content="http://yoursite.com/2019/08/06/scrapy basic/index.html">
 <meta property="og:site_name" content="losymear&#39;s blog">
-<meta property="og:description" content="losymear的笔记">
+<meta property="og:description" content="scrapy是一个通用的爬虫框架，基于python，建议阅读官方tutorial。">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-08T08:24:42.764Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="losymear&#39;s blog">
-<meta name="twitter:description" content="losymear的笔记">
+<meta name="twitter:title" content="scrapy basic">
+<meta name="twitter:description" content="scrapy是一个通用的爬虫框架，基于python，建议阅读官方tutorial。">
   
     <link rel="alternative" href="/atom.xml" title="losymear&#39;s blog" type="application/atom+xml">
   
@@ -152,106 +153,418 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-scrapy basic" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/21/hexo & github-pages/" class="archive-article-date">
-  	<time datetime="2018-05-21T09:35:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-21</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/21/hexo & github-pages/">hexo&amp;github-pages</a>
+    <h1 class="article-title" itemprop="name">
+      scrapy basic
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/08/06/scrapy basic/" class="archive-article-date">
+  	<time datetime="2019-08-06T07:14:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-06</time>
+</a>
+        
+      </header>
+      <!-- 目录内容 -->
+
+  <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+        <span class="btn-bg"></span>
+        <span class="btn-text">文章导航</span>
+        </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+      <strong class="toc-title">文章目录</strong>
+         <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#推荐配置使用的python库"><span class="toc-number">1.</span> <span class="toc-text">推荐配置使用的python库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例说明"><span class="toc-number">2.</span> <span class="toc-text">示例说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#settings"><span class="toc-number">3.</span> <span class="toc-text">settings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Selector"><span class="toc-number">4.</span> <span class="toc-text">Selector</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心类"><span class="toc-number">5.</span> <span class="toc-text">核心类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#scrapy-Spider"><span class="toc-number">5.1.</span> <span class="toc-text">scrapy.Spider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scrapy-http-Request"><span class="toc-number">5.2.</span> <span class="toc-text">scrapy.http.Request</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Request内置子类"><span class="toc-number">5.2.1.</span> <span class="toc-text">Request内置子类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scrapy-http-Response"><span class="toc-number">5.3.</span> <span class="toc-text">scrapy.http.Response</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Response内置子类"><span class="toc-number">5.3.1.</span> <span class="toc-text">Response内置子类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据存储：Item和pipeline"><span class="toc-number">6.</span> <span class="toc-text">数据存储：Item和pipeline</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Items"><span class="toc-number">6.1.</span> <span class="toc-text">Items</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Item-Loader"><span class="toc-number">6.2.</span> <span class="toc-text">Item Loader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Item-Pipeline"><span class="toc-number">6.3.</span> <span class="toc-text">Item Pipeline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Feed-exports"><span class="toc-number">6.4.</span> <span class="toc-text">Feed exports</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Middleware"><span class="toc-number">7.</span> <span class="toc-text">Middleware</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Downloader-Middleware"><span class="toc-number">7.1.</span> <span class="toc-text">Downloader Middleware</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spider-Middleware"><span class="toc-number">7.2.</span> <span class="toc-text">Spider Middleware</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#common-practice"><span class="toc-number">8.</span> <span class="toc-text">common practice</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Running-multiple-spiders-in-the-same-process"><span class="toc-number">8.1.</span> <span class="toc-text">Running multiple spiders in the same process</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AutoThrottle-extension"><span class="toc-number">8.2.</span> <span class="toc-text">AutoThrottle extension</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jobs"><span class="toc-number">8.3.</span> <span class="toc-text">jobs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在jupyter-notoebook中使用scrapy"><span class="toc-number">8.4.</span> <span class="toc-text">在jupyter notoebook中使用scrapy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何在程序中运行Spider类"><span class="toc-number">8.5.</span> <span class="toc-text">如何在程序中运行Spider类</span></a></li></ol></li></ol>
+       </div>
+ <script type="text/javascript">
+  function showToc(){
+      var toc_article = document.getElementById("toc-article");
+      var show_toc_btn = document.getElementById("show-toc-btn");
+      toc_article.setAttribute("style","display:block");
+      show_toc_btn.setAttribute("style","display:none");
+      };
+  function showBtn(){
+      var toc_article = document.getElementById("toc-article");
+      var show_toc_btn = document.getElementById("show-toc-btn");
+      toc_article.setAttribute("style","display:none");
+      show_toc_btn.setAttribute("style","display:block");
+      };
+    showBtn();
+ </script>
+           
+<!-- 目录内容结束 -->
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://scrapy.org/" target="_blank" rel="noopener">scrapy</a>是一个通用的爬虫框架，基于python，建议阅读<a href="https://docs.scrapy.org/en/latest/intro/tutorial.html" target="_blank" rel="noopener">官方tutorial</a>。<br><a id="more"></a><br>scrapy提供了同名的命令行工具<code>scrapy</code>，运行<code>scrapy -h</code>查看可用命令。<br>scrapy的机制见<a href="https://docs.scrapy.org/en/latest/topics/architecture.html" target="_blank" rel="noopener">Architecture overview</a>。</p>
+<h2 id="推荐配置使用的python库"><a href="#推荐配置使用的python库" class="headerlink" title="推荐配置使用的python库"></a>推荐配置使用的python库</h2><ul>
+<li><code>furl</code>  is a small Python library that makes parsing and manipulating URLs easy.</li>
+</ul>
+<h2 id="示例说明"><a href="#示例说明" class="headerlink" title="示例说明"></a>示例说明</h2><p>创建新scrapy项目可以用命令<code>scrapy startproject projName</code>，会生成如下目录结构：</p>
+<pre><code class="sh">projName
+├── projName
+│   ├── __init__.py
+│   ├── __pycache__
+│   ├── items.py
+│   ├── middlewares.py
+│   ├── pipelines.py
+│   ├── settings.py
+│   └── spiders
+│       ├── __init__.py
+│       └── __pycache__
+└── scrapy.cfg
+</code></pre>
+<p>示例代码如下，命名为<code>quotes_spider.py</code>并放到<code>spiders</code>文件夹：</p>
+<pre><code class="python">import scrapy
+
+class QuotesSpider(scrapy.Spider):
+    name = &#39;quotes&#39;
+    start_urls = [
+        &#39;http://quotes.toscrape.com/tag/humor/&#39;,
+    ]
+
+    def parse(self, response):
+        for quote in response.css(&#39;div.quote&#39;):
+            yield {
+                &#39;text&#39;: quote.css(&#39;span.text::text&#39;).get(),
+                &#39;author&#39;: quote.xpath(&#39;span/small/text()&#39;).get(),
+            }
+
+        next_page = response.css(&#39;li.next a::attr(&quot;href&quot;)&#39;).get()
+        if next_page is not None:
+            yield response.follow(next_page, self.parse)
+</code></pre>
+<p>然后通过命令<code>scrapy runspider quotes_spider.py -o quotes.json</code>启动命令，会将结果放到<code>quotes.json</code>文件中。<code>runspider</code>命令会找到文件<code>quotes_spider.py</code>中的<code>scrapy.Spider</code>定义，开始爬取。 起始页面是Spider类里的<code>start_urls</code>列表，每爬取一个页面后，会将一个<code>spider.Response</code>对象传入到<code>parse</code>回调中。<br>在<code>parse</code>回调中，先是用css选择器<code>&#39;div.quote&#39;</code>找到当前页的所有名言，用<code>yield data_as_dict</code>保存该条记录；然后通过css选择器<code>&#39;li.next a::attr(&quot;href&quot;)&#39;</code>看是否有下一页按钮，如果有则通过<code>yield response.follow(new_url, new_parse)</code>将新页面加入到待爬取队列中。<br>注意命令行指定了<code>-o quotes.json</code>，所以会保存到json文件中。这是通过<a href="https://docs.scrapy.org/en/latest/topics/feed-exports.html#topics-feed-exports" target="_blank" rel="noopener">feed exports</a>机制，也可以保存为XML、CSV或者其它格式，甚至自己写一个<a href="https://docs.scrapy.org/en/latest/topics/item-pipeline.html#topics-item-pipeline" target="_blank" rel="noopener">Item Pipeline</a>来存入到数据库。</p>
+<p>scrapy爬虫能不断爬取新链接，并保存数据的重要机制是：<strong>在回调函数中，如果<code>yield</code>了一个<code>Request</code>对象，则会将这个对象加入到待爬取的队列中；如果<code>yield</code>了一个<code>dict</code>，则会保存数据</strong>。</p>
+<h2 id="settings"><a href="#settings" class="headerlink" title="settings"></a><a href="https://docs.scrapy.org/en/latest/topics/settings.html" target="_blank" rel="noopener">settings</a></h2><p>可以通过配置项来控制爬虫的行为。<br>不同来源的优先级（由高到低）：</p>
+<ul>
+<li>命令行 <code>-s</code>或<code>--set</code>，如<code>scrapy crawl myspider -s LOG_FILE=scrapy.log</code>。</li>
+<li>spider中的<code>custom_settings</code>字典。</li>
+<li>project settings module. 一般是在<code>settings.py</code>中设置。</li>
+<li>scrapy命令一般都有它自己的默认设置，会覆盖全局设置。可以查看对应类的<code>default_settings</code>属性。</li>
+<li>default global settings 在<code>scrapy.settings.default_settings</code>中。</li>
+</ul>
+<p><a href="https://docs.scrapy.org/en/latest/topics/settings.html#topics-settings-ref" target="_blank" rel="noopener">built-in settings reference</a>部分举例：</p>
+<ul>
+<li><code>DOWNLOAD_DELAY</code> 爬取同一网站，两个网页的间隔时间。也可以修改spider的<code>download_delay</code>属性。</li>
+<li><code>RANDOMIZE_DOWNLOAD_DELAY</code> 不等待固定时间，而是在<code>0.5*DOWNLOAD_DELAY</code>和<code>1.5*DOWNLOAD_DELAY</code>之间。</li>
+<li><code>ITEM_PIPELINES</code> 设置要使用的pipeline。</li>
+<li><code>LOG_*</code> 和日志有关的设置项。</li>
+</ul>
+<h2 id="Selector"><a href="#Selector" class="headerlink" title="Selector"></a><a href="https://docs.scrapy.org/en/latest/topics/selectors.html" target="_blank" rel="noopener">Selector</a></h2><p>如果需要从爬取的HTML文本中解析出想要的数据（如下一页的链接），就需要一个HTML解析库。 很多人会考虑使用<code>BeautiflSoup</code>，它很强大，但有一个缺点：太慢。scrapy的Selector对<a href="https://parsel.readthedocs.io/en/latest/usage.html#using-selectors" target="_blank" rel="noopener">parsel</a>库做了简单封装（为了更好的集成<code>scrapy.http.Response</code>），建议学习下。<br>Selector支持CSS和XPath两种方式，如可以使用<code>response.css(&#39;span::text&#39;).get()</code>或者<code>response.selector.xpath(&#39;//span/text()&#39;).get()</code>。 <code>CSS</code>的方式背后也是使用<code>XPath</code>，并且<code>Xpath</code>更加灵活。</p>
+<p>调试Selector时，可以使用<a href="https://docs.scrapy.org/en/latest/topics/shell.html" target="_blank" rel="noopener">scrapy shell</a>，当然也可以在浏览器中使用开发者工具。</p>
+<h2 id="核心类"><a href="#核心类" class="headerlink" title="核心类"></a>核心类</h2><h3 id="scrapy-Spider"><a href="#scrapy-Spider" class="headerlink" title="scrapy.Spider"></a><a href="https://docs.scrapy.org/en/latest/topics/spiders.html#scrapy-spider" target="_blank" rel="noopener">scrapy.Spider</a></h3><p>一个类，定义了爬虫规则（爬取链接、数据处理、follow规则），实现自定义爬虫时需要继承该类。<br>scrapy爬取流程如下：</p>
+<ol>
+<li>首先生成初始的<code>Request</code>对象，用于爬取数据，并指定回调函数来处理这些请求的返回值。默认通过<code>start_requests()</code>方法来生成<code>Request</code>对象。</li>
+<li>在回调函数中，处理<code>Request</code>对应的<code>Response</code>，并返回提取数据的dict、<code>Item</code>对象、<code>Request</code>对象，或者这些对象的iterable。返回的<code>Request</code>同样会包含一个回调函数（可以与当前函数一样也可不同），并且会被Scrapy继续爬取。</li>
+<li>在回调函数中，一般会使用<code>Selector</code>来处理返回值，当然也可以选择其它工具如<code>BeautifulSoup</code>、<code>lxml</code>，并用这些解析到的数据生成item。</li>
+<li>最后，spider返回的数据一般会被持久化到数据库（通过<code>Item Pipeline</code>）或者写入到文件（<code>Feed exports</code>）。</li>
+</ol>
+<p><code>Spider</code>类的需要了解的属性和方法：</p>
+<ul>
+<li><code>name</code>属性。 scrapy用于标识一个spider，需要唯一。</li>
+<li><code>allowed_domains</code>。 可选属性，允许访问的域名列表。</li>
+<li><code>start_urls</code>。 默认的<code>start_request</code>实现会从<code>start_urls</code>中生成初始<code>Request</code>。</li>
+<li><code>custom_settings</code>属性。 一个dict，当运行spider时会覆盖project级别的设置，比如设置User_Agent等，可选项见<a href="https://docs.scrapy.org/en/latest/topics/settings.html#topics-settings-ref" target="_blank" rel="noopener">文档</a>。</li>
+<li><code>settings</code>属性。 用于运行spider的配置，是<code>Settings</code>的实例。</li>
+<li><code>start_requests()</code> 。 scrapy使用该方法来生成spider初次执行时使用的url。可以将它实现为generator。默认的实现为使用<code>start_urls</code>里的每个url生成<code>Request(url, dont_filter=True)</code>。</li>
+<li><code>parse(response)</code> 。 用于处理response的默认方法（如果没有明确指定）。 这个方法需要处理response并返回抽离出的数据或者返回一些要爬取的链接。返回<code>Request</code>的iterable或者<code>Item</code>对象的dict。</li>
+</ul>
+<h3 id="scrapy-http-Request"><a href="#scrapy-http-Request" class="headerlink" title="scrapy.http.Request"></a><a href="https://docs.scrapy.org/en/latest/topics/request-response.html#request-objects" target="_blank" rel="noopener"><code>scrapy.http.Request</code></a></h3><p>这里请回顾前面提到的<a href="https://docs.scrapy.org/en/latest/topics/architecture.html" target="_blank" rel="noopener">架构图</a>。<br><code>Request</code>对象一般由Spider生成并交给Engine。当Request到达Downloader后，Downloader会执行网络请求，返回一个封装过的<code>Response</code>对象给spider，spider会随后调用callback来处理Response。<br>签名为<code>class scrapy.http.Request(url[, callback, method=&#39;GET&#39;, headers, body, cookies, meta, encoding=&#39;utf-8&#39;, priority=0, dont_filter=False, errback, flags, cb_kwargs])</code>，部分解释：</p>
+<ul>
+<li><code>url</code>  HTTP请求的url</li>
+<li><code>method</code>  HTTP方法，默认为<code>GET</code>请求。</li>
+<li><code>callback</code>  回调函数，用于处理返回的<code>Response</code>。 如果不声明则使用Spider类里的<code>parse</code>方法。</li>
+<li><code>errback</code>  在处理Request发生异常时，会调用该回调。它的第一个参数是<a href="https://twistedmatrix.com/documents/current/api/twisted.python.failure.Failure.html" target="_blank" rel="noopener">Twisted Failure</a>。</li>
+<li><code>dont_filter</code>  该参数用于告知scheduler，不用对该url做去重处理。 比如一个列表请求<code>list</code>有10个详情页<code>detail?id=1</code>、<code>detail?id=2</code>…<code>detail?id=10</code>，如果某次请求只请求了详情页1~5并且允许过滤<code>list</code>这个请求。当意外中断后重新执行时，由于scheduler发现<code>list</code>已经请求过，不再请求，那么详情页6~10就会被忽略。  注意这和<a href="https://docs.scrapy.org/en/latest/topics/settings.html?highlight=duplicate#dupefilter-class" target="_blank" rel="noopener">DUPEFILTER</a>机制有关。</li>
+<li><code>cb_kwargs</code> 可以在<code>Response</code>中获取到， 这在需要跨多页来获取最终item的情况下很有用。 不过这只在1.7以上版本可用，旧版本可以通过<code>meta</code>来实现。<a href="https://docs.scrapy.org/en/latest/topics/request-response.html#passing-additional-data-to-callback-functions" target="_blank" rel="noopener">使用示例</a>。 注：1.7之后不使用<code>Request.meta</code>来传递参数，而只是用于组件间（如middlewares和extensions）交换信息。</li>
+<li><code>priority</code> 请求的优先级。scheduler会根据该参数来决定调度顺序。<br><code>Request</code>对象有和构造器参数同名的属性：<code>url</code>、<code>method</code>、<code>headers</code>… <code>Request.meta</code>可以有任意的键值，不过一些特殊键值会被Scrapy和它的内置扩展识别。 比如<code>download_timeout</code>表示Downloader会等待的超时时间、<code>max_retry_times</code>表示请求的最大重试次数。其它特殊属性见<a href="https://docs.scrapy.org/en/latest/topics/request-response.html#request-meta-special-keys" target="_blank" rel="noopener">列表</a>。</li>
+</ul>
+<h4 id="Request内置子类"><a href="#Request内置子类" class="headerlink" title="Request内置子类"></a><code>Request</code>内置子类</h4><p>Scrapy实现了<code>Request</code>的子类<code>FormRequest</code>，用于模拟HTTP的表单POST请求。使用示例：</p>
+<pre><code class="python">return [FormRequest(url=&quot;http://www.example.com/post/action&quot;,
+                    formdata={&#39;name&#39;: &#39;John Doe&#39;, &#39;age&#39;: &#39;27&#39;},
+                    callback=self.after_post)]
+</code></pre>
+<p>另一个子类<code>JSONRequest</code>则是简化了HTTP POST请求，它增加了额外两个参数： <code>class scrapy.http.JSONRequest(url[, ... data, dumps_kwargs])</code>。使用<code>JSONRequest</code>会自动将请求头<code>Content-Type</code>设为<code>application/json</code>，将<code>Accept</code>设置为<code>application/json, text/javascript, */*; q=0.01</code>。<br>如果给定参数<code>data</code>且未给定<code>Request.body</code>，那么会自动将<code>method</code>设置为<code>POST</code>。<br>示例：</p>
+<pre><code class="python">data = {
+    &#39;name1&#39;: &#39;value1&#39;,
+    &#39;name2&#39;: &#39;value2&#39;,
+}
+yield JSONRequest(url=&#39;http://www.example.com/post/action&#39;, data=data)
+</code></pre>
+<h3 id="scrapy-http-Response"><a href="#scrapy-http-Response" class="headerlink" title="scrapy.http.Response"></a><a href="https://docs.scrapy.org/en/latest/topics/request-response.html#response-objects" target="_blank" rel="noopener"><code>scrapy.http.Response</code></a></h3><p><code>Response</code>对象表示一个HTTP响应，一般是由Downloader返回，交由Spider处理。<br>签名为<code>class scrapy.http.Response(url[, status=200, headers=None, body=b&#39;&#39;, flags=None, request=None])</code>。</p>
+<ul>
+<li><code>status</code> 响应的状态码，如200、404等。</li>
+<li><code>body</code>  响应体。如果想要获得响应体的字符串，需要使用<code>Response</code>的子类如<code>TextResponse</code>，这些子类有属性<code>response.text</code>可以获取响应体文本。如果响应体是个JSON，则需要使用<code>json.loads(response.text)</code>。</li>
+<li><code>request</code> 生成该Response的Request。注意如果发生重定向会导致request改变。</li>
+<li><code>meta</code> 即原始的<code>Request.meta</code>，不会受重定向影响。</li>
+</ul>
+<p>方法有：</p>
+<ul>
+<li><code>urljoin(url)</code> 等价于<code>urlparse.urljoin(response.url, url)</code></li>
+<li><code>follow(url, callback=None, method=&#39;GET&#39;, headers=None, body=None, cookies=None, meta=None, encoding=&#39;utf-8&#39;, priority=0, dont_filter=False, errback=None, cb_kwargs=None)</code> 返回一个<code>Request</code>对象。 接收与<code>Request.__init__</code>相同的参数，不过<code>url</code>是一个相对路径。</li>
+</ul>
+<h4 id="Response内置子类"><a href="#Response内置子类" class="headerlink" title="Response内置子类"></a><code>Response</code>内置子类</h4><p><code>TextResponse</code>在<code>Response</code>的基础上增加了编码的功能：</p>
+<ul>
+<li><code>text</code>属性。等价于<code>response.body.decode(response.encoding)</code>，不过会在第一次调用后缓存。</li>
+<li><code>encoding</code>属性。 表示响应体的编码格式。 1). 解析响应头<code>Content-Type</code>，如果不合法则进入下一步； 2).  查看在响应体中声明的编码。这只对<code>HtmlResponse</code>和<code>XmlResponse</code>有效，<code>TextResponse</code>本身未实现该机制； 3). 从响应体中推断，这种方式很脆弱，但是如果其它机制都无法推断的话只能通过该方式。</li>
+<li><code>selector</code>属性。 一个<code>Selector</code>实例。</li>
+<li><code>xpath(query)</code>  即<code>TextResponse.selector.xpath(query)</code>。</li>
+<li><code>css(query)</code> 即<code>TextResponse.selector.css(query)</code>。</li>
+</ul>
+<p>此外还有<code>HtmlResponse</code>和<code>XmlResponse</code>，这些都是<code>TextResponse</code>的子类，能够获取响应体声明的编码。</p>
+<h2 id="数据存储：Item和pipeline"><a href="#数据存储：Item和pipeline" class="headerlink" title="数据存储：Item和pipeline"></a>数据存储：Item和pipeline</h2><h3 id="Items"><a href="#Items" class="headerlink" title="Items"></a><a href="https://docs.scrapy.org/en/latest/topics/items.html#topics-items" target="_blank" rel="noopener">Items</a></h3><p><em>只是简单地使用<code>scrapy</code>的话，可以跳过。</em><br>爬取网页的目标一般是保存结构化的数据。前面的示例中使用了python内置的字典类型<code>dict</code>，不过在大型项目中频繁使用使用<code>dict</code>很容易出错（比如因为typo），因此scrapy提供了<code>Item</code>类，可以在<code>parse</code>回调中yield一个<code>Item</code>实例而不是<code>dict</code>。<br>简单示例如下：</p>
+<pre><code class="python">import scrapy
+
+class Product(scrapy.Item):
+    name = scrapy.Field()
+    price = scrapy.Field()
+    stock = scrapy.Field()
+    tags = scrapy.Field()
+    last_updated = scrapy.Field(serializer=str)
+
+def parse():
+    # 其它处理
+    product = Product(name=&#39;Desktop PC&#39;, price=1000)
+    product.keys()  # [&#39;price&#39;, &#39;name&#39;]
+    &#39;last_updated&#39; in product # False
+    &#39;last_updated&#39; in product.fields # True
+    yield product
+</code></pre>
+<h3 id="Item-Loader"><a href="#Item-Loader" class="headerlink" title="Item Loader"></a><a href="https://docs.scrapy.org/en/latest/topics/loaders.html" target="_blank" rel="noopener">Item Loader</a></h3><p><em>只是简单地使用<code>scrapy</code>的话，可以跳过。</em><br><code>Item</code>提供了存储数据结果的容器，而Item Loader则提供了填充容器的机制。这比使用Item的dict-like API方便多了。</p>
+<blockquote>
+<p>Item Loaders are designed to provide a flexible, efficient and easy mechanism for extending and overriding different field parsing rules, either by spider, or by source format (HTML, XML, etc) without becoming a nightmare to maintain.</p>
+</blockquote>
+<p>使用示例：</p>
+<pre><code class="python">from scrapy.loader import ItemLoader
+from myproject.items import Product
+
+def parse(self, response):
+    l = ItemLoader(item=Product(), response=response)
+    l.add_xpath(&#39;name&#39;, &#39;//div[@class=&quot;product_name&quot;]&#39;)
+    l.add_xpath(&#39;name&#39;, &#39;//div[@class=&quot;product_title&quot;]&#39;)
+    l.add_xpath(&#39;price&#39;, &#39;//p[@id=&quot;price&quot;]&#39;)
+    l.add_css(&#39;stock&#39;, &#39;p#stock]&#39;)
+    l.add_value(&#39;last_updated&#39;, &#39;today&#39;) # you can also use literal values
+    return l.load_item()
+</code></pre>
+<p>注意示例中<code>name</code>字段被添加了两次，ItemLoader会使用合适的机制来合并多个结果。<br>对field的处理： <code>ItemLoader</code>为每一个field都有input processor和output processor。input processor会在接收到通过<code>add_xpath()</code>等方法提取到的值（记为<code>field1_data_idx</code>，idx为1,2… 因为前面提到过一个field可以添加多次）后执行，然后将处理得到的值（记为<code>field1_data_idx_input_processed</code>）存到ItemLoader内部的list中。当所有的数据都收集好后，对于<code>field1</code>，<code>ItemLoader</code>内部会有个list内容为<code>[field1_data_1_input_processed,field1_data_2_input_processed...]</code>。 当调用<code>ItemLoader#load_item</code>时，output processor会执行，对于每一个field，它接收对应的内部list为参数， 返回值则是该field对应的最终结果。<br>input processor和output processor都是callable对象。<br>自定义<code>ItemLoader</code>示例：</p>
+<pre><code class="python">from scrapy.loader import ItemLoader
+from scrapy.loader.processors import TakeFirst, MapCompose, Join
+
+class ProductLoader(ItemLoader):
+
+    default_output_processor = TakeFirst()
+
+    name_in = MapCompose(unicode.title)
+    name_out = Join()
+
+    price_in = MapCompose(unicode.strip)
+
+    # ...
+</code></pre>
+<p>可以看出，对于每一个field，<code>ItemLoader</code>可以声明<code>$fieldName_in</code>和<code>$fieldName_out</code>这两个processor。如果有field没有声明对应的input/output processor，则会使用默认处理器<code>default_input_processor</code>和<code>default_output_processor</code>。</p>
+<p>自定义processor示例：</p>
+<pre><code class="python">import scrapy
+from scrapy.loader.processors import Join, MapCompose, TakeFirst
+from w3lib.html import remove_tags
+
+def filter_price(value):
+    if value.isdigit():
+        return value
+
+class Product(scrapy.Item):
+    name = scrapy.Field(
+        input_processor=MapCompose(remove_tags),
+        output_processor=Join(),
+    )
+    price = scrapy.Field(
+        input_processor=MapCompose(remove_tags, filter_price),
+        output_processor=TakeFirst(),
+    )
+</code></pre>
+<p>注意在<code>Field</code>中定义的process优先级低于ItemLoader里的<code>field_in</code>、<code>field_out</code>。</p>
+<h3 id="Item-Pipeline"><a href="#Item-Pipeline" class="headerlink" title="Item Pipeline"></a><a href="https://docs.scrapy.org/en/latest/topics/item-pipeline.html" target="_blank" rel="noopener">Item Pipeline</a></h3><p>当在Spider中<code>yield</code>了一个item后，这个item会交给一组Item Pipeline依次处理。<br>每个Item Pipeline会接收item，对它执行一些操作，然后决定是否将它传给下一个Pipeline或者结束执行。<br>典型示例：1) 清洗HTML数据； 2) 验证爬取的数据（如是否包括指定field）； 3) 检验是否重复，重复则退出Pipeline； 4) 保存数据。<br>每个item pipeline是个Python类，需要实现一些方法，示例：</p>
+<pre><code class="python">import pymongo
+
+
+# 定义了一个Item Pipeline组件，会将item写入到Jmongodb
+class MongoPipeline(object):
+
+    collection_name = &#39;scrapy_items&#39;
+
+    def __init__(self, mongo_uri, mongo_db):
+        self.mongo_uri = mongo_uri
+        self.mongo_db = mongo_db
+
+    # 如果存在该方法，会用该方法从一个`Crawler`中来创建pipeline实例；`Crawler`对象可以访问Scrapy核心组件如settings、signals；
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(
+            mongo_uri=crawler.settings.get(&#39;MONGO_URI&#39;),
+            mongo_db=crawler.settings.get(&#39;MONGO_DATABASE&#39;, &#39;items&#39;)
+        )
+
+    # 如果存在，会在spider启动时调用
+    def open_spider(self, spider):
+        self.client = pymongo.MongoClient(self.mongo_uri)
+        self.db = self.client[self.mongo_db]
+
+    # 如果存在，会在spider关闭时调用
+    def close_spider(self, spider):
+        self.client.close()
+
+    # 必须存在，用于处理item。 需要返回`dict`或者`Item`，或者抛出`DropItem`异常表示退出Pipeline。
+    def process_item(self, item, spider):
+        self.db[self.collection_name].insert_one(dict(item))
+        return item
+</code></pre>
+<p>如果需要证Item Pipeline组件生效，需要在settings的<code>ITEM_PIPELINES</code>中声明，例如：</p>
+<pre><code class="python">custom_settings = {
+    &#39;ITEM_PIPELINES&#39; = {
+        &#39;myproject.pipelines.PricePipeline&#39;: 300,
+        &#39;myproject.pipelines.JsonWriterPipeline&#39;: 800,
+    }
+}
+</code></pre>
+<p>其中整数值为0~1000，表示优先级，即从数值小的Pipeline开始执行。</p>
+<h3 id="Feed-exports"><a href="#Feed-exports" class="headerlink" title="Feed exports"></a><a href="https://docs.scrapy.org/en/latest/topics/feed-exports.html" target="_blank" rel="noopener">Feed exports</a></h3><p><em>建议跳过该节</em>。<br><strong>不建议使用。 Feed export适用于一些标准格式如JSON。如果需要使用自定义数据格式或者存储到数据库，那么直接在Item Pipeline中处理比写一个Custom Exporter简单的多。</strong><br>爬虫的一个目的是存储结构化的数据，并且一般要求符合某种格式来让其它程序处理。Scrapy提供了<em>Feed Export</em>支持，允许你使用多种序列化格式或者存储机制在保存items。比如前面示例中的<code>scrapy runspider quotes_spider.py -o quotes.json</code>，就是使用了Scrapy自带的Feed  export类型<code>JSON</code>。<br>默认支持的序列化格式有：JSON、JSON lines、CSV、XML、Marshal、Pickle。</p>
+<p>Feed export是通过<a href="https://docs.scrapy.org/en/latest/topics/exporters.html" target="_blank" rel="noopener">Item Export</a>来生效的，比如JSON类型就是靠内置的<code>scrapy.exporters.JsonItemExporter</code>类。</p>
+<h2 id="Middleware"><a href="#Middleware" class="headerlink" title="Middleware"></a>Middleware</h2><h3 id="Downloader-Middleware"><a href="#Downloader-Middleware" class="headerlink" title="Downloader Middleware"></a><a href="https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#topics-downloader-middleware" target="_blank" rel="noopener">Downloader Middleware</a></h3><p>Downloader Middleware会对Scrapy的request/response流程进行修改。要想使用一个Downloader Middleware可以配置<code>DOWNLOADER_MIDDLEWARES</code>：</p>
+<pre><code class="python">DOWNLOADER_MIDDLEWARES = {
+    &#39;myproject.middlewares.CustomDownloaderMiddleware&#39;: 543,
+}
+</code></pre>
+<p>Scrapy内置了一些<a href="https://docs.scrapy.org/en/latest/topics/downloader-middleware.html#built-in-downloader-middleware-reference" target="_blank" rel="noopener">Middleware</a>，部分举例：</p>
+<ul>
+<li><code>DefaultHeadersMiddleware</code>会让所有的请求加上<code>DEFAULT_REQUEST_HEADERS</code>配置中定义的请求头。</li>
+<li><code>DownloadTimeoutMiddleware</code>会根据<code>DOWNLOAD_TIMEOUT</code>或者<code>Request</code>的<code>download_timeout</code>进行超时处理。</li>
+<li><code>RetryMiddleware</code>会在遇到500等状态码时重试。</li>
+</ul>
+<h3 id="Spider-Middleware"><a href="#Spider-Middleware" class="headerlink" title="Spider Middleware"></a><a href="https://docs.scrapy.org/en/latest/topics/spider-middleware.html#topics-spider-middleware" target="_blank" rel="noopener">Spider Middleware</a></h3><p>另一种Middleware形式，和Downloader Middleware的区别见这个<a href="https://stackoverflow.com/questions/17872753/what-is-the-difference-between-scrapys-spider-middleware-and-downloader-middlew" target="_blank" rel="noopener">stackoverflow问题</a>。</p>
+<h2 id="common-practice"><a href="#common-practice" class="headerlink" title="common practice"></a><a href="https://docs.scrapy.org/en/latest/topics/practices.html" target="_blank" rel="noopener">common practice</a></h2><h3 id="Running-multiple-spiders-in-the-same-process"><a href="#Running-multiple-spiders-in-the-same-process" class="headerlink" title="Running multiple spiders in the same process"></a>Running multiple spiders in the same process</h3><p>示例</p>
+<pre><code class="python">import scrapy
+from scrapy.crawler import CrawlerProcess
+
+class MySpider1(scrapy.Spider):
+    # Your first spider definition
+    ...
+
+class MySpider2(scrapy.Spider):
+    # Your second spider definition
+    ...
+
+process = CrawlerProcess()
+process.crawl(MySpider1)
+process.crawl(MySpider2)
+process.start() # the script will block here until all crawling jobs are finished
+</code></pre>
+<h3 id="AutoThrottle-extension"><a href="#AutoThrottle-extension" class="headerlink" title="AutoThrottle extension"></a><a href="https://docs.scrapy.org/en/latest/topics/autothrottle.html" target="_blank" rel="noopener">AutoThrottle extension</a></h3><p>一个扩展，自动控制爬虫速度。</p>
+<h3 id="jobs"><a href="#jobs" class="headerlink" title="jobs"></a><a href="https://docs.scrapy.org/en/latest/topics/jobs.html" target="_blank" rel="noopener">jobs</a></h3><p>scrapy可以暂停一个爬虫，并在之后重新启动。  通过将一些关键数据保存到<code>$JOBDIR</code>文件夹中： <code>scrapy crawl somespider -s JOBDIR=crawls/somespider-1</code>。</p>
+<h3 id="在jupyter-notoebook中使用scrapy"><a href="#在jupyter-notoebook中使用scrapy" class="headerlink" title="在jupyter notoebook中使用scrapy"></a><a href="https://stackoverflow.com/questions/40856730/how-to-run-scrapy-project-in-jupyter" target="_blank" rel="noopener">在jupyter notoebook中使用scrapy</a></h3><h3 id="如何在程序中运行Spider类"><a href="#如何在程序中运行Spider类" class="headerlink" title="如何在程序中运行Spider类"></a><a href="https://stackoverflow.com/questions/13437402/how-to-run-scrapy-from-within-a-python-script" target="_blank" rel="noopener">如何在程序中运行Spider类</a></h3><ul>
+<li><code>CrawlerProcess</code></li>
+<li><code>CrawlerRunner</code><br>另外<code>scrapy crawl</code>子命令的实现可以见<a href="https://github.com/scrapy/scrapy/blob/master/scrapy/commands/crawl.py" target="_blank" rel="noopener">crawl.py</a>。</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/21/hexo插件测试/" class="archive-article-date">
-  	<time datetime="2018-05-21T08:20:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-21</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/23/Node.js事件循环和python/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Node.js和python的event loop</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/21/hexo插件测试/">hexo插件测试</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">test</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#推荐配置使用的python库"><span class="toc-number">1.</span> <span class="toc-text">推荐配置使用的python库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例说明"><span class="toc-number">2.</span> <span class="toc-text">示例说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#settings"><span class="toc-number">3.</span> <span class="toc-text">settings</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Selector"><span class="toc-number">4.</span> <span class="toc-text">Selector</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核心类"><span class="toc-number">5.</span> <span class="toc-text">核心类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#scrapy-Spider"><span class="toc-number">5.1.</span> <span class="toc-text">scrapy.Spider</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scrapy-http-Request"><span class="toc-number">5.2.</span> <span class="toc-text">scrapy.http.Request</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Request内置子类"><span class="toc-number">5.2.1.</span> <span class="toc-text">Request内置子类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scrapy-http-Response"><span class="toc-number">5.3.</span> <span class="toc-text">scrapy.http.Response</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Response内置子类"><span class="toc-number">5.3.1.</span> <span class="toc-text">Response内置子类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据存储：Item和pipeline"><span class="toc-number">6.</span> <span class="toc-text">数据存储：Item和pipeline</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Items"><span class="toc-number">6.1.</span> <span class="toc-text">Items</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Item-Loader"><span class="toc-number">6.2.</span> <span class="toc-text">Item Loader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Item-Pipeline"><span class="toc-number">6.3.</span> <span class="toc-text">Item Pipeline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Feed-exports"><span class="toc-number">6.4.</span> <span class="toc-text">Feed exports</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Middleware"><span class="toc-number">7.</span> <span class="toc-text">Middleware</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Downloader-Middleware"><span class="toc-number">7.1.</span> <span class="toc-text">Downloader Middleware</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spider-Middleware"><span class="toc-number">7.2.</span> <span class="toc-text">Spider Middleware</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#common-practice"><span class="toc-number">8.</span> <span class="toc-text">common practice</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Running-multiple-spiders-in-the-same-process"><span class="toc-number">8.1.</span> <span class="toc-text">Running multiple spiders in the same process</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AutoThrottle-extension"><span class="toc-number">8.2.</span> <span class="toc-text">AutoThrottle extension</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jobs"><span class="toc-number">8.3.</span> <span class="toc-text">jobs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在jupyter-notoebook中使用scrapy"><span class="toc-number">8.4.</span> <span class="toc-text">在jupyter notoebook中使用scrapy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何在程序中运行Spider类"><span class="toc-number">8.5.</span> <span class="toc-text">如何在程序中运行Spider类</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
+  
+  <div id="SOHUCS" sid="scrapy basic" ></div> 
+<script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+    window.changyan.api.config({
+        appid: "cytL8LPfl",
+        conf: "prod_1a2d009597d28e6aa60181b07d1fca04"
+    });
+</script>
+</script>
+  
+
+  
+
+  
 
 
           </div>
@@ -293,9 +606,9 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
