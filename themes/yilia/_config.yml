@@ -71,7 +71,7 @@ google_analytics: ''
 favicon: /favicon.png
 
 #你的头像url
-avatar: http://p92j6jdnt.bkt.clouddn.com/avatar.jpeg
+avatar: ./img/avatar.jpeg
 
 #是否开启分享
 share_jia: false
