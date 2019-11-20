@@ -7,21 +7,23 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="stylesheet" href="/css/nav.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>图片添加动态二维码 | losymear&#39;s blog</title>
+  <title>广告图添加动态二维码 | losymear&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="功能描述">
+  <meta name="description" content="工作中一次业务逻辑的实现记录。 业务说明分销工具，需要统计分销者的pv和uv，因此要求每个分销员的广告素材图上，二维码链接均不相同，与该分销员绑定（这可以通过301重定向简单实现，比如用户23对产品102的二维码链接为www.server.com/s/product102/user23，后台会301重定向到实际页面，并记录每次访问）。">
 <meta name="keywords" content="java,work record">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图片添加动态二维码">
+<meta property="og:title" content="广告图添加动态二维码">
 <meta property="og:url" content="http://yoursite.com/2019/11/18/广告图添加动态二维码/index.html">
 <meta property="og:site_name" content="losymear&#39;s blog">
-<meta property="og:description" content="功能描述">
+<meta property="og:description" content="工作中一次业务逻辑的实现记录。 业务说明分销工具，需要统计分销者的pv和uv，因此要求每个分销员的广告素材图上，二维码链接均不相同，与该分销员绑定（这可以通过301重定向简单实现，比如用户23对产品102的二维码链接为www.server.com/s/product102/user23，后台会301重定向到实际页面，并记录每次访问）。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/11/18/广告图添加动态二维码/img/qrcode_palette.png">
-<meta property="og:updated_time" content="2019-11-20T08:41:35.303Z">
+<meta property="og:image" content="http://yoursite.com/2019/11/18/广告图添加动态二维码/img/qrcode_desc.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/18/广告图添加动态二维码/img/qrcode_drawed.png">
+<meta property="og:updated_time" content="2019-11-20T12:03:47.657Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图片添加动态二维码">
-<meta name="twitter:description" content="功能描述">
+<meta name="twitter:title" content="广告图添加动态二维码">
+<meta name="twitter:description" content="工作中一次业务逻辑的实现记录。 业务说明分销工具，需要统计分销者的pv和uv，因此要求每个分销员的广告素材图上，二维码链接均不相同，与该分销员绑定（这可以通过301重定向简单实现，比如用户23对产品102的二维码链接为www.server.com/s/product102/user23，后台会301重定向到实际页面，并记录每次访问）。">
 <meta name="twitter:image" content="http://yoursite.com/2019/11/18/广告图添加动态二维码/img/qrcode_palette.png">
   
     <link rel="alternative" href="/atom.xml" title="losymear&#39;s blog" type="application/atom+xml">
@@ -162,7 +164,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      图片添加动态二维码
+      广告图添加动态二维码
     </h1>
   
 
@@ -181,7 +183,7 @@
   <div id="toc-article" class="toc-article">
       <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
       <strong class="toc-title">文章目录</strong>
-         
+         <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#业务说明"><span class="toc-number">1.</span> <span class="toc-text">业务说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#任务拆解"><span class="toc-number">2.</span> <span class="toc-text">任务拆解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#生成链接的二维码"><span class="toc-number">2.1.</span> <span class="toc-text">生成链接的二维码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Java的图形API拼合图片"><span class="toc-number">2.2.</span> <span class="toc-text">使用Java的图形API拼合图片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java-awt-API"><span class="toc-number">3.</span> <span class="toc-text">java.awt API</span></a></li></ol>
        </div>
  <script type="text/javascript">
   function showToc(){
@@ -203,8 +205,106 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>功能描述</strong><br><img src="img/qrcode_palette.png" alt="demo图片"></p>
+        <p><em>工作中一次业务逻辑的实现记录</em>。</p>
+<h2 id="业务说明"><a href="#业务说明" class="headerlink" title="业务说明"></a>业务说明</h2><p>分销工具，需要统计分销者的pv和uv，因此要求每个分销员的广告素材图上，二维码链接均不相同，与该分销员绑定（这可以通过301重定向简单实现，比如用户23对产品102的二维码链接为<code>www.server.com/s/product102/user23</code>，后台会301重定向到实际页面，并记录每次访问）。<br><a id="more"></a><br>运营人员可以在管理后台为广告图添加二维码链接，并可以控制二维码宽度、border大小、二维码距离左上角的X、Y坐标。</p>
+<p>编辑后台图示如下（图上的<code>375px</code>宽度只是因为一般设计稿的宽度都是375px，传到后端的是实际参数）：<br><img src="img/qrcode_palette.png" alt="编辑后台图示"></p>
+<p>传到后台服务的参数为：</p>
+<pre><code class="js">{
+        &quot;imgUrl&quot;:&quot;https://upload.17qms.com/Fhf4x6YJguVj4WKDjTo1pkUyqivJ&quot;,  // 素材图Url
+    &quot;linkUrl&quot;: &quot;https://www.baidu.com&quot;, // 二维码链接，不过后台会为每个分销员生成对应的短链
+    &quot;qrCodeContainerWidth&quot;: 128,  // 二维码的宽度，包含border
+    &quot;qrCodeBorderWidth&quot;: 8,  // 二维码border的宽度
+    &quot;qrCodeBgColor&quot;: &quot;#ffffff&quot;, // 前景色
+    &quot;qrCodeFgColor&quot;: &quot;#ff0000&quot;, // 后景色
+    &quot;leftDistance&quot;: 236,
+    &quot;topDistance&quot;: 100,
+    &quot;naturalHeight&quot;: 452,  // 素材图的高度，单位像素
+    &quot;naturalWidth&quot;: 327 // 素材图的宽度，单位像素
+}
+</code></pre>
+<h2 id="任务拆解"><a href="#任务拆解" class="headerlink" title="任务拆解"></a>任务拆解</h2><p>刨除具体业务逻辑，如生成短链、任务触发等，只要两个步骤：</p>
+<ol>
+<li>生成链接对应的二维码图</li>
+<li>合并素材图与二维码图</li>
+</ol>
+<h3 id="生成链接的二维码"><a href="#生成链接的二维码" class="headerlink" title="生成链接的二维码"></a>生成链接的二维码</h3><p>QR Code是一个二维码标准，具体原理就不深究了。<br><a href="https://github.com/zxing/zxing" target="_blank" rel="noopener">zxing/zxing</a>是一个开源的1D/2D条形码处理库，支持多种格式，包括QR Code。</p>
+<p>虽然<code>zxing</code>提供的<code>QRCodeWriter#eocnde</code>方法可以传<code>EncodeHintType.MARGIN</code>，不过实际测试的时候发现很难控制，并不能简单的当作border。 因此border的实现放在最后，即用<code>Graphics</code>类画图时用一个白色图层表示border：1. 先在画布上画上底图层（素材图）；2. 填充一个正方形来表示二维码的底层； 3.在填充的正方形上放二维码。<br><img src="img/qrcode_desc.png" alt="结构说明"></p>
+<p>将链接的Url转换成二维码<code>BUfferedImage</code>的方法如下：</p>
+<pre><code class="java">// 需要引入com.google.zxing
+    /**
+     * @param urlToDraw  要转换的链接url
+     * @param qrCodeWith 二维码宽度
+     * @param colorFg    前景色 前端传入#ffffffff~#00000000，需要处理下
+     * @param colorBg    背景色
+     * @return
+     */
+    public BufferedImage generateQrCode(String urlToDraw, int qrCodeWith , String colorFg, String colorBg) {
 
+        QRCodeWriter writer = new QRCodeWriter();
+        try {
+            Map&lt;EncodeHintType, Object&gt; hints = new EnumMap&lt;&gt;(EncodeHintType.class);
+            hints.put(EncodeHintType.CHARACTER_SET, &quot;UTF-8&quot;);
+            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.Q);
+            hints.put(EncodeHintType.MARGIN, 0);
+            BitMatrix bitMatrix = writer.encode(urlToDraw, BarcodeFormat.QR_CODE, qrCodeWith, qrCodeWith, hints);
+//            可以将结果写入到文件
+//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+//            File file = new File(fileName);
+//            FileOutputStream fileOutputStream = new FileOutputStream(file);
+//            MatrixToImageWriter.writeToStream(bitMatrix, &quot;PNG&quot;, fileOutputStream);
+            MatrixToImageConfig conf = new MatrixToImageConfig(Long.valueOf(colorFg.substring(1), 16).intValue(), Long.valueOf(colorBg.substring(1), 16).intValue());
+            BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix, conf);
+            return bufferedImage;
+        } catch (WriterException e) {
+                // 异常处理 TODO:
+        }
+    }
+
+</code></pre>
+<p><code>MatrixToImageWriter.writeToStream</code>可以将二维码数据写入到<code>OutputStream</code>，比如文件流中。<br><code>MatrixToImageWriter.toBufferedImage(BitMatrix matrix, MatrixToImageConfig config)</code>方法会将二维码数据转换成<code>BufferedImage</code>返回，用于后续使用<code>java.awt</code>库来绘制合成图。该方法可以设置二维码的前景色和背景色。</p>
+<h3 id="使用Java的图形API拼合图片"><a href="#使用Java的图形API拼合图片" class="headerlink" title="使用Java的图形API拼合图片"></a>使用Java的图形API拼合图片</h3><p>合并图片的方法如下：</p>
+<pre><code class="java">    /**
+     * 合并两张图片
+     *
+     * @param baseImageUrl 素材图的url
+     * @param qrCodeImage  前一步生成的二维码BufferedImage
+     * @param leftDistance
+     * @param topDistance
+     * @param border               宽度边框
+     * @param outputFilePath       合并图片保存的位置
+     * @param qrCodeContainerWidth 用来实现二维码的border
+     * @param colorBg     边框的颜色，项目里使用二维码的背景色. 如#ffffffff，ARGB格式
+     */
+    public String mergeImage(String baseImageUrl, BufferedImage qrCodeImage, int leftDistance, int topDistance, String outputFilePath, int border, int qrCodeContainerWidth, String colorBg) {
+        try {
+            URL url = new URL(baseImageUrl);
+            BufferedImage image = ImageIO.read(url);
+            // 画布的长与宽
+            int w = image.getWidth();
+            int h = image.getHeight();
+            BufferedImage combined = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+
+            Graphics2D g = combined.createGraphics();
+            // 画图，保存alpha通道
+            g.drawImage(image, 0, 0, null);
+
+            // 模拟背景色
+            Color color = new Color(Integer.valueOf(colorBg.substring(3, 5), 16), Integer.valueOf(colorBg.substring(5, 7), 16), Integer.valueOf(colorBg.substring(7, 9), 16));
+            g.setColor(color);
+            g.fillRect(leftDistance, topDistance, qrCodeContainerWidth, qrCodeContainerWidth);
+            g.drawImage(qrCodeImage, leftDistance + border, topDistance + border, null);
+
+            // 保存图片
+            ImageIO.write(combined, &quot;PNG&quot;, new File(outputFilePath));
+            return outputFilePath;
+        } catch (IOException e) {
+                // 异常处理 TODO:
+        }
+    }
+</code></pre>
+<p>方法使用<code>java.awt</code>库来绘制图片。 先创建一个和素材一样大的<code>BufferedImage combined</code>, 并调用<code>combined.createGraphics()</code>来得到一个<code>Graphics2D g</code>对象。  然后分别使用如下方法来“合并图片“：<code>Graphics2D#drawImage(Image img, int x, int y, ImageObserver observer)</code>来绘制素材图和二维码图、<code>Graphics2D#fillRect(int x, int y, int width, int height)</code>来绘制二维码的底层实现border。</p>
+<p>合并后的图片在<code>outputFilePath</code>位置，后续可以上传到图片存储服务。<br>产生的图片如下：<br><img src="img/qrcode_drawed.png" alt="编辑后台图示"></p>
+<h2 id="java-awt-API"><a href="#java-awt-API" class="headerlink" title="java.awt API"></a><code>java.awt</code> API</h2>
       
 
       
@@ -269,7 +369,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#业务说明"><span class="toc-number">1.</span> <span class="toc-text">业务说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#任务拆解"><span class="toc-number">2.</span> <span class="toc-text">任务拆解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#生成链接的二维码"><span class="toc-number">2.1.</span> <span class="toc-text">生成链接的二维码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Java的图形API拼合图片"><span class="toc-number">2.2.</span> <span class="toc-text">使用Java的图形API拼合图片</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#java-awt-API"><span class="toc-number">3.</span> <span class="toc-text">java.awt API</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -420,19 +520,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">work record</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">bash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">work record</a>
               </li>
              
               <li class="article-tag-list-item">
