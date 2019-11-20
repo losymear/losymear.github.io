@@ -17,14 +17,14 @@
 <meta property="og:site_name" content="losymear&#39;s blog">
 <meta property="og:description" content="工作中一次业务逻辑的实现记录。 业务说明分销工具，需要统计分销者的pv和uv，因此要求每个分销员的广告素材图上，二维码链接均不相同，与该分销员绑定（这可以通过301重定向简单实现，比如用户23对产品102的二维码链接为www.server.com/s/product102/user23，后台会301重定向到实际页面，并记录每次访问）。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/11/18/广告图添加动态二维码/img/qrcode_palette.png">
-<meta property="og:image" content="http://yoursite.com/2019/11/18/广告图添加动态二维码/img/qrcode_desc.png">
-<meta property="og:image" content="http://yoursite.com/2019/11/18/广告图添加动态二维码/img/qrcode_drawed.png">
-<meta property="og:updated_time" content="2019-11-20T12:04:21.812Z">
+<meta property="og:image" content="http://yoursite.com/img/qrcode_palette.png">
+<meta property="og:image" content="http://yoursite.com/img/qrcode_desc.png">
+<meta property="og:image" content="http://yoursite.com/img/qrcode_drawed.png">
+<meta property="og:updated_time" content="2019-11-20T12:08:58.337Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="广告图添加动态二维码">
 <meta name="twitter:description" content="工作中一次业务逻辑的实现记录。 业务说明分销工具，需要统计分销者的pv和uv，因此要求每个分销员的广告素材图上，二维码链接均不相同，与该分销员绑定（这可以通过301重定向简单实现，比如用户23对产品102的二维码链接为www.server.com/s/product102/user23，后台会301重定向到实际页面，并记录每次访问）。">
-<meta name="twitter:image" content="http://yoursite.com/2019/11/18/广告图添加动态二维码/img/qrcode_palette.png">
+<meta name="twitter:image" content="http://yoursite.com/img/qrcode_palette.png">
   
     <link rel="alternative" href="/atom.xml" title="losymear&#39;s blog" type="application/atom+xml">
   
@@ -207,7 +207,7 @@
       
         <p><em>工作中一次业务逻辑的实现记录</em>。</p>
 <h2 id="业务说明"><a href="#业务说明" class="headerlink" title="业务说明"></a>业务说明</h2><p>分销工具，需要统计分销者的pv和uv，因此要求每个分销员的广告素材图上，二维码链接均不相同，与该分销员绑定（这可以通过301重定向简单实现，比如用户23对产品102的二维码链接为<code>www.server.com/s/product102/user23</code>，后台会301重定向到实际页面，并记录每次访问）。<br><a id="more"></a><br>运营人员可以在管理后台为广告图添加二维码链接，并可以控制二维码宽度、border大小、二维码距离左上角的X、Y坐标。</p>
-<p>编辑后台图示如下（图上的<code>375px</code>宽度只是因为一般设计稿的宽度都是375px，传到后端的是实际参数）：<br><img src="img/qrcode_palette.png" alt="编辑后台图示"></p>
+<p>编辑后台图示如下（图上的<code>375px</code>宽度只是因为一般设计稿的宽度都是375px，传到后端的是实际参数）：<br><img src="/img/qrcode_palette.png" alt="编辑后台图示"></p>
 <p>传到后台服务的参数为：</p>
 <pre><code class="js">{
         &quot;imgUrl&quot;:&quot;https://upload.17qms.com/Fhf4x6YJguVj4WKDjTo1pkUyqivJ&quot;,  // 素材图Url
@@ -228,7 +228,7 @@
 <li>合并素材图与二维码图</li>
 </ol>
 <h3 id="生成链接的二维码"><a href="#生成链接的二维码" class="headerlink" title="生成链接的二维码"></a>生成链接的二维码</h3><p>QR Code是一个二维码标准，具体原理就不深究了。<br><a href="https://github.com/zxing/zxing" target="_blank" rel="noopener">zxing/zxing</a>是一个开源的1D/2D条形码处理库，支持多种格式，包括QR Code。</p>
-<p>虽然<code>zxing</code>提供的<code>QRCodeWriter#eocnde</code>方法可以传<code>EncodeHintType.MARGIN</code>，不过实际测试的时候发现很难控制，并不能简单的当作border。 因此border的实现放在最后，即用<code>Graphics</code>类画图时用一个白色图层表示border：1. 先在画布上画上底图层（素材图）；2. 填充一个正方形来表示二维码的底层； 3.在填充的正方形上放二维码。<br><img src="img/qrcode_desc.png" alt="结构说明"></p>
+<p>虽然<code>zxing</code>提供的<code>QRCodeWriter#eocnde</code>方法可以传<code>EncodeHintType.MARGIN</code>，不过实际测试的时候发现很难控制，并不能简单的当作border。 因此border的实现放在最后，即用<code>Graphics</code>类画图时用一个白色图层表示border：1. 先在画布上画上底图层（素材图）；2. 填充一个正方形来表示二维码的底层； 3.在填充的正方形上放二维码。<br><img src="/img/qrcode_desc.png" alt="结构说明"></p>
 <p>将链接的Url转换成二维码<code>BUfferedImage</code>的方法如下：</p>
 <pre><code class="java">// 需要引入com.google.zxing
     /**
@@ -303,7 +303,7 @@
     }
 </code></pre>
 <p>方法使用<code>java.awt</code>库来绘制图片。 先创建一个和素材一样大的<code>BufferedImage combined</code>, 并调用<code>combined.createGraphics()</code>来得到一个<code>Graphics2D g</code>对象。  然后分别使用如下方法来“合并图片“：<code>Graphics2D#drawImage(Image img, int x, int y, ImageObserver observer)</code>来绘制素材图和二维码图、<code>Graphics2D#fillRect(int x, int y, int width, int height)</code>来绘制二维码的底层实现border。</p>
-<p>合并后的图片在<code>outputFilePath</code>位置，后续可以上传到图片存储服务。<br>产生的图片如下：<br><img src="img/qrcode_drawed.png" alt="编辑后台图示"></p>
+<p>合并后的图片在<code>outputFilePath</code>位置，后续可以上传到图片存储服务。<br>产生的图片如下：<br><img src="/img/qrcode_drawed.png" alt="编辑后台图示"></p>
 <h2 id="java-awt-API"><a href="#java-awt-API" class="headerlink" title="java.awt API"></a><code>java.awt</code> API</h2>
       
 
@@ -528,15 +528,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">bash</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
