@@ -9,21 +9,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>广告图添加动态二维码 | losymear&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="工作中一次业务逻辑的实现记录。 业务说明分销工具，需要统计分销者的pv和uv，因此要求每个分销员的广告素材图上，二维码链接均不相同，与该分销员绑定（这可以通过301重定向简单实现，比如用户23对产品102的二维码链接为www.server.com/s/p102/u23/Hy2sL4h，后台会301重定向到实际页面，并记录每次访问）。">
+  <meta name="description" content="工作中一次业务逻辑的实现记录。">
 <meta name="keywords" content="java,work record">
 <meta property="og:type" content="article">
 <meta property="og:title" content="广告图添加动态二维码">
 <meta property="og:url" content="http://yoursite.com/2019/11/18/广告图添加动态二维码/index.html">
 <meta property="og:site_name" content="losymear&#39;s blog">
-<meta property="og:description" content="工作中一次业务逻辑的实现记录。 业务说明分销工具，需要统计分销者的pv和uv，因此要求每个分销员的广告素材图上，二维码链接均不相同，与该分销员绑定（这可以通过301重定向简单实现，比如用户23对产品102的二维码链接为www.server.com/s/p102/u23/Hy2sL4h，后台会301重定向到实际页面，并记录每次访问）。">
+<meta property="og:description" content="工作中一次业务逻辑的实现记录。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/img/qrcode_palette.png">
 <meta property="og:image" content="http://yoursite.com/img/qrcode_desc.png">
 <meta property="og:image" content="http://yoursite.com/img/qrcode_drawed.png">
-<meta property="og:updated_time" content="2019-11-23T07:48:12.153Z">
+<meta property="og:updated_time" content="2019-11-23T08:03:14.217Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="广告图添加动态二维码">
-<meta name="twitter:description" content="工作中一次业务逻辑的实现记录。 业务说明分销工具，需要统计分销者的pv和uv，因此要求每个分销员的广告素材图上，二维码链接均不相同，与该分销员绑定（这可以通过301重定向简单实现，比如用户23对产品102的二维码链接为www.server.com/s/p102/u23/Hy2sL4h，后台会301重定向到实际页面，并记录每次访问）。">
+<meta name="twitter:description" content="工作中一次业务逻辑的实现记录。">
 <meta name="twitter:image" content="http://yoursite.com/img/qrcode_palette.png">
   
     <link rel="alternative" href="/atom.xml" title="losymear&#39;s blog" type="application/atom+xml">
@@ -205,8 +205,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><em>工作中一次业务逻辑的实现记录</em>。</p>
-<h2 id="业务说明"><a href="#业务说明" class="headerlink" title="业务说明"></a>业务说明</h2><p>分销工具，需要统计分销者的pv和uv，因此要求每个分销员的广告素材图上，二维码链接均不相同，与该分销员绑定（这可以通过301重定向简单实现，比如用户23对产品102的二维码链接为<code>www.server.com/s/p102/u23/Hy2sL4h</code>，后台会301重定向到实际页面，并记录每次访问）。<br><a id="more"></a><br>运营人员可以在管理后台为广告图添加二维码链接，并可以控制二维码宽度、border大小、二维码距离左上角的X、Y坐标。</p>
+        <p><em>工作中一次业务逻辑的实现记录</em>。<br><a id="more"></a></p>
+<h2 id="业务说明"><a href="#业务说明" class="headerlink" title="业务说明"></a>业务说明</h2><p>分销工具，需要统计分销者的pv和uv，因此要求每个分销员的广告素材图上，二维码链接均不相同，与该分销员绑定（这可以通过301重定向简单实现，比如用户23对产品102的二维码链接为<code>www.server.com/s/p102/u23/Hy2sL4h</code>，后台会301重定向到实际页面，并记录每次访问）。<br>运营人员可以在管理后台为广告图添加二维码链接，并可以控制二维码宽度、border大小、二维码距离左上角的X、Y坐标。</p>
 <p>管理后台编辑功能如图（图上的<code>375px</code>宽度只是因为一般设计稿的宽度都是375px，传到后端的是实际像素大小）：<br><img src="/img/qrcode_palette.png" alt="编辑后台图示"></p>
 <p>传给后台接口的参数示例：</p>
 <pre><code class="js">{
@@ -583,15 +583,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,15 +603,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">命令行</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">爬虫</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">命令行</a>
               </li>
              
               <li class="article-tag-list-item">
