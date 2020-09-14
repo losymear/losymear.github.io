@@ -7,22 +7,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="stylesheet" href="/css/nav.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>bash命令：trap | losymear&#39;s blog</title>
+  <title>Tag: 算法与数据结构 | losymear&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="语法trap [COMMANDS] [SIGNALS]">
-<meta name="keywords" content="linux,bash">
-<meta property="og:type" content="article">
-<meta property="og:title" content="bash命令：trap">
-<meta property="og:url" content="http://yoursite.com/2018/08/23/trap命令/index.html">
+  <meta name="description" content="losymear的笔记">
+<meta name="keywords" content="losymear blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="losymear&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/tags/算法与数据结构/index.html">
 <meta property="og:site_name" content="losymear&#39;s blog">
-<meta property="og:description" content="语法trap [COMMANDS] [SIGNALS]">
+<meta property="og:description" content="losymear的笔记">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://i.loli.net/2018/08/22/5b7d2cf2e787a.png">
-<meta property="og:updated_time" content="2019-08-08T08:38:26.574Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bash命令：trap">
-<meta name="twitter:description" content="语法trap [COMMANDS] [SIGNALS]">
-<meta name="twitter:image" content="https://i.loli.net/2018/08/22/5b7d2cf2e787a.png">
+<meta name="twitter:title" content="losymear&#39;s blog">
+<meta name="twitter:description" content="losymear的笔记">
   
     <link rel="alternative" href="/atom.xml" title="losymear&#39;s blog" type="application/atom+xml">
   
@@ -155,213 +152,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-trap命令" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      bash命令：trap
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/06/06/排序算法/" class="archive-article-date">
+  	<time datetime="2019-06-06T09:01:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-06</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/06/06/排序算法/">排序算法</a>
     </h1>
   
 
-        
-        <a href="/2018/08/23/trap命令/" class="archive-article-date">
-  	<time datetime="2018-08-23T06:25:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
-</a>
-        
-      </header>
-      <!-- 目录内容 -->
-       
-<!-- 目录内容结束 -->
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><code>trap [COMMANDS] [SIGNALS]</code><br><a id="more"></a></p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="防止脚本执行中断导致文件未清除"><a href="#防止脚本执行中断导致文件未清除" class="headerlink" title="防止脚本执行中断导致文件未清除"></a>防止脚本执行中断导致文件未清除</h3><pre><code class="sh">#!/bin/sh
-
-trap cleanup 1 2 3 6
-
-cleanup()
-{
-  echo &quot;Caught Signal ... cleaning up.&quot;
-  rm -rf /tmp/temp_*.$$
-  echo &quot;Done cleanup ... quitting.&quot;
-  exit 1
-}
-
-### main script
-for i in *
-do
-  sed s/FOO/BAR/g $i &gt; /tmp/temp_${i}.$$ &amp;&amp; mv /tmp/temp_${i}.$$ $i
-done
-</code></pre>
-<p>上述代码将当前文件夹的文件中所有的<code>FOO</code>替换为<code>BAR</code>，写入到临时文件<code>/tmp/temp_${i}.$$</code>再写回到当前文件。如果在执行中途中断，可能仍然在<code>/tmp</code>中有临时文件。<br><code>trap</code>语句表示在信号1、2、3、6时执行<code>cleanup()</code>函数。常用的<code>CTRL-C</code>是信号2（<code>SIGINT</code>）。</p>
-<h3 id="一个有趣的例子"><a href="#一个有趣的例子" class="headerlink" title="一个有趣的例子"></a>一个有趣的例子</h3><pre><code class="sh">#!/bin/sh
-trap &#39;increment&#39; 2
-
-increment()
-{
-  echo &quot;Caught SIGINT ...&quot;
-  X=`expr ${X} + 500`
-  if [ &quot;${X}&quot; -gt &quot;2000&quot; ]
-  then
-    echo &quot;Okay, I&#39;ll quit ...&quot;
-    exit 1
-  fi
-}
-
-### main script
-X=0
-while :
-do
-  echo &quot;X=$X&quot;
-  X=`expr ${X} + 1`
-  sleep 1
-done
-</code></pre>
-<p>示例中有一个变量<code>X</code>，每隔1s增加1，并打印出来。当捕获到<code>CTRL-C</code>不会立即退出，而是让变量增加500，当变量大于2000时脚本才会退出。如下：<br><img src="https://i.loli.net/2018/08/22/5b7d2cf2e787a.png" alt="trapTest.sh"><br>当然所有脚本都能用<code>kill -9 &lt;PID&gt;</code>退出。</p>
-<h3 id="一些信号"><a href="#一些信号" class="headerlink" title="一些信号"></a>一些信号</h3><table>
-<thead>
-<tr>
-<th>Number</th>
-<th>SIG</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>On exit from shell</td>
-</tr>
-<tr>
-<td>1</td>
-<td>SIGHUP</td>
-<td>Clean tidyup</td>
-</tr>
-<tr>
-<td>2</td>
-<td>SIGINT</td>
-<td>Interrupt</td>
-</tr>
-<tr>
-<td>3</td>
-<td>SIGQUIT</td>
-<td>Quit</td>
-</tr>
-<tr>
-<td>6</td>
-<td>SIGABRT</td>
-<td>Abort</td>
-</tr>
-<tr>
-<td>9</td>
-<td>SIGKILL</td>
-<td>Die Now (cannot be trapped)</td>
-</tr>
-<tr>
-<td>14</td>
-<td>SIGALRM</td>
-<td>Alarm Clock</td>
-</tr>
-<tr>
-<td>15</td>
-<td>SIGTERM</td>
-<td>Terminate</td>
-</tr>
-</tbody>
-</table>
-<p>注意如果脚本运行在忽略信号的环境下，比如通过<code>nohup</code>运行，那么脚本仍然会忽略这些信号。</p>
-<hr>
-<p><strong>参考：</strong></p>
-<ul>
-<li><a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_12_02.html" target="_blank" rel="noopener">Bash Guide for Beginners: 12.2 Traps</a></li>
-<li><a href="http://man7.org/linux/man-pages/man1/trap.1p.html#top_of_page" target="_blank" rel="noopener">man7.org: trap</a></li>
-<li><a href="https://www.shellscript.sh/trap.html" target="_blank" rel="noopener">shellscript.sh: trap</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">bash</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法与数据结构</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/09/20/retrofit使用笔记/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          retrofit使用笔记
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/08/10/HTTPie/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">HTTPie使用指南</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -403,9 +247,9 @@ done
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

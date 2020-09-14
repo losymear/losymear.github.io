@@ -7,22 +7,20 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="stylesheet" href="/css/nav.css" media="screen" type="text/css">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>bash命令：trap | losymear&#39;s blog</title>
+  <title>排序算法 | losymear&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="语法trap [COMMANDS] [SIGNALS]">
-<meta name="keywords" content="linux,bash">
+  <meta name="description" content="如果有一个数组，元素间可以进行比较（&amp;gt;、==、&amp;lt;），要让数组的元素按照大小顺序重新排序，就需要排序算法。">
+<meta name="keywords" content="算法与数据结构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="bash命令：trap">
-<meta property="og:url" content="http://yoursite.com/2018/08/23/trap命令/index.html">
+<meta property="og:title" content="排序算法">
+<meta property="og:url" content="http://yoursite.com/2019/06/06/排序算法/index.html">
 <meta property="og:site_name" content="losymear&#39;s blog">
-<meta property="og:description" content="语法trap [COMMANDS] [SIGNALS]">
+<meta property="og:description" content="如果有一个数组，元素间可以进行比较（&amp;gt;、==、&amp;lt;），要让数组的元素按照大小顺序重新排序，就需要排序算法。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://i.loli.net/2018/08/22/5b7d2cf2e787a.png">
-<meta property="og:updated_time" content="2019-08-08T08:38:26.574Z">
+<meta property="og:updated_time" content="2020-09-14T09:39:08.788Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="bash命令：trap">
-<meta name="twitter:description" content="语法trap [COMMANDS] [SIGNALS]">
-<meta name="twitter:image" content="https://i.loli.net/2018/08/22/5b7d2cf2e787a.png">
+<meta name="twitter:title" content="排序算法">
+<meta name="twitter:description" content="如果有一个数组，元素间可以进行比较（&amp;gt;、==、&amp;lt;），要让数组的元素按照大小顺序重新排序，就需要排序算法。">
   
     <link rel="alternative" href="/atom.xml" title="losymear&#39;s blog" type="application/atom+xml">
   
@@ -155,132 +153,263 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-trap命令" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-排序算法" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      bash命令：trap
+      排序算法
     </h1>
   
 
         
-        <a href="/2018/08/23/trap命令/" class="archive-article-date">
-  	<time datetime="2018-08-23T06:25:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-23</time>
+        <a href="/2019/06/06/排序算法/" class="archive-article-date">
+  	<time datetime="2019-06-06T09:01:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-06</time>
 </a>
         
       </header>
       <!-- 目录内容 -->
-       
+
+  <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+        <span class="btn-bg"></span>
+        <span class="btn-text">文章导航</span>
+        </p>
+  <div id="toc-article" class="toc-article">
+      <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+      <strong class="toc-title">文章目录</strong>
+         <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#排序算法的特性"><span class="toc-number">1.</span> <span class="toc-text">排序算法的特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#冒泡排序、插入排序、选择排序、希尔排序"><span class="toc-number">2.</span> <span class="toc-text">冒泡排序、插入排序、选择排序、希尔排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#选择排序"><span class="toc-number">2.1.</span> <span class="toc-text">选择排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插入排序"><span class="toc-number">2.2.</span> <span class="toc-text">插入排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#希尔排序"><span class="toc-number">2.3.</span> <span class="toc-text">希尔排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#冒泡排序"><span class="toc-number">2.4.</span> <span class="toc-text">冒泡排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#归并和快排"><span class="toc-number">3.</span> <span class="toc-text">归并和快排</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#归并排序"><span class="toc-number">3.1.</span> <span class="toc-text">归并排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自顶向下"><span class="toc-number">3.1.1.</span> <span class="toc-text">自顶向下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自底向上"><span class="toc-number">3.1.2.</span> <span class="toc-text">自底向上</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快排"><span class="toc-number">3.2.</span> <span class="toc-text">快排</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#桶排序、计数排序、基数排序"><span class="toc-number">4.</span> <span class="toc-text">桶排序、计数排序、基数排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#桶排序"><span class="toc-number">4.1.</span> <span class="toc-text">桶排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计数排序"><span class="toc-number">4.2.</span> <span class="toc-text">计数排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基数排序"><span class="toc-number">4.3.</span> <span class="toc-text">基数排序</span></a></li></ol></li></ol>
+       </div>
+ <script type="text/javascript">
+  function showToc(){
+      var toc_article = document.getElementById("toc-article");
+      var show_toc_btn = document.getElementById("show-toc-btn");
+      toc_article.setAttribute("style","display:block");
+      show_toc_btn.setAttribute("style","display:none");
+      };
+  function showBtn(){
+      var toc_article = document.getElementById("toc-article");
+      var show_toc_btn = document.getElementById("show-toc-btn");
+      toc_article.setAttribute("style","display:none");
+      show_toc_btn.setAttribute("style","display:block");
+      };
+    showBtn();
+ </script>
+           
 <!-- 目录内容结束 -->
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p><code>trap [COMMANDS] [SIGNALS]</code><br><a id="more"></a></p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><h3 id="防止脚本执行中断导致文件未清除"><a href="#防止脚本执行中断导致文件未清除" class="headerlink" title="防止脚本执行中断导致文件未清除"></a>防止脚本执行中断导致文件未清除</h3><pre><code class="sh">#!/bin/sh
-
-trap cleanup 1 2 3 6
-
-cleanup()
-{
-  echo &quot;Caught Signal ... cleaning up.&quot;
-  rm -rf /tmp/temp_*.$$
-  echo &quot;Done cleanup ... quitting.&quot;
-  exit 1
-}
-
-### main script
-for i in *
-do
-  sed s/FOO/BAR/g $i &gt; /tmp/temp_${i}.$$ &amp;&amp; mv /tmp/temp_${i}.$$ $i
-done
-</code></pre>
-<p>上述代码将当前文件夹的文件中所有的<code>FOO</code>替换为<code>BAR</code>，写入到临时文件<code>/tmp/temp_${i}.$$</code>再写回到当前文件。如果在执行中途中断，可能仍然在<code>/tmp</code>中有临时文件。<br><code>trap</code>语句表示在信号1、2、3、6时执行<code>cleanup()</code>函数。常用的<code>CTRL-C</code>是信号2（<code>SIGINT</code>）。</p>
-<h3 id="一个有趣的例子"><a href="#一个有趣的例子" class="headerlink" title="一个有趣的例子"></a>一个有趣的例子</h3><pre><code class="sh">#!/bin/sh
-trap &#39;increment&#39; 2
-
-increment()
-{
-  echo &quot;Caught SIGINT ...&quot;
-  X=`expr ${X} + 500`
-  if [ &quot;${X}&quot; -gt &quot;2000&quot; ]
-  then
-    echo &quot;Okay, I&#39;ll quit ...&quot;
-    exit 1
-  fi
-}
-
-### main script
-X=0
-while :
-do
-  echo &quot;X=$X&quot;
-  X=`expr ${X} + 1`
-  sleep 1
-done
-</code></pre>
-<p>示例中有一个变量<code>X</code>，每隔1s增加1，并打印出来。当捕获到<code>CTRL-C</code>不会立即退出，而是让变量增加500，当变量大于2000时脚本才会退出。如下：<br><img src="https://i.loli.net/2018/08/22/5b7d2cf2e787a.png" alt="trapTest.sh"><br>当然所有脚本都能用<code>kill -9 &lt;PID&gt;</code>退出。</p>
-<h3 id="一些信号"><a href="#一些信号" class="headerlink" title="一些信号"></a>一些信号</h3><table>
-<thead>
-<tr>
-<th>Number</th>
-<th>SIG</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>0</td>
-<td>On exit from shell</td>
-</tr>
-<tr>
-<td>1</td>
-<td>SIGHUP</td>
-<td>Clean tidyup</td>
-</tr>
-<tr>
-<td>2</td>
-<td>SIGINT</td>
-<td>Interrupt</td>
-</tr>
-<tr>
-<td>3</td>
-<td>SIGQUIT</td>
-<td>Quit</td>
-</tr>
-<tr>
-<td>6</td>
-<td>SIGABRT</td>
-<td>Abort</td>
-</tr>
-<tr>
-<td>9</td>
-<td>SIGKILL</td>
-<td>Die Now (cannot be trapped)</td>
-</tr>
-<tr>
-<td>14</td>
-<td>SIGALRM</td>
-<td>Alarm Clock</td>
-</tr>
-<tr>
-<td>15</td>
-<td>SIGTERM</td>
-<td>Terminate</td>
-</tr>
-</tbody>
-</table>
-<p>注意如果脚本运行在忽略信号的环境下，比如通过<code>nohup</code>运行，那么脚本仍然会忽略这些信号。</p>
-<hr>
-<p><strong>参考：</strong></p>
-<ul>
-<li><a href="http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_12_02.html" target="_blank" rel="noopener">Bash Guide for Beginners: 12.2 Traps</a></li>
-<li><a href="http://man7.org/linux/man-pages/man1/trap.1p.html#top_of_page" target="_blank" rel="noopener">man7.org: trap</a></li>
-<li><a href="https://www.shellscript.sh/trap.html" target="_blank" rel="noopener">shellscript.sh: trap</a></li>
+        <p>如果有一个数组，元素间可以进行比较（<code>&gt;</code>、<code>==</code>、<code>&lt;</code>），要让数组的元素按照大小顺序重新排序，就需要<strong>排序算法</strong>。</p>
+<a id="more"></a>
+<h2 id="排序算法的特性"><a href="#排序算法的特性" class="headerlink" title="排序算法的特性"></a>排序算法的特性</h2><ul>
+<li>稳定性</li>
+<li><em>in place</em> 原地排序，即排序算法不会占用过多的内存空间（比如，如果算法用临时变量<code>temp</code>来交换<code>a[i]</code>和<code>a[j]</code>就是in place的）。</li>
 </ul>
+<!-- https://stackoverflow.com/questions/7717691/why-is-the-minimalist-example-haskell-quicksort-not-a-true-quicksort -->
+<p>主要需要了解的排序算法<br>|算法|时间复杂度|稳定排序|原地排序|<br>|——-|——–|——-|——|<br>|冒泡排序|$O(n^2)$|√|√|<br>|插入排序|$O(n^2)$|√|√|<br>|选择排序|$O(n^2)$|×|√|<br>|快速排序|$O(nlog_n)$|×|√|<br>|归并排序|$O(n^2)$|√|×|<br>|计数排序|$O(nlog_{(n/m)})$，<code>m</code>为桶的个数。桶越多越好，只有一个桶时退化为$O(nlog_n)$|√|×|<br>|桶排序|$O(n)$|√|×|<br>|基数排序|$O(dn)$，<code>d</code>是维度|√|×|</p>
+<ul>
+<li>原地排序（sorted in place）： 指空间复杂度为$O(1)$的算法。</li>
+<li>排序算法稳定性： 等值元素在排序后，先后顺序不变。</li>
+<li>逆序度（inversion） 两个元素如果未从小到大排序，则算是一组逆序数。如<code>E X A M P L E</code>的逆序度为11，有如下11个逆序对<code>E-A, X-A, X-M, X-P, X-L, X-E, M-L, M-E, P-L, P-E, L-E</code>。</li>
+</ul>
+<h2 id="冒泡排序、插入排序、选择排序、希尔排序"><a href="#冒泡排序、插入排序、选择排序、希尔排序" class="headerlink" title="冒泡排序、插入排序、选择排序、希尔排序"></a>冒泡排序、插入排序、选择排序、希尔排序</h2><h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>选择排序： 类似插入排序，游标<code>i</code>左侧已经排序好、右侧未排序好。从右侧中找到最小元素（假设为$A_j$），和第1个元素交换，然后游标加1；然后找出第2~n个元素中最小的元素，和数组第2个元素交换位置；一直到最后一个元素。<br>每次都是选出剩余未排列元素中最小的元素，所以叫选择排序。</p>
+<p>这不是一个稳定排序，比如对<code>5,8,5,2,9</code>进行选择排序，会先交换第一个5和2，这样两个5的位置就改变了。<br>选择排序只需要交换n次元素，其它算法都是$O(nlog_n)$或者$O(n^2)$，当然选择排序算法的比较次数是$O(n^2)$。</p>
+<p><a href="https://www.geeksforgeeks.org/python-program-for-selection-sort/" target="_blank" rel="noopener">python实现</a>如下：</p>
+<pre><code class="python"># Traverse through all array elements
+for i in range(len(A)):
+
+    # Find the minimum element in remaining
+    # unsorted array
+    min_idx = i
+    for j in range(i+1, len(A)):
+        if A[min_idx] &gt; A[j]:
+            min_idx = j
+
+    # Swap the found minimum element with
+    # the first element
+    A[i], A[min_idx] = A[min_idx], A[i]
+</code></pre>
+<p><strong>递归的描述方式： 对于从<code>1~n</code>的每个<code>i</code>，将第<code>i</code>小的元素放到<code>arr[i]</code>。</strong></p>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>插入排序： 游标<code>i</code>将数据分为左侧的已排序部分（$A_0$到$A_i$）和右侧的未排序部分（$A_{i+1}$到$A_n$），将$A_{i+1}$的元素插入到左侧的合适位置，然后游标右移。将游标从<code>0</code>移动到<code>n</code>然后排序结束。<br>插入排序优于冒泡排序，因为每次冒泡排序交换元素$A_i$和$A_{i+1}$都需要进行3次赋值语句（需要<code>tmp=A[i]; A[i]=A[i+1];A[i+1]=tmp;</code>），而插入排序只需要1次赋值语句。<br>扑克牌手一般都会使用该方式来排序手牌。</p>
+<p><a href="https://www.geeksforgeeks.org/insertion-sort/" target="_blank" rel="noopener">python实现</a>如下：</p>
+<pre><code class="python"># Function to do insertion sort
+def insertionSort(arr):
+
+    # Traverse through 1 to len(arr)
+    for i in range(1, len(arr)):
+
+        key = arr[i]
+
+        # Move elements of arr[0..i-1], that are
+        # greater than key, to one position ahead
+        # of their current position
+        j = i-1
+        while j &gt;= 0 and key &lt; arr[j] :
+                arr[j + 1] = arr[j]
+                j -= 1
+        arr[j + 1] = key
+</code></pre>
+<p><strong>递归的描述方式： 对于从<code>1~n</code>的每个<code>i</code>，每次将新的元素插入到合适的位置使<code>1~i</code>的元素保持有序。</strong></p>
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><p>插入排序每次交换操作只能移动相邻的元素，如果元素离最终位置较远，会需要过多的交换操作。希尔排序据此对插入排序进行改进。<br>h-sort指的是，对于指定的递增值<code>h</code>值比如3，从数组任意一个索引处开始递增（如2、5、8、11..），都已经排序好。 希尔排序先用较大的递增值进行h-sort，直到<code>h</code>减到1。<br><a href="https://mp.weixin.qq.com/s/b9-dkpAhWJYshuSs5cwnOw" target="_blank" rel="noopener">java实现</a>如下：</p>
+<pre><code class="java">public class ShellSort {
+    public static void sort(int[] array) {
+        //希尔排序的增量
+        int d = array.length;
+        while (d &gt; 1) {
+            // 使用希尔增量的方式，即每次折半
+            d = d / 2;
+            // note: 当d=1时，就是标准的插入排序。 这样来理解这段代码就清晰些了
+            for (int x = 0; x &lt; d; x++) {
+                for (int i = x + d; i &lt; array.length; i = i + d) {
+                    int temp = array[i];
+                    int j;
+                    for (j = i - d; j &gt;= 0 &amp;&amp; array[j] &gt; temp; j = j - d) {
+                        // 1,3,8,13  7
+                        array[j + d] = array[j];
+                    }
+                    array[j + d] = temp;
+                }
+            }
+        }
+    }
+
+    public static void main
+            (String[] args) {
+        int[] array = {5, 3, 9, 12, 6, 1, 7, 2, 4, 11, 8, 10};
+        sort(array);
+        System.out.println(Arrays.toString(array));
+    }
+}
+
+</code></pre>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>对于相邻两个元素（$A_0$和$A_1$、$A_1$和$A_2$，以此类推…），如果$a_j&gt;a_{j+1}$，则交换<code>j</code>和<code>j+1</code>位置的数据，这样第一轮冒泡会将最大的元素冒泡到$A_n$、第二轮会将第二大的元素冒泡到$A_{n-1}$….</p>
+<h2 id="归并和快排"><a href="#归并和快排" class="headerlink" title="归并和快排"></a>归并和快排</h2><p>归并排序和快排都使用了递归，前者是将数组不断分成子数组排序，然后再合并各个结果。而快排则是选择一个分区点元素<code>p</code>，将小于<code>p</code>的元素放在左边，大于<code>p</code>的元素放在右边，分成<em>少于p、p、大于p</em>三个区间，再对<em>少于p</em>和<em>大于p</em>的区间进行快排，当区间间隔1时表示排序完毕。<br>归并排序不是原地排序，所以应用没有快排广泛。</p>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>两个已经排序好的数组可以很快的合并成一个更大的数组。归并排序(merge sort)正是基于此：为了排序一个数组，先对分数组为两个子数组，排序（递归过程）两个子数组，再合并得到结果。<br>这是<strong>分治算法</strong>的典型：我们将一个问题分成多个子问题，通过解决子问题，合并子问题结果得到最终结果。</p>
+<h4 id="自顶向下"><a href="#自顶向下" class="headerlink" title="自顶向下"></a>自顶向下</h4><p>自顶向上的归并排序是递归调用<code>sort</code>方法并<code>merge</code>结果。时间复杂度$O(Nlog_N)$，空间复杂度$O(N)$。<br><a href="https://www.geeksforgeeks.org/merge-sort/" target="_blank" rel="noopener">python实现</a>如下：</p>
+<pre><code class="python"># Python program for implementation of MergeSort
+def mergeSort(arr):
+    if len(arr) &gt;1:
+        mid = len(arr)//2 #Finding the mid of the array
+        L = arr[:mid] # Dividing the array elements
+        R = arr[mid:] # into 2 halves
+
+        mergeSort(L) # Sorting the first half
+        mergeSort(R) # Sorting the second half
+
+        i = j = k = 0
+
+        # Copy data to temp arrays L[] and R[]
+        while i &lt; len(L) and j &lt; len(R):
+            if L[i] &lt; R[j]:
+                arr[k] = L[i]
+                i+=1
+            else:
+                arr[k] = R[j]
+                j+=1
+            k+=1
+
+        # Checking if any element was left
+        while i &lt; len(L):
+            arr[k] = L[i]
+            i+=1
+            k+=1
+
+        while j &lt; len(R):
+            arr[k] = R[j]
+            j+=1
+            k+=1
+</code></pre>
+<h4 id="自底向上"><a href="#自底向上" class="headerlink" title="自底向上"></a>自底向上</h4><p>自顶向下的mergesort是将规模为n的问题分解成2个规模为<code>n/2</code>的子问题，再分解成规模为<code>n/4</code>的子问题，直到规模为1。自顶向上的mergesort是将问题分解为规模为1的子问题，再合并成规模为2、4…的子问题。<br>自顶向下和自底向上的mergesort的数组访问、比较序列相同，只不过换了顺序。</p>
+<p>自顶向下的mergesort算法是将大问题分解成小的子问题，然后将小问题分解成更小的子问题，递归地解决；自底向下的mergesort算法是将大问题分解成最小的子问题（size为1），然后逐渐合并成大的子问题（size为2、4…），直到得到最终结果。</p>
+<p><a href="https://www.geeksforgeeks.org/iterative-merge-sort/" target="_blank" rel="noopener">python实现</a>如下：</p>
+<pre><code class="python">def merge(left, right):
+    if not len(left) or not len(right):
+        return left or right
+
+    result = []
+    i, j = 0, 0
+    while (len(result) &lt; len(left) + len(right)):
+        if left[i] &lt; right[j]:
+            result.append(left[i])
+            i+= 1
+        else:
+            result.append(right[j])
+            j+= 1
+        if i == len(left) or j == len(right):
+            result.extend(left[i:] or right[j:])
+            break
+
+    return result
+
+def mergesort(list):
+    if len(list) &lt; 2:
+        return list
+
+    middle = len(list)/2
+    left = mergesort(list[:middle])
+    right = mergesort(list[middle:])
+</code></pre>
+<h3 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h3><p>quicksort是应用最广泛的排序算法。 它相比mergesort的优点是容易实现，且为原地排序，只需要一个比较小的stack。<br>mergesort是先递归调用两次，再操纵整个数组；quicksort是先操纵整个数组，再递归调用两次。</p>
+<p><a href="https://www.geeksforgeeks.org/python-program-for-quicksort/" target="_blank" rel="noopener">python实现</a>如下：</p>
+<pre><code class="python"># This function takes last element as pivot, places
+# the pivot element at its correct position in sorted
+# array, and places all smaller (smaller than pivot)
+# to left of pivot and all greater elements to right
+# of pivot
+def partition(arr,low,high):
+    i = ( low-1 )         # index of smaller element
+    pivot = arr[high]     # pivot
+
+    for j in range(low , high):
+
+        # If current element is smaller than or
+        # equal to pivot
+        if   arr[j] &lt;= pivot:
+
+            # increment index of smaller element
+            i = i+1
+            arr[i],arr[j] = arr[j],arr[i]
+
+    arr[i+1],arr[high] = arr[high],arr[i+1]
+    return ( i+1 )
+
+# The main function that implements QuickSort
+# arr[] --&gt; Array to be sorted,
+# low  --&gt; Starting index,
+# high  --&gt; Ending index
+
+# Function to do Quick sort
+def quickSort(arr,low,high):
+    if low &lt; high:
+
+        # pi is partitioning index, arr[p] is now
+        # at right place
+        pi = partition(arr,low,high)
+
+        # Separately sort elements before
+        # partition and after partition
+        quickSort(arr, low, pi-1)
+        quickSort(arr, pi+1, high)
+
+# Driver code to test above
+arr = [10, 7, 8, 9, 1, 5]
+n = len(arr)
+quickSort(arr,0,n-1)
+print (&quot;Sorted array is:&quot;)
+for i in range(n):
+    print (&quot;%d&quot; %arr[i]),
+
+# This code is contributed by Mohit Kumra
+</code></pre>
+<h2 id="桶排序、计数排序、基数排序"><a href="#桶排序、计数排序、基数排序" class="headerlink" title="桶排序、计数排序、基数排序"></a>桶排序、计数排序、基数排序</h2><p>三种时间复杂度为$O(N)$的排序算法，为线性排序（linear sorting。之所以能做到线性的时间复杂度，是因为这些排序算法不是基于比较的，使用条件比较苛刻。</p>
+<h3 id="桶排序"><a href="#桶排序" class="headerlink" title="桶排序"></a>桶排序</h3><p>桶排序（<a href="https://en.wikipedia.org/wiki/Bucket_sort" target="_blank" rel="noopener">bucket sort</a>）的核心是<strong>桶</strong>，将要排序的数据按照数据大小放到多个有序的桶中，然后分别在桶中进行排序（这里可能会使用到比较算法）。当每个桶中的数据都排序好时，全部数据就排序好了。<br>举例说明：比如将金额在0-50之间的订单，分别放到0-9、10-19…40-49的桶中，每个桶中的元素使用快排，然后合并结果。</p>
+<p>时间复杂度分析：将<code>n</code>个数据分到<code>m</code>个桶中，理想情况下每个桶中有<code>k=n/m</code>个元素。每个桶中使用快排，时间复杂度为$O(k<em>log_k)$，<code>m</code>个桶的时间复杂度就是$O(m</em>k<em>log_k)$即$O(n</em>log_{n/m})$。当桶的个数<code>m</code>接近数据个数<code>n</code>时，$log_{n/m}$就会比较小，时间复杂度就是$O(n)$。</p>
+<p>可以看出，使用桶排序需要满足条件：1） 要排序的数据能够方便的划分到<code>m</code>个桶中，且桶有大小顺序； 2）数据在多个桶间分布均匀，如果不均匀，在极端情况下（绝大部分数据在一个桶中）时间复杂度会退化到$O(n*log_n)$。</p>
+<p>桶排序比较适合用在<strong>外部排序</strong>中。所谓的外部排序就是数据存储在外部磁盘中，数据量比较大，内存有限，无法将数据全部加载到内存中。</p>
+<h3 id="计数排序"><a href="#计数排序" class="headerlink" title="计数排序"></a>计数排序</h3><p>计数排序<a href="https://en.wikipedia.org/wiki/Counting_sort" target="_blank" rel="noopener">Counting sort</a>。<strong>计数</strong>这一称呼源自数据合并到最终数组的过程，可以见<a href="https://www.geeksforgeeks.org/counting-sort/" target="_blank" rel="noopener">示例</a>。</p>
+<h3 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h3><p>对于11位的手机号，可以分割成11个独立的位，对每一个位使用桶排序或者计数排序。</p>
 
       
 
@@ -294,11 +423,7 @@ done
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">bash</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法与数据结构</a>
         		</li>
       		
 		</ul>
@@ -317,18 +442,18 @@ done
   
 <nav id="article-nav">
   
-    <a href="/2018/09/20/retrofit使用笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/08/06/scrapy basic/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          retrofit使用笔记
+          scrapy basic
         
       </div>
     </a>
   
   
-    <a href="/2018/08/10/HTTPie/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">HTTPie使用指南</div>
+    <a href="/2018/10/23/Node.js事件循环和python/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Node.js和python的event loop</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -347,6 +472,19 @@ done
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#排序算法的特性"><span class="toc-number">1.</span> <span class="toc-text">排序算法的特性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#冒泡排序、插入排序、选择排序、希尔排序"><span class="toc-number">2.</span> <span class="toc-text">冒泡排序、插入排序、选择排序、希尔排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#选择排序"><span class="toc-number">2.1.</span> <span class="toc-text">选择排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插入排序"><span class="toc-number">2.2.</span> <span class="toc-text">插入排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#希尔排序"><span class="toc-number">2.3.</span> <span class="toc-text">希尔排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#冒泡排序"><span class="toc-number">2.4.</span> <span class="toc-text">冒泡排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#归并和快排"><span class="toc-number">3.</span> <span class="toc-text">归并和快排</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#归并排序"><span class="toc-number">3.1.</span> <span class="toc-text">归并排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#自顶向下"><span class="toc-number">3.1.1.</span> <span class="toc-text">自顶向下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#自底向上"><span class="toc-number">3.1.2.</span> <span class="toc-text">自底向上</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#快排"><span class="toc-number">3.2.</span> <span class="toc-text">快排</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#桶排序、计数排序、基数排序"><span class="toc-number">4.</span> <span class="toc-text">桶排序、计数排序、基数排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#桶排序"><span class="toc-number">4.1.</span> <span class="toc-text">桶排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计数排序"><span class="toc-number">4.2.</span> <span class="toc-text">计数排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基数排序"><span class="toc-number">4.3.</span> <span class="toc-text">基数排序</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
