@@ -3,7 +3,8 @@
 menu:
   主页: /
   随笔: /tags/随笔/
-  前端: /tags/后端/
+  后端: /tags/后端/
+  算法: /tags/算法/
 
 # SubNav
 subnav:
